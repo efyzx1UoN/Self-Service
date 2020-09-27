@@ -5,14 +5,14 @@
 ## Contributors
 
 
-| Name |                    Role                   | 
-| :--: | :---------------------------------------: | 
-|  Callum Davis   |  |   
-|  Zixiang Jin   |  |
-|  Thomas Murphy   |  | 
-|  Zihui Xu  |    | 
-|  Ashley Nnawugo   |  |      
-|  Shuxiang Hu   |  |   
+| Name            | Role | CV  |
+| :--:            | :--: |:--: | 
+|  Callum Davis   |      |     |
+|  Zixiang Jin    |      |     |
+|  Thomas Murphy  |      |     | 
+|  Zihui Xu       |      |     |
+|  Ashley Nnawugo |      |     |      
+|  Shuxiang Hu    |      |     | 
 
 ## Assessment Deliverables
 |  |                                       | 
