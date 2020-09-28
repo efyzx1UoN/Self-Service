@@ -7,12 +7,12 @@
 
 | Name            | Role | CV  |
 | :--:            | :--: |:--: | 
-|  Callum Davis   |      |     |
-|  Zixiang Jin    |      |     |
-|  Thomas Murphy  |      |     | 
-|  Zihui Xu       |      |     |
-|  Ashley Nnawugo |      |     |      
-|  Shuxiang Hu    |      |     | 
+|  Callum Davis   |   Leader   |     |
+|  Zixiang Jin    | Member |     |
+|  Thomas Murphy  |Git Master      |     | 
+|  Zihui Xu       | Member     |     |
+|  Ashley Nnawugo |Member      |     |      
+|  Shuxiang Hu    |Administrator      |     | 
 
 ## Assessment Deliverables
 |  |                                       | 
