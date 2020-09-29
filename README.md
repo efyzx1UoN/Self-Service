@@ -36,7 +36,7 @@ We also have to produce a deliverable EOI, which includes our CVs attached.
 
 |    Date    |            Issues             |                          Conclusion                          |                          Attendance                          |
 | :--------: | :---------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| 29/09/2020 | Project selection for sign up | Interested Projects(sorted by preference):<br/>1.Mix and Match with Cap One(33%)<br/>2.Asteroids reloaded with UON (20%)<br/>3.Self service with Browne Jacobson (13%)<br/>4.Meal Planner with Kainos (13%)<br/>5.Good Financial Habits with Cap One (13%) | Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo<br/>Shuxiang Hu |
+| 29/09/2020 | Project selection for sign up | Interested Projects(sorted by preference):<br/>1.Mix and Match with Cap One (33%)<br/>2.Asteroids reloaded with UON (20%)<br/>3.Self service with Browne Jacobson (13%)<br/>4.Meal Planner with Kainos (13%)<br/>5.Good Financial Habits with Cap One (13%) | Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo<br/>Shuxiang Hu |
 
 
 
