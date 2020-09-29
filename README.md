@@ -18,7 +18,7 @@ We also have to produce a deliverable EOI, which includes our CVs attached.
 - EOI: <b>October 15th</b>
 - Pitch Day: <b>October 20th (Between 2:00pm and 5:30pm BST)</b>
 
-## Contributors
+### Contributors
 
 
 | Name            | Role | CV  |
@@ -30,7 +30,16 @@ We also have to produce a deliverable EOI, which includes our CVs attached.
 |  Ashley Nnawugo |Member      |     |      
 |  Shuxiang Hu    |Administrator      |     | 
 
-## Assessment Deliverables
+
+### Meetings
+
+
+| Date         | Issues | Conclusion  |Attendance|
+| :--:            | :--: |:--: |:--: | 
+|  29/09/2020   |   Project selection for sign up  |  Interested Projects(sorted by preference):1.Mix and Match with Cap One(33%)2.Asteroids reloaded with UON (20%)3.Self service with Browne Jacobson (13%)4.Meal Planner with Kainos (13%)5.Good Financial Habits with Cap One (13%)||
+
+
+### Assessment Deliverables
 |  |                                       | 
 | :--: | :---------------------------------------: | 
 |  |  |   
