@@ -28,7 +28,7 @@ We also have to produce a deliverable EOI, which includes our CVs attached.
 |  Thomas Murphy  |Git Master      |     | 
 |  Zihui Xu       | Member     |     |
 |  Ashley Nnawugo |Member      |     |      
-|  Shuxiang Hu    |Administrator      |     | 
+|  Shuxiang Hu    |Administrator      |[Shuxiang's CV](docs/CV Shuxiang Hu.pdf)     | 
 
 
 ### Meetings
