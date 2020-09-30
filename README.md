@@ -25,7 +25,7 @@ We also have to produce a deliverable EOI, which includes our CVs attached.
 | :--:            | :--: |:--: | 
 |  Callum Davis   |   Leader   |     |
 |  Zixiang Jin    | Member |     |
-|  Thomas Murphy  |Git Master      |     | 
+|  Thomas Murphy  |Git Master      |[Thomas' CV](docs/CVs/CV_Thomas_Murphy.pdf)     | 
 |  Zihui Xu       | Member     |     |
 |  Ashley Nnawugo |Member      |     |      
 |  Shuxiang Hu    |Administrator      |[Shuxiang's CV](docs/CVs/CV_Shuxiang_Hu.pdf)     | 
