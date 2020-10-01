@@ -22,13 +22,13 @@ We also have to produce a deliverable EOI, which includes our CVs attached.
 
 
 | Name            | Role | CV  |
-| :--:            | :--: |:--: | 
+| :--:            | :--: |:--: |
 |  Callum Davis   |   Leader   |     |
-|  Zixiang Jin    | Member |     |
-|  Thomas Murphy  |Git Master      |[Thomas' CV](docs/CVs/CV_Thomas_Murphy.pdf)     | 
+|  Zixiang Jin    | Member | [Zixiang's CV](docs/CVs/CV_Zixiang_Jin.pdf) |
+|  Thomas Murphy  |Git Master      |[Thomas' CV](docs/CVs/CV_Thomas_Murphy.pdf)     |
 |  Zihui Xu       | Member     |     |
-|  Ashley Nnawugo |Member      |     |      
-|  Shuxiang Hu    |Administrator      |[Shuxiang's CV](docs/CVs/CV_Shuxiang_Hu.pdf)     | 
+|  Ashley Nnawugo |Member      |     |
+|  Shuxiang Hu    |Administrator      |[Shuxiang's CV](docs/CVs/CV_Shuxiang_Hu.pdf)     |
 
 
 ### Meetings
@@ -41,11 +41,11 @@ We also have to produce a deliverable EOI, which includes our CVs attached.
 
 
 ### Assessment Deliverables
-|  |                                       | 
-| :--: | :---------------------------------------: | 
-|  |  |   
+|  |                                       |
+| :--: | :---------------------------------------: |
+|  |  |
 |    |  |
-|   |  | 
-|   |    | 
-|    |  |      
-|     |  |   
+|   |  |
+|   |    |
+|    |  |
+|     |  |
