@@ -23,7 +23,7 @@ We also have to produce a deliverable EOI, which includes our CVs attached.
 
 | Name            | Role | CV  |
 | :--:            | :--: |:--: |
-|  Callum Davies   |   Leader   |[Callum's CV] (docs/CVs/Callum_Davies_-_CV.pdf)     |
+|  Callum Davies   |   Leader   |[Callum's CV](docs/CVs/Callum_Davies_-_CV.pdf)   |
 |  Zixiang Jin    | Member | [Zixiang's CV](docs/CVs/CV_Zixiang_Jin.pdf) |
 |  Thomas Murphy  |Git Master      |[Thomas' CV](docs/CVs/CV_Thomas_Murphy.pdf)     |
 |  Zihui Xu       | Member     |     |
