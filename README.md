@@ -3,6 +3,10 @@
 
 ![alt text](../images/logo.png "Welcome")
 
+## Task Board
+Our Task Board is being managed on Trello, ran by Callum.<br/>
+[Link](https://trello.com/b/eeP74gVM/se-group-project)<br/>
+
 
 ## Current Task: Writing Scripts for Pitches
 ### Brief
