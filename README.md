@@ -33,7 +33,7 @@ It would be very helpful if we had our presentations planend for allocation of c
 |  Callum Davies   |   Leader   |[Callum's CV](docs/CVs/Callum_Davies_-_CV.pdf)   |
 |  Zixiang Jin    | Member | [Zixiang's CV](docs/CVs/CV_Zixiang_Jin.pdf) |
 |  Thomas Murphy  |Git Master      |[Thomas' CV](docs/CVs/CV_Thomas_Murphy.pdf)     |
-|  Zihui Xu       | Member     |Zihui's CV     |docs/CVs/CV Zihui_Xu_CV.pdf
+|  Zihui Xu       | Member     | [Zihui's CV](docs/CVs/CV Zihui_Xu_CV.pdf)         |
 |  Ashley Nnawugo |Member      |     |
 |  Shuxiang Hu    |Administrator      |[Shuxiang's CV](docs/CVs/CV_Shuxiang_Hu.pdf)     |
 
