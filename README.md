@@ -40,7 +40,7 @@ None at the moment.
 | 07/10/2020 [Major] | Scripts for pitches           | <p align="left">Pairs write scripts for their <b>focused</b> project <br/> To direct the rest of the group when we reconvene<br/>deadline 9th | Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo<br/>Shuxiang Hu |
 | 13/10/2020 [Major] | PowerPoint Formatting<br/>Rendering Videos | <p align="left"><br/> Share PowerPoint with someone who can record (Shuxiang or Thomas).<br/>Convert video types that are causing the upside-down bug. | Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo<br/>Shuxiang Hu |
 | 28/10/2020 [Major] | Preparing for Client Meeting | <p align="left"><br/> Research empty topic (Point to Point considerations of app). <br/>Collaberate pre-meeting next week. | <br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo<br/>Shuxiang Hu<br/>Zihui Xu |
-| 02/10/2020 [Minor] | Pre-Meeting Collaboration | <p align="left"><br/> Point to Point: Geotracker app in API. <br/>Questions to ask: Aesthetics? How frequently do we want meetings? | Logistics: Meeting frequency? Do we talk about Deadlines? Reference to Trello? Apprporiate Times for Meetings? | <br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo<br/>Shuxiang Hu |
+| 02/10/2020 [Minor] | Pre-Meeting Collaboration | <p align="left"><br/> Point to Point: Geotracker app in API. <br/>Questions to ask: Aesthetics? How frequently do we want meetings? <br/> Logistics: Meeting frequency? Do we talk about Deadlines? Reference to Trello? Apprporiate Times for Meetings? | <br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo<br/>Shuxiang Hu |
 
 
 
