@@ -8,15 +8,19 @@ Our Task Board is being managed on Trello, ran by Callum.<br/>
 [Link](https://trello.com/b/eeP74gVM/se-group-project)<br/>
 
 
-## Current Task: Requirements and meeting
+## Current Task: Requirements and Meeting
 ### Brief
-We're beginning the requirements stage and we have meetings to attend to.
+Callum, Thomas and Shuxiang - Meeting preparation.
+Ashley, Kieran, Zihui - Begin researching Flutter syntax.
+Questions to ask can be talked about over on Whatsapp.
 
 ### Resources
-None at the moment.
+[Flutter Wikipedia Page](https://en.wikipedia.org/wiki/Flutter_(software) (See references too)
+
 
 ### Deadlines
-- Meeting: 02/11/2020 15:30 Teams
+- Meeting: 09/11/2020 on Teams
+- Prototypes Completed: 18th December
 
 ### Contributors
 
@@ -42,7 +46,7 @@ None at the moment.
 | 28/10/2020 [Major] | Preparing for Client Meeting | <p align="left"><br/> Research empty topic (Point to Point considerations of app). <br/>Collaberate pre-meeting next week. | <br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo<br/>Shuxiang Hu<br/>Zihui Xu |
 | 02/10/2020 [Minor] | Pre-Meeting Collaboration | <p align="left"><br/> Point to Point: Geotracker app in API. <br/><b>Questions to ask:</b><br/> Aesthetics? <br/>Time Predictions for tasks? <br/><b>Logistics:</b><br/> Meeting frequency?<br/> Do we talk about Deadlines?<br/> Reference to Trello?<br/> Appropriate times for Meetings?<br/> | <br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo<br/>Shuxiang Hu |
 | 04/10/2020 [Minor] | Workload Expectations | No working through Christmas Break.<br/>Expected Prototype by December 18th | Geert De Mare<br/>Callum Davies<br/>Zihui Xu<br/> |
-| 05/10/2020 [Major] | Workload Expectations Relay <br/>Plans for Meeting <br/>Time allocation | Previous meeting details stated above and relayed to everyone in meeting.<br/>Planning to split workload by Callum, Tom and Shuxiang preparing for interview, while Ashley, Zihui and Kieran begin studying programming languages.<br/>Planning to allocate lab hours and an hour on both Monday and Friday. | Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo<br/>Shuxiang Hu |
+| 05/10/2020 [Major] | Workload Expectations Relay <br/>Plans for Meeting <br/>Time allocation | Previous meeting details stated above and relayed to everyone in meeting.<br/>Planning to split workload by Callum, Tom and Shuxiang preparing for interview, while Ashley, Zihui and Kieran begin studying Flutter syntax.<br/>Planning to allocate lab hours and an hour on both Monday and Friday. | Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo<br/>Shuxiang Hu |
 
 ### Assessment Deliverables
 |  |                                       |
