@@ -15,7 +15,7 @@ Ashley, Kieran, Zihui - Begin researching Flutter syntax.
 Questions to ask can be talked about over on Whatsapp.
 
 ### Resources
-[Flutter Wikipedia Page](https://en.wikipedia.org/wiki/Flutter_(software) (See references too)
+- [Flutter Wikipedia Page](https://en.wikipedia.org/wiki/Flutter_(software)) (See references too)
 
 
 ### Deadlines
