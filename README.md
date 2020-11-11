@@ -8,18 +8,15 @@ Our Task Board is being managed on Trello, ran by Callum.<br/>
 [Link](https://trello.com/b/eeP74gVM/se-group-project)<br/>
 
 
-## Current Task: Requirements and Meeting
+## Current Task: Requirements - User Stories
 ### Brief
-Callum, Thomas and Shuxiang - Meeting preparation.
-Ashley, Kieran, Zihui - Begin researching Flutter syntax.
-Questions to ask can be talked about over on Whatsapp.
+Prepare user stories so we can meet up, collaberate and begin deciding on priorities.
 
 ### Resources
 - [Flutter Wikipedia Page](https://en.wikipedia.org/wiki/Flutter_(software)) (See references too)
 
 
 ### Deadlines
-- Meeting: 09/11/2020 on Teams
 - Prototypes Completed: 18th December
 
 ### Contributors
