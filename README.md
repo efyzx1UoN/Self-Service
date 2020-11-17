@@ -1,6 +1,5 @@
 # TEAM-12
 
-
 ![alt text](../images/logo.png "Welcome")
 
 ## Task Board
@@ -8,12 +7,14 @@ Our Task Board is being managed on Trello, ran by Callum.<br/>
 [Link](https://trello.com/b/eeP74gVM/se-group-project)<br/>
 
 
-## Current Task: Requirements - User Stories
+## Current Task: Requirements - User Stories 1 and 7
 ### Brief
-Prepare user stories so we can meet up, collaberate and begin deciding on priorities.
+Search for APIs we could use for Route-Planning, Taxis, Trains, Parking and Hotels.
+
 
 ### Resources
-- [Flutter Wikipedia Page](https://en.wikipedia.org/wiki/Flutter_(software)) (See references too)
+- [Flutter Wikipedia Page](https://en.wikipedia.org/wiki/Flutter_(software)) (See references too for those still trying to setup)
+- Google is a good service for this. "APIs for ..."
 
 
 ### Deadlines
@@ -24,10 +25,10 @@ Prepare user stories so we can meet up, collaberate and begin deciding on priori
 
 | Name            | Role | CV  |
 | :--:            | :--: |:--: |
-|  Callum Davies   |   Leader   |[Callum's CV](docs/CVs/Callum_Davies_-_CV.pdf)   |
-|  Zixiang Jin    | Member | [Zixiang's CV](docs/CVs/CV_Zixiang_Jin.pdf) |
+|  Callum Davies  |Leader   |[Callum's CV](docs/CVs/Callum_Davies_-_CV.pdf)   |
+|  Zixiang Jin    |Member | [Zixiang's CV](docs/CVs/CV_Zixiang_Jin.pdf) |
 |  Thomas Murphy  |Git Master      |[Thomas' CV](docs/CVs/CV_Thomas_Murphy.pdf)     |
-|  Zihui Xu       | Member     | [Zihui's CV](docs/CVs/CV Zihui_Xu_CV.pdf)         |
+|  Zihui Xu       |Member     | [Zihui's CV](docs/CVs/CV Zihui_Xu_CV.pdf)         |
 |  Ashley Nnawugo |Member      |     |
 |  Shuxiang Hu    |Administrator      |[Shuxiang's CV](docs/CVs/CV_Shuxiang_Hu.pdf)     |
 
@@ -44,6 +45,9 @@ Prepare user stories so we can meet up, collaberate and begin deciding on priori
 | 02/10/2020 [Minor] | Pre-Meeting Collaboration | <p align="left"><br/> Point to Point: Geotracker app in API. <br/><b>Questions to ask:</b><br/> Aesthetics? <br/>Time Predictions for tasks? <br/><b>Logistics:</b><br/> Meeting frequency?<br/> Do we talk about Deadlines?<br/> Reference to Trello?<br/> Appropriate times for Meetings?<br/> | <br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo<br/>Shuxiang Hu |
 | 04/10/2020 [Minor] | Workload Expectations | No working through Christmas Break.<br/>Expected Prototype by December 18th | Geert De Mare<br/>Callum Davies<br/>Zihui Xu<br/> |
 | 05/10/2020 [Major] | Workload Expectations Relay <br/>Plans for Meeting <br/>Time allocation | Previous meeting details stated above and relayed to everyone in meeting.<br/>Planning to split workload by Callum, Tom and Shuxiang preparing for interview, while Ashley, Zihui and Kieran begin studying Flutter syntax.<br/>Planning to allocate lab hours and an hour on both Monday and Friday. | Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo<br/>Shuxiang Hu |
+| 10/10/2020 [Interview] | Interview with Steve. <br/> Sharing Results to begin working on User Stories | Callum and Shuxiang interviewing, Tom transcripting and Zihui Spectating.<br/>Recording saved as back-up and referenced for transcript.<br/>Transcript shared on Teams. | Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Zihui Zu<br/>Steve Brooks |
+| 13/10/2020 [Major] | Share and prioritise User Stories.  <br/>Going ahead to implement a User Story. <br/> Se | Selected #1 and #7.<br/> Meet up to introduce the programming language and requirements for sprint.<br/> | Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo<br/>Shuxiang Hu<br/>Zihui Zu<br/>Steve Brooks |
+| 16/10/2020 [Major] | Setting up Flutter in Andorid Studios <br/>Identifying user stories <br/> Choosing APIs | Paired Programming of setup.<br/>Alphabetically splitting group to cover both user stories and APIS.<br/>Planning to collaborate API ideas on Wednesday. | Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo<br/>Shuxiang Hu<br/>Zihui Zu |
 
 ### Assessment Deliverables
 |  |                                       |
