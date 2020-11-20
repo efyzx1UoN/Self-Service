@@ -7,17 +7,22 @@ Our Task Board is being managed on Trello, ran by Callum.<br/>
 [Link](https://trello.com/b/eeP74gVM/se-group-project)<br/>
 
 
-## Current Task: Requirements - User Stories 1 and 7
+## Current Task:  Sprint 1 - A to B
 ### Brief
-Search for APIs we could use for Route-Planning, Taxis, Trains, Parking and Hotels.
+See Trello Board for current User Stories in question.
+Aim is to have:
+- Core structure of App
+- Integrate Google Maps API
+- Stretch: Flesh app with textual in-app guides on how everything is going to work.
 
 
 ### Resources
 - [Flutter Wikipedia Page](https://en.wikipedia.org/wiki/Flutter_(software)) (See references too for those still trying to setup)
-- Google is a good service for this. "APIs for ..."
+- I can only recommend Googling the API or particular thing you want implement in Flutter/Dart.
 
 
 ### Deadlines
+- Sprint Ending: 4th December
 - Prototypes Completed: 18th December
 
 ### Contributors
@@ -48,6 +53,7 @@ Search for APIs we could use for Route-Planning, Taxis, Trains, Parking and Hote
 | 10/10/2020 [Interview] | Interview with Steve. <br/> Sharing Results to begin working on User Stories | Callum and Shuxiang interviewing, Tom transcripting and Zihui Spectating.<br/>Recording saved as back-up and referenced for transcript.<br/>Transcript shared on Teams. | Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Zihui Zu<br/>Steve Brooks |
 | 13/10/2020 [Major] | Share and prioritise User Stories.  <br/>Going ahead to implement a User Story. <br/> Se | Selected #1 and #7.<br/> Meet up to introduce the programming language and requirements for sprint.<br/> | Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo<br/>Shuxiang Hu<br/>Zihui Zu<br/>Steve Brooks |
 | 16/10/2020 [Major] | Setting up Flutter in Andorid Studios <br/>Identifying user stories <br/> Choosing APIs | Paired Programming of setup.<br/>Alphabetically splitting group to cover both user stories and APIS.<br/>Planning to collaborate API ideas on Wednesday. | Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo<br/>Shuxiang Hu<br/>Zihui Zu |
+| 20/10/2020 [Major] | Prioritising User Stories <br/>Accessing APIs <br/> Preparing for first sprint<br/>- Trello and Git | Priorities selected with stretch goals.<br/>Preparing Trello Board to have backlog of user stories and current sprint. <br/>Preparing Git repo to have product app.<br/>Planning to reconvene on Monday 11pm to discuss progress. | Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo<br/>Shuxiang Hu<br/>Zihui Zu<br/Steve Brooks |
 
 ### Assessment Deliverables
 |  |                                       |
