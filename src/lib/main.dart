@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'routePlanner.dart';
 
 void main() {
   runApp(MyApp());
@@ -31,20 +32,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
-  void _pageNewVisit() {
+  void _pageRoutePlanner() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => NewVisitPage()),
+      MaterialPageRoute(builder: (context) => RoutePlannerPage()),
     );
   }
-
-  void _pageBookedVisit() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => BookedVisitPage()),
-    );
-  }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -59,13 +53,8 @@ class _HomePageState extends State<HomePage> {
             children: <Widget>[
               TextButton(
                 style: TextButton.styleFrom(primary: Colors.white, backgroundColor: Colors.pink),
-                onPressed: _pageNewVisit,
+                onPressed: _pageRoutePlanner,
                 child: Text('Book a New Visit'),
-              ),
-              TextButton(
-                style: TextButton.styleFrom(primary: Colors.white, backgroundColor: Colors.pink),
-                onPressed: _pageBookedVisit,
-                child: Text('View your Booked Visits'),
               ),
             ],
           ),
@@ -75,98 +64,3 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-
-class NewVisitPage extends StatefulWidget {
-  NewVisitPage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  _NewVisitPageState createState() => _NewVisitPageState();
-}
-
-class _NewVisitPageState extends State<NewVisitPage> {
-  void _pageHome() {
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) => HomePage()),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('New Visit'),
-      ),
-      body: Center(
-        child: Container(
-          alignment: Alignment(-1.0,-1.0),
-          child: Row(
-            children: <Widget>[
-              TextButton(
-                style: TextButton.styleFrom(primary: Colors.white, backgroundColor: Colors.pink),
-                onPressed: _pageHome,
-                child: Text('Home'),
-              ),
-            ],
-          ),
-        )
-      ),
-    );
-  }
-}
-
-
-class BookedVisitPage extends StatefulWidget {
-  BookedVisitPage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  _BookedVisitPageState createState() => _BookedVisitPageState();
-}
-
-class _BookedVisitPageState extends State<BookedVisitPage> {
-  void _pageHome() {
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) => HomePage()),
-    );
-  }
-
-  void _pageNewVisit() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => NewVisitPage()),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Booked Visits'),
-      ),
-      body: Center(
-        child: Container(
-          alignment: Alignment(-1.0,-1.0),
-          child: Row(
-            children: <Widget>[
-              TextButton(
-                style: TextButton.styleFrom(primary: Colors.white, backgroundColor: Colors.pink),
-                onPressed: _pageHome,
-                child: Text('Home'),
-              ),
-              TextButton(
-                style: TextButton.styleFrom(primary: Colors.white, backgroundColor: Colors.pink),
-                onPressed: _pageNewVisit,
-                child: Text('Book a New Visit'),
-              ),
-            ],
-          ),
-        )
-      ),
-    );
-  }
-}
