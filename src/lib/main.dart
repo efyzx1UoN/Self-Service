@@ -54,7 +54,7 @@ class _HomePageState extends State<HomePage> {
               TextButton(
                 style: TextButton.styleFrom(primary: Colors.white, backgroundColor: Colors.pink),
                 onPressed: _pageRoutePlanner,
-                child: Text('Book a New Visit'),
+                child: Text('New Route Plan'),
               ),
             ],
           ),
