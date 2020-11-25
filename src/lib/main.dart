@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
       home: HomePage(title: 'Self Service: Home'),
 
 
+
     );
   }
 }
@@ -44,7 +45,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text("Self Service: Home"),
       ),
       body: Center(
         child: Container(

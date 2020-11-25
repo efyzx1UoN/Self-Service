@@ -20,7 +20,7 @@ class _RoutePlannerPageState extends State<RoutePlannerPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('New Route Plan'),
+        title: Text("New Route Plan"),
       ),
       body: Center(
           child: Container(
