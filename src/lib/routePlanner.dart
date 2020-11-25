@@ -13,17 +13,14 @@ class RoutePlannerPage extends StatefulWidget {
 
 class _RoutePlannerPageState extends State<RoutePlannerPage> {
   void _pageHome() {
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) => HomePage()),
-    );
+    Navigator.of(context).popUntil((route) => route.isFirst);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('New Visit'),
+        title: Text('New Route Plan'),
       ),
       body: Center(
           child: Container(
