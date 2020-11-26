@@ -18,7 +18,6 @@ class MyApp extends StatelessWidget {
       ),
       home: HomePage(title: 'Self Service: Home'),
 
-
     );
   }
 }

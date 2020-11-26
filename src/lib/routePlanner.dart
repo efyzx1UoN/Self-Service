@@ -22,19 +22,28 @@ class _RoutePlannerPageState extends State<RoutePlannerPage> {
       appBar: AppBar(
         title: Text('New Route Plan'),
       ),
-      body: Center(
-          child: Container(
-            alignment: Alignment(-1.0,-1.0),
-            child: Row(
-              children: <Widget>[
-                TextButton(
-                  style: TextButton.styleFrom(primary: Colors.white, backgroundColor: Colors.pink),
-                  onPressed: _pageHome,
-                  child: Text('Home'),
-                ),
-              ],
-            ),
-          )
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Center(
+            child: Container(
+              alignment: Alignment(-1.0,-1.0),
+              child: Row(
+                children: <Widget>[
+                  Expanded(
+                      child: TextField(
+                        decoration: InputDecoration(
+                            hintText: 'Starting point (Current Location)',
+                            labelText: 'Current Location',
+                            border: InputBorder.none,
+                            fillColor: Colors.white54,
+                            filled: true,
+                        ),
+                      ),
+                  ),
+                ],
+              ),
+            )
+        ),
       ),
     );
   }
