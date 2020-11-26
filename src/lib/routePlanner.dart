@@ -27,10 +27,14 @@ class _RoutePlannerPageState extends State<RoutePlannerPage> {
             alignment: Alignment(-1.0,-1.0),
             child: Row(
               children: <Widget>[
-                TextButton(
-                  style: TextButton.styleFrom(primary: Colors.white, backgroundColor: Colors.pink),
-                  onPressed: _pageHome,
-                  child: Text('Home'),
+                Expanded(child: TextField(decoration: InputDecoration(
+              labelText: "Destination",
+              hintText: "Input Destination here ",
+              hintStyle: TextStyle(
+                color: Colors.grey,
+                     ),
+                  ),
+                 ),
                 ),
               ],
             ),
