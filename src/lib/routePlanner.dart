@@ -35,7 +35,7 @@ class _RoutePlannerPageState extends State<RoutePlannerPage> {
                             hintText: 'Starting point (Current Location)',
                             labelText: 'Current Location',
                             border: InputBorder.none,
-                            fillColor: Colors.white54,
+                            fillColor: Colors.white60,
                             filled: true,
                         ),
                       ),
