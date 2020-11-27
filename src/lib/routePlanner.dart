@@ -33,22 +33,7 @@ class _RoutePlannerPageState extends State<RoutePlannerPage> {
                 ],
               ),
             ),
-            Container(
-              alignment: Alignment(-1.0,-1.0),
-              child: Row(
-                children: <Widget>[
-                  Expanded(child: TextField(decoration: InputDecoration(
-                    labelText: "Destination",
-                    hintText: "Input Destination here ",
-                    hintStyle: TextStyle(
-                      color: Colors.grey,
-                    ),
-                  ),
-                  ),
-                  ),
-                ],
-              ),
-            ),
+            MyCustomForm(),
             Container(
               child: new Image.network('https://www.thestatesman.com/wp-content/uploads/2020/04/googl_ED.jpg',
                 fit:BoxFit.fitHeight,
@@ -96,7 +81,7 @@ class MyCustomFormState extends State<MyCustomForm> {
                   filled: true,
                 ),
               ),
-             Expanded(child: TextFormField(
+             TextFormField(
                validator: (value) {
                  if (value.isEmpty) {
                    return 'Please enter a valid address';
@@ -109,7 +94,6 @@ class MyCustomFormState extends State<MyCustomForm> {
                  fillColor: Colors.white60,
                  filled: true,
                ),
-             ),
              ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16.0),
