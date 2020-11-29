@@ -22,14 +22,15 @@ class _RoutePlannerPageState extends State<RoutePlannerPage> {
       body: new ListView(
           children: <Widget> [
             Container(
+              margin: const EdgeInsets.fromLTRB(20, 0, 20, 0),
               alignment: Alignment(-1.0,-1.0),
               child: Row(
                 children: <Widget>[
-                  TextButton(
-                    style: TextButton.styleFrom(primary: Colors.white, backgroundColor: Colors.pink),
-                    onPressed: _pageHome,
-                    child: Text('Home'),
-                  ),
+                  // TextButton(
+                  //   style: TextButton.styleFrom(primary: Colors.white, backgroundColor: Colors.pink),
+                  //   onPressed: _pageHome,
+                  //   child: Text('Home'),
+                  // ),
                 ],
               ),
             ),
@@ -38,9 +39,9 @@ class _RoutePlannerPageState extends State<RoutePlannerPage> {
               child: new Image.network('https://www.thestatesman.com/wp-content/uploads/2020/04/googl_ED.jpg',
                 fit:BoxFit.fitHeight,
               ),
-              height: 700,
+              height: 400,
               color: Colors.pinkAccent,
-              margin: const EdgeInsets.fromLTRB(30, 200, 30, 30),
+              margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
             ),
           ]
       ),
@@ -61,6 +62,7 @@ class MyCustomFormState extends State<MyCustomForm> {
     Widget build(BuildContext context) {
       // Build a Form widget using the _formKey created above.
       return Container(
+        margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
           child: new Form(
           key: _formKey,
           child: Column(
@@ -76,9 +78,10 @@ class MyCustomFormState extends State<MyCustomForm> {
                 decoration: InputDecoration(
                   hintText: 'Starting point (Current Location)',
                   labelText: 'From:',
-                  border: InputBorder.none,
+                  border: UnderlineInputBorder(
+                  ),
                   fillColor: Colors.white60,
-                  filled: true,
+                  filled: false,
                 ),
               ),
              TextFormField(
@@ -89,14 +92,19 @@ class MyCustomFormState extends State<MyCustomForm> {
                  return null;
                },
                decoration: InputDecoration(
-                 labelText: 'To',
-                 border: InputBorder.none,
+                 labelText: 'To:',
+                 hintText: 'Destination',
+                 border: UnderlineInputBorder(),
+                 alignLabelWithHint: true,
                  fillColor: Colors.white60,
-                 filled: true,
+                 filled: false,
                ),
              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16.0),
+              Container(
+                margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                child: SizedBox(
+                // padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 0),
+                width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
                     // Validate returns true if the form is valid, or false
@@ -107,8 +115,9 @@ class MyCustomFormState extends State<MyCustomForm> {
                           .showSnackBar(SnackBar(content: Text('Planning route...')));
                     }
                   },
-                  child: Text('Route'),
+                  child: Text('Find Route'),
                 ),
+              ),
               ),
             ],
           ),
