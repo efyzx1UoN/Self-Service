@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'routePlanner.dart';
+import 'taxiPlanner.dart';
 
 void main() {
   runApp(MyApp());
@@ -31,13 +32,17 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  void _pageRoutePlanner() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => RoutePlannerPage()),
-    );
+  Data data = new Data();
+
+  Future _pageRoutePlanner() async {
+    final result = await Navigator.of(context).push(_createRoute(RoutePlannerPage()));
+    data = result;
   }
-  
+
+  Future _pageTaxiPlanner() async {
+    final result = await Navigator.of(context).push(_createRoute(TaxiPlannerPage()));
+    data = result;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,9 +58,17 @@ class _HomePageState extends State<HomePage> {
               TextButton(
                 style: TextButton.styleFrom(primary: Colors.white, backgroundColor: Colors.pink),
                 onPressed: () {
-                  Navigator.of(context).push(_createRoute(RoutePlannerPage()));
+                  _pageRoutePlanner();
                 },
                 child: Text('New Route Plan'),
+              ),
+
+              TextButton(
+                style: TextButton.styleFrom(primary: Colors.white, backgroundColor: Colors.pink),
+                onPressed: () {
+                  _pageTaxiPlanner();
+                },
+                child: Text('New Taxi Plan'),
               ),
             ],
           ),
@@ -66,7 +79,7 @@ class _HomePageState extends State<HomePage> {
 }
 
 Route _createRoute(StatefulWidget page) {
-  return PageRouteBuilder(
+  return  PageRouteBuilder(
     pageBuilder: (context, animation, secondaryAnimation) => page,
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       var begin = Offset(0.0, 1.0);
@@ -81,4 +94,9 @@ Route _createRoute(StatefulWidget page) {
       );
     },
   );
+}
+
+class Data {
+  String destination = "nowhere";
+  String startingLocation = "nowhere";
 }

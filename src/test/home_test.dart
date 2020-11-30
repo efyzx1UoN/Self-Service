@@ -26,5 +26,21 @@ void main() {
         // Verify that we are now on the New Route Plan page.
         expect(find.widgetWithText(AppBar, "New Route Plan"), findsOneWidget);
       });
+
+      testWidgets('New Taxi', (WidgetTester tester) async {
+        // Build our app and trigger a frame.
+        await tester.pumpWidget(MyApp());
+
+        // Verify that we start on the Home page.
+        expect(
+            find.widgetWithText(AppBar, "Self Service: Home"), findsOneWidget);
+
+        // Tap the New Route Plan button.
+        await tester.tap(find.widgetWithText(TextButton, "New Taxi Plan"));
+        await tester.pumpAndSettle();
+
+        // Verify that we are now on the New Route Plan page.
+        expect(find.widgetWithText(AppBar, "New Taxi Plan"), findsOneWidget);
+      });
     });
 }

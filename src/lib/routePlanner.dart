@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoder/geocoder.dart';
+import 'taxiPlanner.dart';
+import 'main.dart';
 
 class RoutePlannerPage extends StatefulWidget {
   RoutePlannerPage({Key key, this.title}) : super(key: key);
@@ -30,11 +32,6 @@ class _RoutePlannerPageState extends State<RoutePlannerPage> {
               alignment: Alignment(-1.0,-1.0),
               child: Row(
                 children: <Widget>[
-                  // TextButton(
-                  //   style: TextButton.styleFrom(primary: Colors.white, backgroundColor: Colors.pink),
-                  //   onPressed: _pageHome,
-                  //   child: Text('Home'),
-                  // ),
                 ],
               ),
             ),
@@ -62,7 +59,7 @@ class _RoutePlannerPageState extends State<RoutePlannerPage> {
   }
 class MyCustomFormState extends State<MyCustomForm> {
   final _formKey = GlobalKey<FormState>();
-
+  Data data = new Data();
   String currentLocation = "";
 
 
@@ -106,6 +103,7 @@ class MyCustomFormState extends State<MyCustomForm> {
                   if (value.isEmpty) {
                     return 'Please enter a valid address';
                   }
+                  data.startingLocation = value;
                   return null;
                 },
                 decoration: InputDecoration(
@@ -122,6 +120,7 @@ class MyCustomFormState extends State<MyCustomForm> {
                  if (value.isEmpty) {
                    return 'Please enter a valid address';
                  }
+                 data.destination = value;
                  return null;
                },
                decoration: InputDecoration(
@@ -146,6 +145,7 @@ class MyCustomFormState extends State<MyCustomForm> {
                       // If the form is valid, display a Snackbar.
                       Scaffold.of(context)
                           .showSnackBar(SnackBar(content: Text('Planning route...')));
+                          Navigator.pop(context, data);
                     }
                   },
                   child: Text('Find Route'),
