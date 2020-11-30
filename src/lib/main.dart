@@ -18,7 +18,6 @@ class MyApp extends StatelessWidget {
       home: HomePage(title: 'Self Service: Home'),
 
 
-
     );
   }
 }
@@ -48,12 +47,14 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Center(
         child: Container(
-          child: Row(
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               TextButton(
                 style: TextButton.styleFrom(primary: Colors.white, backgroundColor: Colors.pink),
-                onPressed: _pageRoutePlanner,
+                onPressed: () {
+                  Navigator.of(context).push(_createRoute());
+                },
                 child: Text('New Route Plan'),
               ),
             ],
@@ -64,3 +65,20 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
+Route _createRoute() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => RoutePlannerPage(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      var begin = Offset(0.0, 1.0);
+      var end = Offset.zero;
+      var curve = Curves.ease;
+
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+      return SlideTransition(
+        position: animation.drive(tween),
+        child: child,
+      );
+    },
+  );
+}
