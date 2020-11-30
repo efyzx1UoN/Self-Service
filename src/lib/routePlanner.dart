@@ -1,4 +1,7 @@
+// import 'dart:html';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:geocoder/geocoder.dart';
 
 class RoutePlannerPage extends StatefulWidget {
   RoutePlannerPage({Key key, this.title}) : super(key: key);
@@ -7,7 +10,9 @@ class RoutePlannerPage extends StatefulWidget {
 
   @override
   _RoutePlannerPageState createState() => _RoutePlannerPageState();
+
 }
+
 class _RoutePlannerPageState extends State<RoutePlannerPage> {
   void _pageHome() {
     Navigator.of(context).popUntil((route) => route.isFirst);
@@ -39,7 +44,7 @@ class _RoutePlannerPageState extends State<RoutePlannerPage> {
               child: new Image.network('https://www.thestatesman.com/wp-content/uploads/2020/04/googl_ED.jpg',
                 fit:BoxFit.fitHeight,
               ),
-              height: 400,
+              height: 420,
               color: Colors.pinkAccent,
               margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
             ),
@@ -58,6 +63,35 @@ class _RoutePlannerPageState extends State<RoutePlannerPage> {
   }
 class MyCustomFormState extends State<MyCustomForm> {
   final _formKey = GlobalKey<FormState>();
+
+  String currentLocation = "";
+
+
+  @override
+  void initState(){
+    super.initState();
+    getLocation();
+  }
+
+  void getLocation() async {
+    double lat;
+    double long;
+
+    Position coords = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
+    setState(() {
+      lat = coords.latitude;
+      long = coords.longitude;
+    });
+    final coordinates = new Coordinates(lat, long);
+    var addresses = await Geocoder.local.findAddressesFromCoordinates(coordinates);
+
+    setState(() {
+      currentLocation = addresses.first.addressLine;
+    });
+
+  }
+
     @override
     Widget build(BuildContext context) {
       // Build a Form widget using the _formKey created above.
@@ -76,7 +110,7 @@ class MyCustomFormState extends State<MyCustomForm> {
                   return null;
                 },
                 decoration: InputDecoration(
-                  hintText: 'Starting point (Current Location)',
+                  hintText: currentLocation,
                   labelText: 'From:',
                   border: UnderlineInputBorder(
                   ),
