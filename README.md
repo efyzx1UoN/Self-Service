@@ -7,12 +7,12 @@ Our Task Board is being managed on Trello, ran by Callum.<br/>
 [Link](https://trello.com/b/eeP74gVM/se-group-project)<br/>
 
 
-## Current Task:  Sprint 1 - A to B
+## Current Task:  Sprint 1.5 - Trains and Taxis
 ### Brief
 See Trello Board for current User Stories in question.
 Aim is to have:
 - Core structure of App
-- Integrate Google Maps API
+- Integrate Google Maps API - Shuxiang chasing this up
 - Stretch: Flesh app with textual in-app guides on how everything is going to work.
 
 
@@ -57,6 +57,8 @@ Aim is to have:
 | 20/10/2020 [Major] | Prioritising User Stories <br/>Accessing APIs <br/> Preparing for first sprint<br/>- Trello and Git | Priorities selected with stretch goals.<br/>Preparing Trello Board to have backlog of user stories and current sprint. <br/>Preparing Git repo to have product app.<br/>Planning to reconvene on Monday 11pm to discuss progress. | Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo<br/>Shuxiang Hu<br/>Zihui Zu<br/>Steve Brooks |
 | 23/10/2020 [Major] | Starting Sprint #1 <br/> Splitting Tasks | Trello board setup with tasks. Callum and Ashley on design.<br/> Git src folder setup and work is underway.<br/>| Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo<br/>Shuxiang Hu<br/>Zihui Zu<br/>Steve Brooks |
 | 25/10/2020 [Minor] | Unit Testing <br/> Design | Shared unit testing resources on Teams, initial tests underway. <br/> Low-fidelity prototypes produced.<br/>| Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo<br/>Shuxiang Hu<br/>Zihui Zu |
+| 30/10/2020 [Major] | Demonstration of New Route Planner <br/>Accessing APIs <br/>Alternative for Sprint 1<br/>-Same as what we've done | Demonstrated, Talked through by Callum and Tom (screen-share)<br/>Shuxiang will contact Geert about setting up Google Maps <br/>Planning to have Zihui and Tom begin sprint's work by making corresponding app pages<br/>Planning to reconvene on Friday 1pm to discuss progress. | Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo<br/>Shuxiang Hu<br/>Zihui Zu<br/>Steve Brooks |
+
 
 ### Assessment Deliverables
 |  |                                       |
