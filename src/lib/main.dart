@@ -53,7 +53,7 @@ class _HomePageState extends State<HomePage> {
               TextButton(
                 style: TextButton.styleFrom(primary: Colors.white, backgroundColor: Colors.pink),
                 onPressed: () {
-                  Navigator.of(context).push(_createRoute());
+                  Navigator.of(context).push(_createRoute(RoutePlannerPage()));
                 },
                 child: Text('New Route Plan'),
               ),
@@ -65,9 +65,9 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-Route _createRoute() {
+Route _createRoute(StatefulWidget page) {
   return PageRouteBuilder(
-    pageBuilder: (context, animation, secondaryAnimation) => RoutePlannerPage(),
+    pageBuilder: (context, animation, secondaryAnimation) => page,
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       var begin = Offset(0.0, 1.0);
       var end = Offset.zero;
