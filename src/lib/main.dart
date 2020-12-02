@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'routePlanner.dart';
 import 'taxiPlanner.dart';
-
+import 'train_booker.dart';
 void main() {
   runApp(MyApp());
 }
@@ -43,6 +43,10 @@ class _HomePageState extends State<HomePage> {
     final result = await Navigator.of(context).push(_createRoute(TaxiPlannerPage()));
     data = result;
   }
+  Future _pagetrain_booker() async {
+    final result = await Navigator.of(context).push(_createRoute(Train_BookerPage()));
+    data = result;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,6 +73,13 @@ class _HomePageState extends State<HomePage> {
                   _pageTaxiPlanner();
                 },
                 child: Text('New Taxi Plan'),
+              ),
+              TextButton(
+                style: TextButton.styleFrom(primary: Colors.white, backgroundColor: Colors.pink),
+                onPressed: () {
+                  _pagetrain_booker();
+                },
+                child: Text('New Train Plan'),
               ),
             ],
           ),
