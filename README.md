@@ -7,13 +7,16 @@ Our Task Board is being managed on Trello, ran by Callum.<br/>
 [Link](https://trello.com/b/eeP74gVM/se-group-project)<br/>
 
 
-## Current Task:  Sprint 1.5 - Trains and Taxis
+## Current Task:  Sprint 1.5 - Trains and Taxis and Interim Report
 ### Brief
 See Trello Board for current User Stories in question.
 Aim is to have:
 - Core structure of App
-- Integrate Google Maps API - Shuxiang chasing this up
+- Callum, Zihui and Keiran looking into Train page.
+- Tom investigating data transfer across the app and helping with tests.
 - Stretch: Flesh app with textual in-app guides on how everything is going to work.
+- 
+- Interim Report: Group Report - Ashley and Shuxiang begin planning.
 
 
 ### Resources
@@ -58,7 +61,7 @@ Aim is to have:
 | 23/10/2020 [Major] | Starting Sprint #1 <br/> Splitting Tasks | Trello board setup with tasks. Callum and Ashley on design.<br/> Git src folder setup and work is underway.<br/>| Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo<br/>Shuxiang Hu<br/>Zihui Zu<br/>Steve Brooks |
 | 25/10/2020 [Minor] | Unit Testing <br/> Design | Shared unit testing resources on Teams, initial tests underway. <br/> Low-fidelity prototypes produced.<br/>| Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo<br/>Shuxiang Hu<br/>Zihui Zu |
 | 30/10/2020 [Major] | Demonstration of New Route Planner <br/>Accessing APIs <br/>Alternative for Sprint 1<br/>-Same as what we've done | Demonstrated, Talked through by Callum and Tom (screen-share)<br/>Shuxiang will contact Geert about setting up Google Maps <br/>Planning to have Zihui and Tom begin sprint's work by making corresponding app pages<br/>Planning to reconvene on Friday 1pm to discuss progress. | Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo<br/>Shuxiang Hu<br/>Zihui Zu<br/>Steve Brooks |
-
+| 03/11/2020 [Major] | Current Progress <br/>Obtaining APIs <br/>Allocation of tasks<br/> | Porject rolling along. Small error with build (Solved by team-wide peer-programming).<br/>Spoken with Geert, discussed alternatives such as Geolocator manual input and alternative APIs<br/>Assigning Ashley and Shuxiang to begin planning report. Plans for full group brainstorm.<br/>Planning to reconvene on Friday 1pm to discuss progress. | Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo<br/>Shuxiang Hu<br/>Zihui Zu<br/>Geert De Mare |
 
 ### Assessment Deliverables
 |  |                                       |
