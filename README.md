@@ -7,26 +7,20 @@ Our Task Board is being managed on Trello, ran by Callum.<br/>
 [Link](https://trello.com/b/eeP74gVM/se-group-project)<br/>
 
 
-## Current Task:  Sprint 1.5 - Trains and Taxis and Interim Report
+## Current Task:  Sprint 2 and Interim Report
 ### Brief
 See Trello Board for current User Stories in question.
-Aim is to have:
-- Core structure of App
-- Callum, Zihui and Keiran looking into Train page.
-- Tom investigating data transfer across the app and helping with tests.
-- Stretch: Flesh app with textual in-app guides on how everything is going to work.
-- 
-- Interim Report: Group Report - Ashley and Shuxiang begin planning.
-
+For the Interim report, please add any missing details you'd like to add after the 04/12/2020 meeting to the report plan linked.
+Aim is to have the first draft completed by the 14th.
 
 ### Resources
-- [Flutter Wikipedia Page](https://en.wikipedia.org/wiki/Flutter_(software)) (See references too for those still trying to setup)
-- [Flutter Unit Testing](https://flutter.dev/docs/cookbook/testing/unit/introduction)
-- I can only recommend Googling the API or particular thing you want implement in Flutter/Dart.
+- [Link to Report](https://teams.microsoft.com/l/file/146725DE-A876-4F76-9144-9FD8050A3C76?tenantId=67bda7ee-fd80-41ef-ac91-358418290a1e&fileType=docx&objectUrl=https%3A%2F%2Funiofnottm.sharepoint.com%2Fsites%2Fmsteams_de0399%2FShared%20Documents%2FGeneral%2FThe%20Interim%20Report.docx&baseUrl=https%3A%2F%2Funiofnottm.sharepoint.com%2Fsites%2Fmsteams_de0399&serviceName=teams&threadId=19:15aa2bd553914974bee29d36a04c3a2b@thread.tacv2&groupId=967fc2c2-a152-4e5c-875d-51d5227c5679) (See references too for those still trying to setup)
+- [Link to Report Plan](https://teams.microsoft.com/l/file/E1F61B2B-BF81-41E8-A6C7-655FE33AEB61?tenantId=67bda7ee-fd80-41ef-ac91-358418290a1e&fileType=docx&objectUrl=https%3A%2F%2Funiofnottm.sharepoint.com%2Fsites%2Fmsteams_de0399%2FShared%20Documents%2FGeneral%2FIntermReportOutline.docx&baseUrl=https%3A%2F%2Funiofnottm.sharepoint.com%2Fsites%2Fmsteams_de0399&serviceName=teams&threadId=19:15aa2bd553914974bee29d36a04c3a2b@thread.tacv2&messageId=-1&groupId=967fc2c2-a152-4e5c-875d-51d5227c5679)
 
 
 ### Deadlines
-- Sprint Ending: 4th December
+- Report Draft: 14th December
+- Sprint Ending: 18th December
 - Prototypes Completed: 18th December
 
 ### Contributors
@@ -61,7 +55,8 @@ Aim is to have:
 | 23/10/2020 [Major] | Starting Sprint #1 <br/> Splitting Tasks | Trello board setup with tasks. Callum and Ashley on design.<br/> Git src folder setup and work is underway.<br/>| Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo<br/>Shuxiang Hu<br/>Zihui Zu<br/>Steve Brooks |
 | 25/10/2020 [Minor] | Unit Testing <br/> Design | Shared unit testing resources on Teams, initial tests underway. <br/> Low-fidelity prototypes produced.<br/>| Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo<br/>Shuxiang Hu<br/>Zihui Zu |
 | 30/10/2020 [Major] | Demonstration of New Route Planner <br/>Accessing APIs <br/>Alternative for Sprint 1<br/>-Same as what we've done | Demonstrated, Talked through by Callum and Tom (screen-share)<br/>Shuxiang will contact Geert about setting up Google Maps <br/>Planning to have Zihui and Tom begin sprint's work by making corresponding app pages<br/>Planning to reconvene on Friday 1pm to discuss progress. | Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo<br/>Shuxiang Hu<br/>Zihui Zu<br/>Steve Brooks |
-| 03/11/2020 [Major] | Current Progress <br/>Obtaining APIs <br/>Allocation of tasks<br/> | Porject rolling along. Small error with build (Solved by team-wide peer-programming).<br/>Spoken with Geert, discussed alternatives such as Geolocator manual input and alternative APIs<br/>Assigning Ashley and Shuxiang to begin planning report. Plans for full group brainstorm.<br/>Planning to reconvene on Friday 1pm to discuss progress. | Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo<br/>Shuxiang Hu<br/>Zihui Zu<br/>Geert De Mare |
+| 02/11/2020 [Major] | Current Progress <br/>Obtaining APIs <br/>Allocation of tasks<br/> | Project rolling along. Small error with build (Solved by team-wide peer-programming).<br/>Spoken with Geert, discussed alternatives such as Geolocator manual input and alternative APIs<br/>Assigning Ashley and Shuxiang to begin planning report. Plans for full group brainstorm.<br/>Planning to reconvene on Friday 1pm to discuss progress. | Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo<br/>Shuxiang Hu<br/>Zihui Zu<br/>Geert De Mare |
+| 04/11/2020 [Major] |RETROSPECTIVE<br/> WWW: <br/>- Team working together. <br/>- Learned new platform fast. <br/>- Peer-programming. <br/>- Project pace is nice. <br/> EBI: <br/>More planning <br/>Testing <br/><br/> Begin planning report.|Potentially using the page design app like the first time. <br/>- Maybe run manual tests to help with automated?<br/><br/>Contributed ideas to all sections as a group, split sections to write first draft.| Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo<br/>Shuxiang Hu<br/>Zihui Zu<br/>Steve Brooks |
 
 ### Assessment Deliverables
 |  |                                       |
