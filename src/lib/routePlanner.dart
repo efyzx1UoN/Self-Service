@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoder/geocoder.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'taxiPlanner.dart';
 import 'main.dart';
 
@@ -22,31 +23,23 @@ class _RoutePlannerPageState extends State<RoutePlannerPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("New Route Plan"),
-      ),
-      body: new ListView(
-          children: <Widget> [
-            Container(
-              margin: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-              alignment: Alignment(-1.0,-1.0),
-              child: Row(
-                children: <Widget>[
-                ],
+        appBar: AppBar(
+          title: Text("New Route Plan"),
+        ),
+        body: new ListView(
+            children: <Widget> [
+              Container(
+                margin: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                alignment: Alignment(-1.0,-1.0),
+                child: Row(
+                  children: <Widget>[
+                  ],
+                ),
               ),
-            ),
-            MyCustomForm(),
-            Container(
-              child: new Image.network('https://www.thestatesman.com/wp-content/uploads/2020/04/googl_ED.jpg',
-                fit:BoxFit.fitHeight,
-              ),
-              height: 420,
-              color: Colors.pinkAccent,
-              margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-            ),
-          ]
-      ),
-    );
+              MyCustomForm(),
+            ]
+        ),
+      );
   }
 }
 
@@ -61,6 +54,16 @@ class MyCustomFormState extends State<MyCustomForm> {
   final _formKey = GlobalKey<FormState>();
   Data data = new Data();
   String currentLocation = "";
+  double lat = 0;
+  double long = 0;
+  LatLng locationCoordinates;
+
+  GoogleMapController mapController;
+
+
+  void _onMapCreated(GoogleMapController controller) {
+    mapController = controller;
+  }
 
 
   @override
@@ -69,21 +72,26 @@ class MyCustomFormState extends State<MyCustomForm> {
     getLocation();
   }
 
+
+
   void getLocation() async {
-    double lat;
-    double long;
+
 
     Position coords = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
     setState(() {
       lat = coords.latitude;
       long = coords.longitude;
+      locationCoordinates = new LatLng(lat, long);
+
     });
     final coordinates = new Coordinates(lat, long);
     var addresses = await Geocoder.local.findAddressesFromCoordinates(coordinates);
 
+
     setState(() {
       currentLocation = addresses.first.addressLine;
+
     });
 
   }
@@ -152,9 +160,24 @@ class MyCustomFormState extends State<MyCustomForm> {
                 ),
               ),
               ),
+              SizedBox(
+                child: GoogleMap(
+                  onMapCreated: _onMapCreated,
+                  initialCameraPosition: CameraPosition(
+                    target: locationCoordinates,
+                    zoom: 11.0,
+                  ),
+                ),
+                height: 400,
+                width: 400,
+
+              ),
             ],
           ),
         ),
       );
     }
   }
+
+
+
