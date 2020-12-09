@@ -57,6 +57,7 @@ class MyCustomFormState extends State<MyCustomForm> {
   double lat = 0;
   double long = 0;
   LatLng locationCoordinates;
+  bool mapVisible = false;
 
   GoogleMapController mapController;
 
@@ -65,35 +66,30 @@ class MyCustomFormState extends State<MyCustomForm> {
     mapController = controller;
   }
 
-
   @override
   void initState(){
     super.initState();
     getLocation();
   }
 
-
-
   void getLocation() async {
-
-
     Position coords = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
     setState(() {
       lat = coords.latitude;
       long = coords.longitude;
       locationCoordinates = new LatLng(lat, long);
-
     });
     final coordinates = new Coordinates(lat, long);
     var addresses = await Geocoder.local.findAddressesFromCoordinates(coordinates);
 
-
     setState(() {
       currentLocation = addresses.first.addressLine;
-
     });
+  }
 
+  void toggleMap(){
+    mapVisible = !mapVisible;
   }
 
     @override
@@ -140,37 +136,49 @@ class MyCustomFormState extends State<MyCustomForm> {
                  filled: false,
                ),
              ),
-              Container(
-                margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
-                child: SizedBox(
-                // padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 0),
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {
-                    // Validate returns true if the form is valid, or false
-                    // otherwise.
-                    if (_formKey.currentState.validate()) {
-                      // If the form is valid, display a Snackbar.
-                      Scaffold.of(context)
-                          .showSnackBar(SnackBar(content: Text('Planning route...')));
-                          Navigator.pop(context, data);
-                    }
-                  },
-                  child: Text('Find Route'),
-                ),
-              ),
-              ),
-              SizedBox(
-                child: GoogleMap(
-                  onMapCreated: _onMapCreated,
-                  initialCameraPosition: CameraPosition(
-                    target: locationCoordinates,
-                    zoom: 11.0,
+
+          Visibility(
+            maintainInteractivity: false,
+            maintainSize: true,
+            maintainState: true,
+            maintainAnimation: true,
+            visible: mapVisible,
+            child: Stack(
+                children: [
+                Container(
+                  margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                  child: SizedBox(
+                  // padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 0),
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      // Validate returns true if the form is valid, or false
+                      // otherwise.
+                      if (_formKey.currentState.validate()) {
+                        // If the form is valid, display a Snackbar.
+                        Scaffold.of(context)
+                            .showSnackBar(SnackBar(content: Text('Planning route...')));
+                            toggleMap();
+                            //Navigator.pop(context, data);
+                      }
+                    },
+                    child: Text('Find Route'),
                   ),
                 ),
-                height: 400,
-                width: 400,
-
+                ),
+                SizedBox(
+                  child: GoogleMap(
+                    onMapCreated: _onMapCreated,
+                    initialCameraPosition: CameraPosition(
+                      target: locationCoordinates,
+                      zoom: 11.0,
+                    ),
+                  ),
+                  height: 400,
+                  width: 400,
+                  ),
+                  ],
+                ),
               ),
             ],
           ),
