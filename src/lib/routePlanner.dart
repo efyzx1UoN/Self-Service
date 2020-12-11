@@ -57,7 +57,7 @@ class MyCustomFormState extends State<MyCustomForm> {
   double lat = 0;
   double long = 0;
   LatLng locationCoordinates;
-  bool mapVisible = false;
+  bool mapVisible = true;
 
   GoogleMapController mapController;
 
@@ -89,14 +89,16 @@ class MyCustomFormState extends State<MyCustomForm> {
   }
 
   void toggleMap(){
-    mapVisible = !mapVisible;
+    setState(() {
+      mapVisible = !mapVisible;
+    });
   }
 
     @override
     Widget build(BuildContext context) {
       // Build a Form widget using the _formKey created above.
       return Container(
-        margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
+        margin: EdgeInsets.fromLTRB(20, 0, 20, 50),
           child: new Form(
           key: _formKey,
           child: Column(
@@ -143,10 +145,10 @@ class MyCustomFormState extends State<MyCustomForm> {
             maintainState: true,
             maintainAnimation: true,
             visible: mapVisible,
-            child: Stack(
+            child: Column(
                 children: [
                 Container(
-                  margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                  // margin: EdgeInsets.fromLTRB(0, 50, 0, 100),
                   child: SizedBox(
                   // padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 0),
                   width: double.infinity,
