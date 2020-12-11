@@ -48,18 +48,37 @@ class _RoutePlannerPageState extends State<RoutePlannerPage> {
     MyCustomFormState createState() {
       return MyCustomFormState();
     }
-
   }
+
 class MyCustomFormState extends State<MyCustomForm> {
   final _formKey = GlobalKey<FormState>();
   Data data = new Data();
-  String currentLocation = "";
+  String currentAddress = "";
+  String destAddress = "";
   double lat = 0;
   double long = 0;
-  LatLng locationCoordinates;
+  LatLng currentCoords = new LatLng(0,0);
+  LatLng destCoords;
+  GoogleMap map;
   bool mapVisible = true;
-
   GoogleMapController mapController;
+  bool validDest = false;
+
+  MyCustomFormState() {
+    getLocation();
+    // while(currentCoords == LatLng(0,0)){
+    //   print("waiting");
+    // }
+    map = new GoogleMap(
+      key: _formKey,
+      onMapCreated: _onMapCreated,
+      initialCameraPosition:
+      CameraPosition(
+        target: currentCoords,
+        zoom: 11.0,
+      ),
+    );
+  }
 
 
   void _onMapCreated(GoogleMapController controller) {
@@ -69,29 +88,66 @@ class MyCustomFormState extends State<MyCustomForm> {
   @override
   void initState(){
     super.initState();
-    getLocation();
+    // getLocation();
   }
 
   void getLocation() async {
     Position coords = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
-    setState(() {
-      lat = coords.latitude;
-      long = coords.longitude;
-      locationCoordinates = new LatLng(lat, long);
-    });
-    final coordinates = new Coordinates(lat, long);
-    var addresses = await Geocoder.local.findAddressesFromCoordinates(coordinates);
+    // setState(() {
+    //   lat = coords.latitude;
+    //   long = coords.longitude;
+    //   currentCoords = new LatLng(lat, long);
+    // });
 
-    setState(() {
-      currentLocation = addresses.first.addressLine;
-    });
+    lat = coords.latitude;
+    long = coords.longitude;
+    currentCoords = new LatLng(lat, long);
+    final coordinates = new Coordinates(lat, long);
+    print(lat.toString());
+    var addresses = await Geocoder.local.findAddressesFromCoordinates(coordinates);
+    currentAddress = addresses.first.addressLine;
+
+    // setState(() {
+    //   currentAddress = addresses.first.addressLine;
+    // });
   }
 
   void toggleMap(){
     setState(() {
       mapVisible = !mapVisible;
     });
+  }
+
+  void getRouteButtonPressed(){
+    Scaffold.of(context)
+        .showSnackBar(SnackBar(content: Text('Planning route...')));
+    // toggleMap();
+
+    Set<LatLng> points = new Set<LatLng>();
+    points.add(currentCoords);
+    Polyline line = new Polyline(polylineId: new PolylineId("route"), );
+    map.polylines.add(line);
+
+
+
+  }
+
+  void translateDestination() async{
+    try{
+      var dest = await Geocoder.local.findAddressesFromQuery(destAddress);
+      Coordinates coords = dest.first.coordinates;
+      double destLat = coords.latitude;
+      double destLong = coords.longitude;
+      destCoords = new LatLng(destLat, destLong);
+      validDest = true;
+      print("valid return");
+    } catch(e){
+      print("Error occurred $e");
+      validDest = false;
+    }
+
+
   }
 
     @override
@@ -110,10 +166,11 @@ class MyCustomFormState extends State<MyCustomForm> {
                     return 'Please enter a valid address';
                   }
                   data.startingLocation = value;
+                  currentAddress = value;
                   return null;
                 },
                 decoration: InputDecoration(
-                  hintText: currentLocation,
+                  hintText: currentAddress,
                   labelText: 'From:',
                   border: UnderlineInputBorder(
                   ),
@@ -127,6 +184,7 @@ class MyCustomFormState extends State<MyCustomForm> {
                    return 'Please enter a valid address';
                  }
                  data.destination = value;
+                 destAddress = value;
                  return null;
                },
                decoration: InputDecoration(
@@ -156,6 +214,7 @@ class MyCustomFormState extends State<MyCustomForm> {
                     onPressed: () {
                       // Validate returns true if the form is valid, or false
                       // otherwise.
+                      translateDestination();
                       if (_formKey.currentState.validate()) {
                         // If the form is valid, display a Snackbar.
                         Scaffold.of(context)
@@ -163,19 +222,21 @@ class MyCustomFormState extends State<MyCustomForm> {
                             toggleMap();
                             //Navigator.pop(context, data);
                       }
+
                     },
                     child: Text('Find Route'),
                   ),
                 ),
                 ),
                 SizedBox(
-                  child: GoogleMap(
-                    onMapCreated: _onMapCreated,
-                    initialCameraPosition: CameraPosition(
-                      target: locationCoordinates,
-                      zoom: 11.0,
-                    ),
-                  ),
+                  child: map,
+                  //   (
+                  //   onMapCreated: _onMapCreated,
+                  //   initialCameraPosition: CameraPosition(
+                  //     target: currentCoords,
+                  //     zoom: 11.0,
+                  //   ),
+                  // ),
                   height: 400,
                   width: 400,
                   ),
