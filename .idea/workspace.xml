@@ -1,7 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="6bd99f9d-f221-4786-a044-a65f5d879e17" name="Default Changelist" comment="" />
+    <list default="true" id="6bd99f9d-f221-4786-a044-a65f5d879e17" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/team12_project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/team12_project.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ios/Flutter/Debug.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/src/ios/Flutter/Debug.xcconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ios/Flutter/Release.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/src/ios/Flutter/Release.xcconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/routePlanner.dart" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/routePlanner.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/src/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/pubspec.yaml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,9 +46,24 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="dart.analysis.tool.window.visible" value="false" />
+    <property name="io.flutter.reload.alreadyRun" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
-    <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="flutter.settings" />
     <property name="show.migrate.to.gradle.popup" value="false" />
+  </component>
+  <component name="RunManager">
+    <configuration name="main.dart" type="FlutterRunConfigurationType" factoryName="Flutter" temporary="true" nameIsGenerated="true">
+      <option name="filePath" value="$PROJECT_DIR$/src/lib/main.dart" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Flutter.main.dart" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -37,11 +78,23 @@
     </task>
     <servers />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="WindowStateProjectService">
-    <state x="120" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1607086799213">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="112" y="196" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1607720790763">
+      <screen x="0" y="23" width="1792" height="1031" />
     </state>
     <state x="120" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607086799213" />
+    <state x="112" y="196" key="#com.intellij.execution.impl.EditConfigurationsDialog/1792.23.1366.1001/0.23.1792.1031@0.23.1792.1031" timestamp="1607720790763" />
     <state x="100" y="100" width="1133" height="840" key="AVDManager" timestamp="1607086639596">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -50,5 +103,26 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="446" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1607086863643" />
+    <state width="1750" height="281" key="GridCell.Tab.0.bottom" timestamp="1607725838932">
+      <screen x="0" y="23" width="1792" height="1031" />
+    </state>
+    <state width="1750" height="281" key="GridCell.Tab.0.bottom/0.23.1792.1031@0.23.1792.1031" timestamp="1607725838932" />
+    <state width="1750" height="281" key="GridCell.Tab.0.center" timestamp="1607725838931">
+      <screen x="0" y="23" width="1792" height="1031" />
+    </state>
+    <state width="1750" height="281" key="GridCell.Tab.0.center/0.23.1792.1031@0.23.1792.1031" timestamp="1607725838931" />
+    <state width="1750" height="281" key="GridCell.Tab.0.left" timestamp="1607725838931">
+      <screen x="0" y="23" width="1792" height="1031" />
+    </state>
+    <state width="1750" height="281" key="GridCell.Tab.0.left/0.23.1792.1031@0.23.1792.1031" timestamp="1607725838931" />
+    <state width="1750" height="281" key="GridCell.Tab.0.right" timestamp="1607725838931">
+      <screen x="0" y="23" width="1792" height="1031" />
+    </state>
+    <state width="1750" height="281" key="GridCell.Tab.0.right/0.23.1792.1031@0.23.1792.1031" timestamp="1607725838931" />
+    <state x="397" y="177" key="SettingsEditor" timestamp="1607721014916">
+      <screen x="0" y="23" width="1792" height="1031" />
+    </state>
+    <state x="397" y="177" key="SettingsEditor/0.23.1792.1031@0.23.1792.1031" timestamp="1607721014916" />
+    <state x="397" y="177" key="SettingsEditor/1792.23.1366.1001/0.23.1792.1031@0.23.1792.1031" timestamp="1607720815897" />
   </component>
 </project>
