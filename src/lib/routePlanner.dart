@@ -186,12 +186,14 @@ class MyCustomFormState extends State<MyCustomForm> {
                       // otherwise.
                       if (_formKey.currentState.validate()) {
                         // If the form is valid, display a Snackbar.
-                        print(startLocationStr);
+
                         List<Location> startLocations = await locationFromAddress(startLocationStr);
                         startLocation = startLocations.first;
-                        print(endLocationStr);
+
                         List<Location> endLocations = await locationFromAddress(endLocationStr);
                         endLocation = endLocations.first;
+                        print(startLocation);
+                        print(endLocation);
 
                         // // Start Location Marker
                         // Marker startMarker = Marker(
@@ -228,15 +230,18 @@ class MyCustomFormState extends State<MyCustomForm> {
                             origin: LatLng(startLocation.latitude, startLocation.longitude),
                             destination: LatLng(endLocation.latitude, endLocation.longitude),
                             mode: RouteMode.driving);
-                        polyline.add(Polyline(
+
+                        setState(() {
+                          polyline.add(Polyline(
                             polylineId: PolylineId('Your route'),
                             visible: true,
                             width: 4,
-                        points: routeCoords,
-                        color:Colors.blue,
-                        startCap: Cap.roundCap,
-                        endCap: Cap.buttCap,
-                        ));
+                            points: routeCoords,
+                            color:Colors.blue,
+                            startCap: Cap.roundCap,
+                            endCap: Cap.buttCap,
+                          ));
+                        });
                     }},
                     child: Text('Find Route'),
                   ),
