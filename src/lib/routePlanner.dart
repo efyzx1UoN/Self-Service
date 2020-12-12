@@ -57,27 +57,30 @@ class MyCustomFormState extends State<MyCustomForm> {
   String destAddress = "";
   double lat = 0;
   double long = 0;
-  LatLng currentCoords = new LatLng(0,0);
+  LatLng currentCoords;
   LatLng destCoords;
   GoogleMap map;
   bool mapVisible = true;
   GoogleMapController mapController;
   bool validDest = false;
+  
 
   MyCustomFormState() {
-    getLocation();
+    // getLocation();
     // while(currentCoords == LatLng(0,0)){
     //   print("waiting");
     // }
     map = new GoogleMap(
-      key: _formKey,
-      onMapCreated: _onMapCreated,
-      initialCameraPosition:
-      CameraPosition(
+      mapType: MapType.normal,
+      myLocationButtonEnabled: true,
+      myLocationEnabled: true,
+      initialCameraPosition: CameraPosition(
         target: currentCoords,
-        zoom: 11.0,
+        zoom: 15.0,
       ),
     );
+    
+    
   }
 
 
@@ -88,29 +91,24 @@ class MyCustomFormState extends State<MyCustomForm> {
   @override
   void initState(){
     super.initState();
-    // getLocation();
+    getLocation();
   }
 
-  void getLocation() async {
+  Future getLocation() async {
     Position coords = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
-    // setState(() {
-    //   lat = coords.latitude;
-    //   long = coords.longitude;
-    //   currentCoords = new LatLng(lat, long);
-    // });
-
-    lat = coords.latitude;
-    long = coords.longitude;
-    currentCoords = new LatLng(lat, long);
+    setState(() {
+      lat = coords.latitude;
+      long = coords.longitude;
+      currentCoords = new LatLng(lat, long);
+    });
     final coordinates = new Coordinates(lat, long);
     print(lat.toString());
     var addresses = await Geocoder.local.findAddressesFromCoordinates(coordinates);
-    currentAddress = addresses.first.addressLine;
 
-    // setState(() {
-    //   currentAddress = addresses.first.addressLine;
-    // });
+    setState(() {
+      currentAddress = addresses.first.addressLine;
+    });
   }
 
   void toggleMap(){
@@ -128,8 +126,6 @@ class MyCustomFormState extends State<MyCustomForm> {
     points.add(currentCoords);
     Polyline line = new Polyline(polylineId: new PolylineId("route"), );
     map.polylines.add(line);
-
-
 
   }
 
@@ -229,14 +225,9 @@ class MyCustomFormState extends State<MyCustomForm> {
                 ),
                 ),
                 SizedBox(
-                  child: map,
-                  //   (
-                  //   onMapCreated: _onMapCreated,
-                  //   initialCameraPosition: CameraPosition(
-                  //     target: currentCoords,
-                  //     zoom: 11.0,
-                  //   ),
-                  // ),
+                  child: currentCoords == null
+                      ? Container()
+                      : map,
                   height: 400,
                   width: 400,
                   ),
