@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoder/geocoder.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:flutter_polyline_points/flutter_polyline_points.dart';
+import 'package:google_map_polyline/google_map_polyline.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'taxiPlanner.dart';
 import 'main.dart';
@@ -53,18 +56,35 @@ class _RoutePlannerPageState extends State<RoutePlannerPage> {
 class MyCustomFormState extends State<MyCustomForm> {
   final _formKey = GlobalKey<FormState>();
   Data data = new Data();
+  final startAddressController = TextEditingController();
+  final endAddressController = TextEditingController();
+  final Geolocator _geolocator  = Geolocator();
+  Position startCoordinates ;
+  Position destinationCoordinates;
+  Set<Marker> markers = {};
+  List<LatLng> routeCoords;
+  final Set<Polyline> polyline = {};
+  List<Placemark> destinationPlacemark;
   String currentLocation = "";
+  String startLocationStr = "";
+  String endLocationStr = "";
+  Location startLocation, endLocation;
   double lat = 0;
   double long = 0;
+  Position _currentPosition;
   LatLng locationCoordinates;
   bool mapVisible = true;
-
+  PolylinePoints polylinePoints;
+  Map<PolylineId, Polyline> polylines = {};
+  List<LatLng> polylineCoordinates = [];
   GoogleMapController mapController;
+  GoogleMapPolyline googleMapPolyline = new GoogleMapPolyline(apiKey: "AIzaSyAjBVD5OeZbBKW0o_tOKfcOtuCPVIuyovE");
 
 
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
   }
+
 
   @override
   void initState(){
@@ -75,11 +95,11 @@ class MyCustomFormState extends State<MyCustomForm> {
   void getLocation() async {
     Position coords = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
-    setState(() {
+
       lat = coords.latitude;
       long = coords.longitude;
       locationCoordinates = new LatLng(lat, long);
-    });
+
     final coordinates = new Coordinates(lat, long);
     var addresses = await Geocoder.local.findAddressesFromCoordinates(coordinates);
 
@@ -87,6 +107,8 @@ class MyCustomFormState extends State<MyCustomForm> {
       currentLocation = addresses.first.addressLine;
     });
   }
+
+
 
   void toggleMap(){
     setState(() {
@@ -105,11 +127,14 @@ class MyCustomFormState extends State<MyCustomForm> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               TextFormField(
+                controller: startAddressController,
                 validator: (value) {
                   if (value.isEmpty) {
                     return 'Please enter a valid address';
                   }
                   data.startingLocation = value;
+                  startAddressController.text = value;
+                  startLocationStr = value;
                   return null;
                 },
                 decoration: InputDecoration(
@@ -122,11 +147,14 @@ class MyCustomFormState extends State<MyCustomForm> {
                 ),
               ),
              TextFormField(
+               controller: endAddressController,
                validator: (value) {
                  if (value.isEmpty) {
                    return 'Please enter a valid address';
                  }
                  data.destination = value;
+                 endAddressController.text = value;
+                 endLocationStr = value;
                  return null;
                },
                decoration: InputDecoration(
@@ -153,17 +181,63 @@ class MyCustomFormState extends State<MyCustomForm> {
                   // padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 0),
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () {
+                    onPressed: () async {
                       // Validate returns true if the form is valid, or false
                       // otherwise.
                       if (_formKey.currentState.validate()) {
                         // If the form is valid, display a Snackbar.
-                        Scaffold.of(context)
-                            .showSnackBar(SnackBar(content: Text('Planning route...')));
-                            toggleMap();
-                            //Navigator.pop(context, data);
-                      }
-                    },
+                        print(startLocationStr);
+                        List<Location> startLocations = await locationFromAddress(startLocationStr);
+                        startLocation = startLocations.first;
+                        print(endLocationStr);
+                        List<Location> endLocations = await locationFromAddress(endLocationStr);
+                        endLocation = endLocations.first;
+
+                        // // Start Location Marker
+                        // Marker startMarker = Marker(
+                        //   markerId: MarkerId(startLocationStr),
+                        //   position: LatLng(
+                        //     startLocation.latitude,
+                        //     startLocation.longitude,
+                        //   ),
+                        //   infoWindow: InfoWindow(
+                        //     title: 'Start',
+                        //     snippet: startLocationStr,
+                        //   ),
+                        //   icon: BitmapDescriptor.defaultMarker,
+                        // );
+                        //
+                        // // Destination Location Marker
+                        // Marker destinationMarker = Marker(
+                        //   markerId: MarkerId(startLocationStr),
+                        //   position: LatLng(
+                        //     endLocation.latitude,
+                        //     endLocation.longitude,
+                        //   ),
+                        //   infoWindow: InfoWindow(
+                        //     title: 'Destination',
+                        //     snippet: endLocationStr,
+                        //   ),
+                        //   icon: BitmapDescriptor.defaultMarker,
+                        // );
+                        //
+                        // markers.add(startMarker);
+                        // markers.add(destinationMarker);
+
+                        routeCoords = await googleMapPolyline.getCoordinatesWithLocation(
+                            origin: LatLng(startLocation.latitude, startLocation.longitude),
+                            destination: LatLng(endLocation.latitude, endLocation.longitude),
+                            mode: RouteMode.driving);
+                        polyline.add(Polyline(
+                            polylineId: PolylineId('Your route'),
+                            visible: true,
+                            width: 4,
+                        points: routeCoords,
+                        color:Colors.blue,
+                        startCap: Cap.roundCap,
+                        endCap: Cap.buttCap,
+                        ));
+                    }},
                     child: Text('Find Route'),
                   ),
                 ),
@@ -171,6 +245,12 @@ class MyCustomFormState extends State<MyCustomForm> {
                 SizedBox(
                   child: GoogleMap(
                     onMapCreated: _onMapCreated,
+                    myLocationEnabled: true,
+                    myLocationButtonEnabled: true,
+                    mapType: MapType.normal,
+                    zoomGesturesEnabled: true,
+                    zoomControlsEnabled: true,
+                    polylines: polyline.toSet(),
                     initialCameraPosition: CameraPosition(
                       target: locationCoordinates,
                       zoom: 11.0,
