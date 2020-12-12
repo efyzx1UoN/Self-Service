@@ -192,39 +192,6 @@ class MyCustomFormState extends State<MyCustomForm> {
 
                         List<Location> endLocations = await locationFromAddress(endLocationStr);
                         endLocation = endLocations.first;
-                        print(startLocation);
-                        print(endLocation);
-
-                        // // Start Location Marker
-                        // Marker startMarker = Marker(
-                        //   markerId: MarkerId(startLocationStr),
-                        //   position: LatLng(
-                        //     startLocation.latitude,
-                        //     startLocation.longitude,
-                        //   ),
-                        //   infoWindow: InfoWindow(
-                        //     title: 'Start',
-                        //     snippet: startLocationStr,
-                        //   ),
-                        //   icon: BitmapDescriptor.defaultMarker,
-                        // );
-                        //
-                        // // Destination Location Marker
-                        // Marker destinationMarker = Marker(
-                        //   markerId: MarkerId(startLocationStr),
-                        //   position: LatLng(
-                        //     endLocation.latitude,
-                        //     endLocation.longitude,
-                        //   ),
-                        //   infoWindow: InfoWindow(
-                        //     title: 'Destination',
-                        //     snippet: endLocationStr,
-                        //   ),
-                        //   icon: BitmapDescriptor.defaultMarker,
-                        // );
-                        //
-                        // markers.add(startMarker);
-                        // markers.add(destinationMarker);
 
                         routeCoords = await googleMapPolyline.getCoordinatesWithLocation(
                             origin: LatLng(startLocation.latitude, startLocation.longitude),
