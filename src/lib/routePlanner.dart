@@ -124,20 +124,6 @@ class MyCustomFormState extends State<MyCustomForm> {
 
   void setPolylines() async{
     print("start");
-    map = GoogleMap(
-      onMapCreated: _onMapCreated,
-      myLocationEnabled: true,
-      myLocationButtonEnabled: true,
-      mapType: MapType.normal,
-      zoomGesturesEnabled: true,
-      zoomControlsEnabled: true,
-      polylines: polyline.toSet(),
-      initialCameraPosition: CameraPosition(
-        target: locationCoordinates,
-        zoom: 11.0,
-      ),
-    );
-
     List<Location> startLocations = await locationFromAddress(startLocationStr);
     startLocation = startLocations.first;
 
@@ -160,6 +146,22 @@ class MyCustomFormState extends State<MyCustomForm> {
         endCap: Cap.buttCap,
       ));
     });
+
+    setState(() {
+      map = GoogleMap(
+        onMapCreated: _onMapCreated,
+        myLocationEnabled: true,
+        myLocationButtonEnabled: true,
+        mapType: MapType.normal,
+        zoomGesturesEnabled: true,
+        zoomControlsEnabled: true,
+        polylines: polyline.toSet(),
+        initialCameraPosition: CameraPosition(
+          target: locationCoordinates,
+          zoom: 11.0,
+        ),
+      );}
+    );
     print("end");
 
   }
