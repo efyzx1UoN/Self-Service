@@ -26,33 +26,33 @@ class _RoutePlannerPageState extends State<RoutePlannerPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("New Route Plan"),
-        ),
-        body: new ListView(
-            children: <Widget> [
-              Container(
-                margin: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-                alignment: Alignment(-1.0,-1.0),
-                child: Row(
-                  children: <Widget>[
-                  ],
-                ),
+      appBar: AppBar(
+        title: Text("New Route Plan"),
+      ),
+      body: new ListView(
+          children: <Widget> [
+            Container(
+              margin: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+              alignment: Alignment(-1.0,-1.0),
+              child: Row(
+                children: <Widget>[
+                ],
               ),
-              MyCustomForm(),
-            ]
-        ),
-      );
+            ),
+            MyCustomForm(),
+          ]
+      ),
+    );
   }
 }
 
-  class MyCustomForm extends StatefulWidget {
-    @override
-    MyCustomFormState createState() {
-      return MyCustomFormState();
-    }
-
+class MyCustomForm extends StatefulWidget {
+  @override
+  MyCustomFormState createState() {
+    return MyCustomFormState();
   }
+
+}
 class MyCustomFormState extends State<MyCustomForm> {
   final _formKey = GlobalKey<FormState>();
   Data data = new Data();
@@ -79,7 +79,7 @@ class MyCustomFormState extends State<MyCustomForm> {
   List<LatLng> polylineCoordinates = [];
   GoogleMapController mapController;
   GoogleMapPolyline googleMapPolyline = new GoogleMapPolyline(apiKey: "AIzaSyAjBVD5OeZbBKW0o_tOKfcOtuCPVIuyovE");
-
+  GoogleMap map;
 
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
@@ -96,16 +96,72 @@ class MyCustomFormState extends State<MyCustomForm> {
     Position coords = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
 
-      lat = coords.latitude;
-      long = coords.longitude;
-      locationCoordinates = new LatLng(lat, long);
+    lat = coords.latitude;
+    long = coords.longitude;
+    locationCoordinates = new LatLng(lat, long);
 
     final coordinates = new Coordinates(lat, long);
     var addresses = await Geocoder.local.findAddressesFromCoordinates(coordinates);
 
     setState(() {
       currentLocation = addresses.first.addressLine;
+      map = GoogleMap(
+        onMapCreated: _onMapCreated,
+        myLocationEnabled: true,
+        myLocationButtonEnabled: true,
+        mapType: MapType.normal,
+        zoomGesturesEnabled: true,
+        zoomControlsEnabled: true,
+        polylines: polyline.toSet(),
+        initialCameraPosition: CameraPosition(
+          target: locationCoordinates,
+          zoom: 11.0,
+        ),
+      );
     });
+
+  }
+
+  void setPolylines() async{
+    print("start");
+    map = GoogleMap(
+      onMapCreated: _onMapCreated,
+      myLocationEnabled: true,
+      myLocationButtonEnabled: true,
+      mapType: MapType.normal,
+      zoomGesturesEnabled: true,
+      zoomControlsEnabled: true,
+      polylines: polyline.toSet(),
+      initialCameraPosition: CameraPosition(
+        target: locationCoordinates,
+        zoom: 11.0,
+      ),
+    );
+
+    List<Location> startLocations = await locationFromAddress(startLocationStr);
+    startLocation = startLocations.first;
+
+    List<Location> endLocations = await locationFromAddress(endLocationStr);
+    endLocation = endLocations.first;
+
+    routeCoords = await googleMapPolyline.getCoordinatesWithLocation(
+        origin: LatLng(startLocation.latitude, startLocation.longitude),
+        destination: LatLng(endLocation.latitude, endLocation.longitude),
+        mode: RouteMode.driving);
+
+    setState(() {
+      polyline.add(Polyline(
+        polylineId: PolylineId('Your route'),
+        visible: true,
+        width: 4,
+        points: routeCoords,
+        color:Colors.blue,
+        startCap: Cap.roundCap,
+        endCap: Cap.buttCap,
+      ));
+    });
+    print("end");
+
   }
 
 
@@ -116,130 +172,97 @@ class MyCustomFormState extends State<MyCustomForm> {
     });
   }
 
-    @override
-    Widget build(BuildContext context) {
-      // Build a Form widget using the _formKey created above.
-      return Container(
-        margin: EdgeInsets.fromLTRB(20, 0, 20, 50),
-          child: new Form(
-          key: _formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              TextFormField(
-                controller: startAddressController,
-                validator: (value) {
-                  if (value.isEmpty) {
-                    return 'Please enter a valid address';
-                  }
-                  data.startingLocation = value;
-                  startAddressController.text = value;
-                  startLocationStr = value;
-                  return null;
-                },
-                decoration: InputDecoration(
-                  hintText: currentLocation,
-                  labelText: 'From:',
-                  border: UnderlineInputBorder(
-                  ),
-                  fillColor: Colors.white60,
-                  filled: false,
+  @override
+  Widget build(BuildContext context) {
+    // Build a Form widget using the _formKey created above.
+    return Container(
+      margin: EdgeInsets.fromLTRB(20, 0, 20, 50),
+      child: new Form(
+        key: _formKey,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            TextFormField(
+              controller: startAddressController,
+              validator: (value) {
+                if (value.isEmpty) {
+                  return 'Please enter a valid address';
+                }
+                data.startingLocation = value;
+                startAddressController.text = value;
+                startLocationStr = value;
+                return null;
+              },
+              decoration: InputDecoration(
+                hintText: currentLocation,
+                labelText: 'From:',
+                border: UnderlineInputBorder(
                 ),
+                fillColor: Colors.white60,
+                filled: false,
               ),
-             TextFormField(
-               controller: endAddressController,
-               validator: (value) {
-                 if (value.isEmpty) {
-                   return 'Please enter a valid address';
-                 }
-                 data.destination = value;
-                 endAddressController.text = value;
-                 endLocationStr = value;
-                 return null;
-               },
-               decoration: InputDecoration(
-                 labelText: 'To:',
-                 hintText: 'Destination',
-                 border: UnderlineInputBorder(),
-                 alignLabelWithHint: true,
-                 fillColor: Colors.white60,
-                 filled: false,
-               ),
-             ),
+            ),
+            TextFormField(
+              controller: endAddressController,
+              validator: (value) {
+                if (value.isEmpty) {
+                  return 'Please enter a valid address';
+                }
+                data.destination = value;
+                endAddressController.text = value;
+                endLocationStr = value;
+                return null;
+              },
+              decoration: InputDecoration(
+                labelText: 'To:',
+                hintText: 'Destination',
+                border: UnderlineInputBorder(),
+                alignLabelWithHint: true,
+                fillColor: Colors.white60,
+                filled: false,
+              ),
+            ),
 
-          Visibility(
-            maintainInteractivity: false,
-            maintainSize: true,
-            maintainState: true,
-            maintainAnimation: true,
-            visible: mapVisible,
-            child: Column(
+            Visibility(
+              maintainInteractivity: false,
+              maintainSize: true,
+              maintainState: true,
+              maintainAnimation: true,
+              visible: mapVisible,
+              child: Column(
                 children: [
-                Container(
-                  // margin: EdgeInsets.fromLTRB(0, 50, 0, 100),
-                  child: SizedBox(
-                  // padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 0),
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: () async {
-                      // Validate returns true if the form is valid, or false
-                      // otherwise.
-                      if (_formKey.currentState.validate()) {
-                        // If the form is valid, display a Snackbar.
-
-                        List<Location> startLocations = await locationFromAddress(startLocationStr);
-                        startLocation = startLocations.first;
-
-                        List<Location> endLocations = await locationFromAddress(endLocationStr);
-                        endLocation = endLocations.first;
-
-                        routeCoords = await googleMapPolyline.getCoordinatesWithLocation(
-                            origin: LatLng(startLocation.latitude, startLocation.longitude),
-                            destination: LatLng(endLocation.latitude, endLocation.longitude),
-                            mode: RouteMode.driving);
-
-                        setState(() {
-                          polyline.add(Polyline(
-                            polylineId: PolylineId('Your route'),
-                            visible: true,
-                            width: 4,
-                            points: routeCoords,
-                            color:Colors.blue,
-                            startCap: Cap.roundCap,
-                            endCap: Cap.buttCap,
-                          ));
-                        });
-                    }},
-                    child: Text('Find Route'),
-                  ),
-                ),
-                ),
-                SizedBox(
-                  child: GoogleMap(
-                    onMapCreated: _onMapCreated,
-                    myLocationEnabled: true,
-                    myLocationButtonEnabled: true,
-                    mapType: MapType.normal,
-                    zoomGesturesEnabled: true,
-                    zoomControlsEnabled: true,
-                    polylines: polyline.toSet(),
-                    initialCameraPosition: CameraPosition(
-                      target: locationCoordinates,
-                      zoom: 11.0,
+                  Container(
+                    // margin: EdgeInsets.fromLTRB(0, 50, 0, 100),
+                    child: SizedBox(
+                      // padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 0),
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: () async {
+                          // Validate returns true if the form is valid, or false
+                          // otherwise.
+                          if (_formKey.currentState.validate()) {
+                            // If the form is valid, display a Snackbar.
+                            setPolylines();
+                          }},
+                        child: Text('Find Route'),
+                      ),
                     ),
                   ),
-                  height: 400,
-                  width: 400,
+                  SizedBox(
+                    child: locationCoordinates == null
+                        ? Container()
+                        : map,
+                    height: 400,
+                    width: 400,
                   ),
-                  ],
-                ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
-      );
-    }
+      ),
+    );
   }
-
+}
 
 
