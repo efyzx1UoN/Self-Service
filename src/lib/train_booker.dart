@@ -111,45 +111,45 @@ class MyCustomFormState extends State<MyCustomForm> {
     // Build a Form widget using the _formKey created above.
     return Container(
       margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
-      child: new Form(
-        key: _formKey,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            TextFormField(
-              validator: (value) {
-                if (value.isEmpty) {
-                  return 'Please enter a valid address';
-                }
-                data.startingLocation = value;
-                return null;
-              },
-              decoration: InputDecoration(
-                hintText: currentLocation,
-                labelText: 'From:',
-                border: UnderlineInputBorder(
+        child: new Form(
+          key: _formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              TextFormField(
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Please enter a valid address';
+                  }
+                  data.startingLocation = value;
+                  return null;
+                },
+                decoration: InputDecoration(
+                  hintText: currentLocation,
+                  labelText: 'From:',
+                  border: UnderlineInputBorder(
+                  ),
+                  fillColor: Colors.white60,
+                  filled: false,
                 ),
-                fillColor: Colors.white60,
-                filled: false,
               ),
-            ),
-            TextFormField(
-              validator: (value) {
-                if (value.isEmpty) {
-                  return 'Please enter a valid address';
-                }
-                data.destination = value;
-                return null;
-              },
-              decoration: InputDecoration(
-                labelText: 'To:',
-                hintText: 'Destination',
-                border: UnderlineInputBorder(),
-                alignLabelWithHint: true,
-                fillColor: Colors.white60,
-                filled: false,
+              TextFormField(
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Please enter a valid address';
+                  }
+                  data.destination = value;
+                  return null;
+                },
+                decoration: InputDecoration(
+                  labelText: 'To:',
+                  hintText: 'Destination',
+                  border: UnderlineInputBorder(),
+                  alignLabelWithHint: true,
+                  fillColor: Colors.white60,
+                  filled: false,
+                ),
               ),
-            ),
             Container(
               margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
               child: SizedBox(
