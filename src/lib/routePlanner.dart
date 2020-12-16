@@ -255,7 +255,7 @@ class MyCustomFormState extends State<MyCustomForm> {
               height: 400,
               width: 400,
               ),
-            Visibility(
+              Visibility(
               maintainInteractivity: false,
               maintainSize: true,
               maintainState: true,
@@ -269,6 +269,28 @@ class MyCustomFormState extends State<MyCustomForm> {
                   onPressed: () async {toggleMap();},
                   child: Text('Find New Route'),
                     ),
+                  ),
+                  Container(
+                    height: 500,
+                    child: CustomScrollView(
+                    slivers: <Widget>[
+                    SliverList(
+                      delegate: SliverChildBuilderDelegate(
+                          (BuildContext context, int index) {
+                            return Container(
+                              child: Row(
+                                children: <Widget>[
+                              Text('Route $index: '),
+                                  ElevatedButton(onPressed: null,
+                                      child: Text('Select'))
+                              ],
+                              ),
+                            );
+                          }
+                      ),
+                    ),
+                  ],
+                  ),
                   ),
                 ],
               ),
