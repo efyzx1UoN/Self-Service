@@ -51,8 +51,8 @@ class MyCustomForm extends StatefulWidget {
   MyCustomFormState createState() {
     return MyCustomFormState();
   }
-
 }
+
 class MyCustomFormState extends State<MyCustomForm> {
   final _formKey = GlobalKey<FormState>();
   Data data = new Data();
@@ -84,7 +84,6 @@ class MyCustomFormState extends State<MyCustomForm> {
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
   }
-
 
   @override
   void initState(){
@@ -119,7 +118,6 @@ class MyCustomFormState extends State<MyCustomForm> {
         ),
       );
     });
-
   }
 
   void setPolylines() async{
@@ -163,7 +161,6 @@ class MyCustomFormState extends State<MyCustomForm> {
       );}
     );
     print("end");
-
   }
 
   void toggleMap(){
