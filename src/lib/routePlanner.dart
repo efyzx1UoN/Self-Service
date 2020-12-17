@@ -5,6 +5,7 @@ import 'package:geocoding/geocoding.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:google_map_polyline/google_map_polyline.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:http/http.dart';
 import 'taxiPlanner.dart';
 import 'main.dart';
 
@@ -69,8 +70,10 @@ class MyCustomFormState extends State<MyCustomForm> {
   String startLocationStr = "";
   String endLocationStr = "";
   Location startLocation, endLocation;
+  List<Album> directions;
   double lat = 0;
   double long = 0;
+  String responseBody = "";
   Position _currentPosition;
   LatLng locationCoordinates;
   bool mapVisible = true;
@@ -89,6 +92,17 @@ class MyCustomFormState extends State<MyCustomForm> {
   void initState(){
     super.initState();
     getLocation();
+  }
+
+  void getDirection() async {
+        double originLong = startLocation.longitude;
+        double originLat = startLocation.latitude;
+        double destinationLong = endLocation.longitude;
+        double destinationLat = endLocation.latitude;
+        final Response response = await get(
+            'https://maps.googleapis.com/maps/api/directions/json?origin=$originLong,$originLat&destination=$destinationLong,$destinationLat&key=AIzaSyAjBVD5OeZbBKW0o_tOKfcOtuCPVIuyovE');
+        //jsonDecode(response.body);
+        responseBody = response.body;
   }
 
   void getLocation() async {
@@ -158,8 +172,11 @@ class MyCustomFormState extends State<MyCustomForm> {
           target: locationCoordinates,
           zoom: 11.0,
         ),
-      );}
+      );
+
+      getDirection();}
     );
+
     print("end");
   }
 
@@ -270,6 +287,7 @@ class MyCustomFormState extends State<MyCustomForm> {
                   child: Text('Find New Route'),
                     ),
                   ),
+                  Text(responseBody),
                   Container(
                     height: 500,
                     child: CustomScrollView(
@@ -280,8 +298,8 @@ class MyCustomFormState extends State<MyCustomForm> {
                             return Container(
                               child: Row(
                                 children: <Widget>[
-                              Text('Route $index: '),
-                                  ElevatedButton(onPressed: null,
+                              Text('Route $index'),
+                                  ElevatedButton(
                                       child: Text('Select'))
                               ],
                               ),
@@ -302,4 +320,15 @@ class MyCustomFormState extends State<MyCustomForm> {
   }
 }
 
+class Album {
+  final List<String> routes;
+
+  Album({this.routes, });
+
+  factory Album.fromJson(Map<String, dynamic> json) {
+    return Album(
+      routes: json['routes'],
+    );
+  }
+}
 
