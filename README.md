@@ -59,7 +59,10 @@ Aim is to have the first draft completed by the 14th.
 | 04/12/2020 [Major] | RETROSPECTIVE<br/> WWW: <br/>- Team working together. <br/>- Learned new platform fast. <br/>- Peer-programming. <br/>- Project pace is nice. <br/> EBI: <br/>More planning <br/>Testing <br/><br/> Begin planning report.|Potentially using the page design app like the first time. <br/>- Maybe run manual tests to help with automated?<br/><br/>Contributed ideas to all sections as a group, split sections to write first draft.| Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo<br/>Shuxiang Hu<br/>Zihui Zu<br/>Steve Brooks |
 | 09/12/2020 [Major] | Sprint #2  <br/> IOS IDE bug | Peer programming amongst the team<br/>Pair half of the team on with working Windows user (Tom) to implement user stories<br/> Shuxiang, lead IOS fixing <br/> Ashley and Callum rotate to update both sides. | Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo<br/>Shuxiang Hu<br/>Zihui Zu |
 | 11/12/2020 [Major] | Sprint fallback. <br/>Map null bug. | Reduce sprint load. <br/> Investigate getting external support with Flutter. | Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo<br/>Shuxiang Hu<br/>Zihui Zu<br/>Steve Brooks |
-
+| 12/12/2020 [Minor] | Bug investigation (Map null) <br/>Route directions <br/> map null/blank error | Solved map null <br/>Implemented polylines for A to B plotting | Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo<br/>Shuxiang Hu (Filled in via WhatsApp)<br/>Zihui Zu |
+| 14/12/2020 [Major] | Bug investigation (Elements hidden)<br/>User story decomposition | Display bug solved <br/>Broken down "Display Route Directions" into 5 managable tasks and split them. | Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo<br/>Shuxiang Hu<br/>Zihui Zu |
+| 16/12/2020 [Major] | User Stories <br/> | Successfully implemented list view of micro-routes with placeholder values | Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo<br/>Shuxiang Hu<br/>Zihui Zu |
+| 17/12/2020 [Minor] | User Stories continued | Experiment with http connection with JSON response. <br/>Got response, but with an error | Callum Davis<br>Zixiang Jin<br>Thomas Murphy |
 
 
 ### Assessment Deliverables
