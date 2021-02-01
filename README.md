@@ -68,7 +68,7 @@ Aim is to have the first draft completed by the 14th.
 | 14/12/2020 [Major] | Bug investigation (Elements hidden)<br/>User story decomposition | Display bug solved <br/>Broken down "Display Route Directions" into 5 managable tasks and split them. | Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo<br/>Shuxiang Hu<br/>Zihui Zu |
 | 16/12/2020 [Major] | User Stories <br/> | Successfully implemented list view of micro-routes with placeholder values | Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo<br/>Shuxiang Hu<br/>Zihui Zu |
 | 17/12/2020 [Minor] | User Stories continued | Experiment with http connection with JSON response. <br/>Got response, but with an error | Callum Davis<br>Zixiang Jin<br>Thomas Murphy |
-| 01/02/2020 [Major] | Team 12's Concise Coding Conventions <br/> Responsibility Rotation Plan | Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo<br/>Shuxiang Hu<br/>Zihui Zu |
+| 01/02/2020 [Major] | Discuss plans going forward for the upcoming sprints. | Team 12's Concise Coding Conventions <br/> Responsibility Rotation Plan <br/> <br/>Wednesday: Refactor <br/>Friday: Prepare for next sprint. | Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo<br/>Shuxiang Hu<br/>Zihui Zu |
 
 ### Assessment Deliverables
 |  |                                       |
