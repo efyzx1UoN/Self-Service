@@ -5,22 +5,19 @@
 All meetings are 2 hours long.
 Monday: 14:00<br/>
 Wednesday: 13:00<br/>
-Friday:  09:00<br/>
+Friday: 09:00<br/>
 
 ## Task Board
 Our Task Board is being managed on Trello, ran by Callum.<br/>
 [Link](https://trello.com/b/eeP74gVM/se-group-project)<br/>
 
 
-## Current Task:  Sprint 2 and Interim Report
+## Current Task: Maintanence
 ### Brief
-See Trello Board for current User Stories in question.
-For the Interim report, please add any missing details you'd like to add after the 04/12/2020 meeting to the report plan linked.
-Aim is to have the first draft completed by the 14th.
+The aim is to refactor the code to follow our coding conventions.
 
 ### Resources
-- [Link to Report](https://teams.microsoft.com/l/file/146725DE-A876-4F76-9144-9FD8050A3C76?tenantId=67bda7ee-fd80-41ef-ac91-358418290a1e&fileType=docx&objectUrl=https%3A%2F%2Funiofnottm.sharepoint.com%2Fsites%2Fmsteams_de0399%2FShared%20Documents%2FGeneral%2FThe%20Interim%20Report.docx&baseUrl=https%3A%2F%2Funiofnottm.sharepoint.com%2Fsites%2Fmsteams_de0399&serviceName=teams&threadId=19:15aa2bd553914974bee29d36a04c3a2b@thread.tacv2&groupId=967fc2c2-a152-4e5c-875d-51d5227c5679) (See references too for those still trying to setup)
-- [Link to Report Plan](https://teams.microsoft.com/l/file/E1F61B2B-BF81-41E8-A6C7-655FE33AEB61?tenantId=67bda7ee-fd80-41ef-ac91-358418290a1e&fileType=docx&objectUrl=https%3A%2F%2Funiofnottm.sharepoint.com%2Fsites%2Fmsteams_de0399%2FShared%20Documents%2FGeneral%2FIntermReportOutline.docx&baseUrl=https%3A%2F%2Funiofnottm.sharepoint.com%2Fsites%2Fmsteams_de0399&serviceName=teams&threadId=19:15aa2bd553914974bee29d36a04c3a2b@thread.tacv2&messageId=-1&groupId=967fc2c2-a152-4e5c-875d-51d5227c5679)
+- [Coding Conventions](https://teams.microsoft.com/l/file/CDC9FA18-2F52-4428-B714-7E2BC80B827E?tenantId=67bda7ee-fd80-41ef-ac91-358418290a1e&fileType=docx&objectUrl=https%3A%2F%2Funiofnottm.sharepoint.com%2Fsites%2Fmsteams_de0399%2FShared%20Documents%2FGeneral%2FTeam%20Twelves%20Concise%20Coding%20Conventions.docx&baseUrl=https%3A%2F%2Funiofnottm.sharepoint.com%2Fsites%2Fmsteams_de0399&serviceName=teams&threadId=19:15aa2bd553914974bee29d36a04c3a2b@thread.tacv2&groupId=967fc2c2-a152-4e5c-875d-51d5227c5679)
 
 
 ### Deadlines
