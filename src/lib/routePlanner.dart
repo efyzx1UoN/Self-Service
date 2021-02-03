@@ -193,7 +193,7 @@ class MyCustomFormState extends State<MyCustomForm> {
                     if (value.isEmpty) {
                       return 'Please enter a valid address';
                     }
-                    data.startingLocation = value;
+                    data.m_startingLocation = value;
                     startAddressController.text = value;
                     startLocationStr = value;
                     return null;
@@ -213,7 +213,7 @@ class MyCustomFormState extends State<MyCustomForm> {
                     if (value.isEmpty) {
                       return 'Please enter a valid address';
                     }
-                    data.destination = value;
+                    data.m_destination = value;
                     endAddressController.text = value;
                     endLocationStr = value;
                     return null;

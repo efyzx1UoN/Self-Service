@@ -121,7 +121,7 @@ class MyCustomFormState extends State<MyCustomForm> {
                   if (value.isEmpty) {
                     return 'Please enter a valid address';
                   }
-                  data.startingLocation = value;
+                  data.m_startingLocation = value;
                   return null;
                 },
                 decoration: InputDecoration(
@@ -138,7 +138,7 @@ class MyCustomFormState extends State<MyCustomForm> {
                   if (value.isEmpty) {
                     return 'Please enter a valid address';
                   }
-                  data.destination = value;
+                  data.m_destination = value;
                   return null;
                 },
                 decoration: InputDecoration(
