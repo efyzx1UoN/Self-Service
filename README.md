@@ -15,15 +15,14 @@ Our Task Board is being managed on Trello, ran by Callum.<br/>
 ## Current Task: Maintanence
 ### Brief
 The aim is to refactor the code to follow our coding conventions.
+We can put together a structure on Friday.
 
 ### Resources
 - [Coding Conventions](https://teams.microsoft.com/l/file/CDC9FA18-2F52-4428-B714-7E2BC80B827E?tenantId=67bda7ee-fd80-41ef-ac91-358418290a1e&fileType=docx&objectUrl=https%3A%2F%2Funiofnottm.sharepoint.com%2Fsites%2Fmsteams_de0399%2FShared%20Documents%2FGeneral%2FTeam%20Twelves%20Concise%20Coding%20Conventions.docx&baseUrl=https%3A%2F%2Funiofnottm.sharepoint.com%2Fsites%2Fmsteams_de0399&serviceName=teams&threadId=19:15aa2bd553914974bee29d36a04c3a2b@thread.tacv2&groupId=967fc2c2-a152-4e5c-875d-51d5227c5679)
 
 
 ### Deadlines
-- Report Draft: 14th December
-- Sprint Ending: 18th December
-- Prototypes Completed: 18th December
+- May (26th?) - Reveal
 
 ### Contributors
 
@@ -42,7 +41,7 @@ The aim is to refactor the code to follow our coding conventions.
 
 
 |    Date    |            Issues             |                          Conclusion                          |                          Attendance                          |
-| :--------: | :---------------------------: | :----------------------------------------------------------- | :----------------------------------------------------------: |
+| :--------: | :--------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------: |
 | 29/09/2020 [Major] | Project selection for sign up | <p align="left"><b>Interested Projects</b>:<br/> 1. Mix and Match with Cap One (33%)<br/> 2. Asteroids reloaded with UON (20%)<br/>       3. Self service with Browne Jacobson (13%)<br/>4. Meal Planner with Kainos (13%)<br/>5. Good Financial Habits with Cap One (13%)</p> | Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo<br/>Shuxiang Hu |
 | 07/10/2020 [Major] | Scripts for pitches           | <p align="left">Pairs write scripts for their <b>focused</b> project <br/> To direct the rest of the group when we reconvene<br/>deadline 9th | Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo<br/>Shuxiang Hu |
 | 13/10/2020 [Major] | PowerPoint Formatting<br/>Rendering Videos | <p align="left"><br/> Share PowerPoint with someone who can record (Shuxiang or Thomas).<br/>Convert video types that are causing the upside-down bug. | Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo<br/>Shuxiang Hu |
@@ -66,6 +65,7 @@ The aim is to refactor the code to follow our coding conventions.
 | 16/12/2020 [Major] | User Stories <br/> | Successfully implemented list view of micro-routes with placeholder values | Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo<br/>Shuxiang Hu<br/>Zihui Zu |
 | 17/12/2020 [Minor] | User Stories continued | Experiment with http connection with JSON response. <br/>Got response, but with an error | Callum Davis<br>Zixiang Jin<br>Thomas Murphy |
 | 01/02/2020 [Major] | Discuss plans going forward for the upcoming sprints. | Team 12's Concise Coding Conventions <br/> Responsibility Rotation Plan <br/> <br/>Wednesday: Refactor <br/>Friday: Prepare for next sprint. | Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo<br/>Shuxiang Hu<br/>Zihui Zu |
+| 03/02/2020 [Major] | Refactoring with Coding Conventions <br/> -Variable naming and privacy <br/> -Class splitting | Paired Programming <br/> Callum and Tom: Route <br/> Kieran and Zihui: Taxi <br/> Ashley: Main <br/> Shuxiang: Train <br/> <br/>Friday: Merge together before meeting. | Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo<br/>Shuxiang Hu<br/>Zihui Zu |
 
 ### Assessment Deliverables
 |  |                                       |
