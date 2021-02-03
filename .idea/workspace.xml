@@ -20,13 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6bd99f9d-f221-4786-a044-a65f5d879e17" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/team12_project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/team12_project.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ios/Flutter/Debug.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/src/ios/Flutter/Debug.xcconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ios/Flutter/Release.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/src/ios/Flutter/Release.xcconfig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lib/routePlanner.dart" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/routePlanner.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/src/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +41,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
+    <property name="android.sdk.path" value="$PROJECT_DIR$/../AppData/Local/Android/Sdk" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
@@ -88,6 +85,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="112" y="196" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1607720790763">
@@ -95,9 +93,10 @@
     </state>
     <state x="120" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607086799213" />
     <state x="112" y="196" key="#com.intellij.execution.impl.EditConfigurationsDialog/1792.23.1366.1001/0.23.1792.1031@0.23.1792.1031" timestamp="1607720790763" />
-    <state x="100" y="100" width="1133" height="840" key="AVDManager" timestamp="1607086639596">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="80" y="79" width="907" height="666" key="AVDManager" timestamp="1612361706589">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
+    <state x="80" y="79" width="907" height="666" key="AVDManager/0.0.1536.824@0.0.1536.824" timestamp="1612361706589" />
     <state x="100" y="100" width="1133" height="840" key="AVDManager/0.0.1920.1040@0.0.1920.1040" timestamp="1607086639596" />
     <state x="446" y="275" key="FileChooserDialogImpl" timestamp="1607086863643">
       <screen x="0" y="0" width="1920" height="1040" />

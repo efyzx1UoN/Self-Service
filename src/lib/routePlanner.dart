@@ -10,9 +10,9 @@ import 'taxiPlanner.dart';
 import 'main.dart';
 
 class RoutePlannerPage extends StatefulWidget {
-  RoutePlannerPage({Key key, this.title}) : super(key: key);
+  RoutePlannerPage({Key key, this.m_title}) : super(key: key);
 
-  final String title;
+  final String m_title;
 
   @override
   _RoutePlannerPageState createState() => _RoutePlannerPageState();
@@ -20,6 +20,7 @@ class RoutePlannerPage extends StatefulWidget {
 }
 
 class _RoutePlannerPageState extends State<RoutePlannerPage> {
+  static const double SIDE_EDGE = 20;
   void _pageHome() {
     Navigator.of(context).popUntil((route) => route.isFirst);
   }
@@ -33,7 +34,7 @@ class _RoutePlannerPageState extends State<RoutePlannerPage> {
       body: new ListView(
           children: <Widget> [
             Container(
-              margin: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+              margin: const EdgeInsets.fromLTRB(SIDE_EDGE, 0, SIDE_EDGE, 0),
               alignment: Alignment(-1.0,-1.0),
               child: Row(
                 children: <Widget>[
@@ -56,36 +57,41 @@ class MyCustomForm extends StatefulWidget {
 
 class MyCustomFormState extends State<MyCustomForm> {
   final _formKey = GlobalKey<FormState>();
-  Data data = new Data();
-  final startAddressController = TextEditingController();
-  final endAddressController = TextEditingController();
+  // ignore: non_constant_identifier_names
+  Data _m_data = new Data();
+  final _m_startAddressController = TextEditingController();
+  final _m_endAddressController = TextEditingController();
   final Geolocator _geolocator  = Geolocator();
-  Position startCoordinates ;
-  Position destinationCoordinates;
-  Set<Marker> markers = {};
-  List<LatLng> routeCoords;
-  final Set<Polyline> polyline = {};
-  List<Placemark> destinationPlacemark;
-  String currentLocation = "";
-  String startLocationStr = "";
-  String endLocationStr = "";
-  Location startLocation, endLocation;
-  List<Album> directions;
-  double lat = 0;
-  double long = 0;
-  String responseBody = "";
-  Position _currentPosition;
-  LatLng locationCoordinates;
-  bool mapVisible = true;
-  PolylinePoints polylinePoints;
-  Map<PolylineId, Polyline> polylines = {};
-  List<LatLng> polylineCoordinates = [];
-  GoogleMapController mapController;
-  GoogleMapPolyline googleMapPolyline = new GoogleMapPolyline(apiKey: "AIzaSyAjBVD5OeZbBKW0o_tOKfcOtuCPVIuyovE");
-  GoogleMap map;
-
+  Position _m_startCoordinates ;
+  Position _m_destinationCoordinates;
+  Set<Marker> _m_markers = {};
+  List<LatLng> _m_routeCoords;
+  final Set<Polyline> _m_polyline = {};
+  List<Placemark> _m_destinationPlacemark;
+  String _m_currentLocation = "";
+  String _m_startLocationStr = "";
+  String _m_endLocationStr = "";
+  Location _m_startLocation, _m_endLocation;
+  List<Album> _m_directions;
+  double _m_lat = 0;
+  double _m_long = 0;
+  String _m_responseBody = "";
+  LatLng _m_locationCoordinates;
+  bool _m_mapVisible = true;
+  PolylinePoints _m_polylinePoints;
+  Map<PolylineId, Polyline> _m_polylines = {};
+  List<LatLng> _m_polylineCoordinates = [];
+  GoogleMapController _m_mapController;
+  GoogleMapPolyline _m_googleMapPolyline = new GoogleMapPolyline(apiKey: "AIzaSyAjBVD5OeZbBKW0o_tOKfcOtuCPVIuyovE");
+  GoogleMap _m_map;
+  final double ZOOM_DEPTH = 11.0;
+  final int POLYLINE_WIDTH = 4;
+  final double SIDE_EDGE = 20;
+  final double BOTTOM_EDGE = 50;
+  final double CONTAINER_ONE_DIMENSION = 400;
+  final double CONTAINER_TWO_HEIGHT = 500;
   void _onMapCreated(GoogleMapController controller) {
-    mapController = controller;
+    _m_mapController = controller;
   }
 
   @override
@@ -95,64 +101,65 @@ class MyCustomFormState extends State<MyCustomForm> {
   }
 
   void getDirection() async {
-        double originLong = startLocation.longitude;
-        double originLat = startLocation.latitude;
-        double destinationLong = endLocation.longitude;
-        double destinationLat = endLocation.latitude;
+        double originLong = _m_startLocation.longitude;
+        double originLat = _m_startLocation.latitude;
+        double destinationLong = _m_endLocation.longitude;
+        double destinationLat = _m_endLocation.latitude;
         final Response response = await get(
             'https://maps.googleapis.com/maps/api/directions/json?origin=$originLong,$originLat&destination=$destinationLong,$destinationLat&key=AIzaSyAjBVD5OeZbBKW0o_tOKfcOtuCPVIuyovE');
         //jsonDecode(response.body);
-        responseBody = response.body;
+        _m_responseBody = response.body;
   }
 
   void getLocation() async {
     Position coords = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
 
-    lat = coords.latitude;
-    long = coords.longitude;
-    locationCoordinates = new LatLng(lat, long);
+    _m_lat = coords.latitude;
+    _m_long = coords.longitude;
+    _m_locationCoordinates = new LatLng(_m_lat, _m_long);
 
-    final coordinates = new Coordinates(lat, long);
+    final coordinates = new Coordinates(_m_lat, _m_long);
     var addresses = await Geocoder.local.findAddressesFromCoordinates(coordinates);
 
     setState(() {
-      currentLocation = addresses.first.addressLine;
-      map = GoogleMap(
+      _m_currentLocation = addresses.first.addressLine;
+      _m_map = GoogleMap(
         onMapCreated: _onMapCreated,
         myLocationEnabled: true,
         myLocationButtonEnabled: true,
         mapType: MapType.normal,
         zoomGesturesEnabled: true,
         zoomControlsEnabled: true,
-        polylines: polyline.toSet(),
+        polylines: _m_polyline.toSet(),
         initialCameraPosition: CameraPosition(
-          target: locationCoordinates,
-          zoom: 11.0,
+          target: _m_locationCoordinates,
+          zoom: ZOOM_DEPTH,
         ),
       );
     });
   }
 
   void setPolylines() async{
+
     print("start");
-    List<Location> startLocations = await locationFromAddress(startLocationStr);
-    startLocation = startLocations.first;
+    List<Location> startLocations = await locationFromAddress(_m_startLocationStr);
+    _m_startLocation = startLocations.first;
 
-    List<Location> endLocations = await locationFromAddress(endLocationStr);
-    endLocation = endLocations.first;
+    List<Location> endLocations = await locationFromAddress(_m_endLocationStr);
+    _m_endLocation = endLocations.first;
 
-    routeCoords = await googleMapPolyline.getCoordinatesWithLocation(
-        origin: LatLng(startLocation.latitude, startLocation.longitude),
-        destination: LatLng(endLocation.latitude, endLocation.longitude),
+    _m_routeCoords = await _m_googleMapPolyline.getCoordinatesWithLocation(
+        origin: LatLng(_m_startLocation.latitude, _m_startLocation.longitude),
+        destination: LatLng(_m_endLocation.latitude, _m_endLocation.longitude),
         mode: RouteMode.driving);
 
     setState(() {
-      polyline.add(Polyline(
+      _m_polyline.add(Polyline(
         polylineId: PolylineId('Your route'),
         visible: true,
-        width: 4,
-        points: routeCoords,
+        width: POLYLINE_WIDTH,
+        points: _m_routeCoords,
         color: Colors.blue,
         startCap: Cap.roundCap,
         endCap: Cap.buttCap,
@@ -160,17 +167,17 @@ class MyCustomFormState extends State<MyCustomForm> {
     });
 
     setState(() {
-      map = GoogleMap(
+      _m_map = GoogleMap(
         onMapCreated: _onMapCreated,
         myLocationEnabled: true,
         myLocationButtonEnabled: true,
         mapType: MapType.normal,
         zoomGesturesEnabled: true,
         zoomControlsEnabled: true,
-        polylines: polyline.toSet(),
+        polylines: _m_polyline.toSet(),
         initialCameraPosition: CameraPosition(
-          target: locationCoordinates,
-          zoom: 11.0,
+          target: _m_locationCoordinates,
+          zoom: ZOOM_DEPTH,
         ),
       );
 
@@ -182,7 +189,7 @@ class MyCustomFormState extends State<MyCustomForm> {
 
   void toggleMap(){
     setState(() {
-      mapVisible = !mapVisible;
+      _m_mapVisible = !_m_mapVisible;
     });
   }
 
@@ -190,7 +197,7 @@ class MyCustomFormState extends State<MyCustomForm> {
   Widget build(BuildContext context) {
     // Build a Form widget using the _formKey created above.
     return Container(
-      margin: EdgeInsets.fromLTRB(20, 0, 20, 50),
+      margin: EdgeInsets.fromLTRB(SIDE_EDGE, 0, SIDE_EDGE, BOTTOM_EDGE),
       child: new Form(
         key: _formKey,
         child: Column(
@@ -201,22 +208,22 @@ class MyCustomFormState extends State<MyCustomForm> {
               maintainSize: false,
               maintainState: true,
               maintainAnimation: true,
-              visible: mapVisible,
+              visible: _m_mapVisible,
               child: Column(
                 children: <Widget>[
                 TextFormField(
-                  controller: startAddressController,
+                  controller: _m_startAddressController,
                   validator: (value) {
                     if (value.isEmpty) {
                       return 'Please enter a valid address';
                     }
-                    data.startingLocation = value;
-                    startAddressController.text = value;
-                    startLocationStr = value;
+                    _m_data.startingLocation = value;
+                    _m_startAddressController.text = value;
+                    _m_startLocationStr = value;
                     return null;
                   },
                   decoration: InputDecoration(
-                    hintText: currentLocation,
+                    hintText: _m_currentLocation,
                     labelText: 'From:',
                     border: UnderlineInputBorder(
                     ),
@@ -225,14 +232,14 @@ class MyCustomFormState extends State<MyCustomForm> {
                   ),
                 ),
                 TextFormField(
-                  controller: endAddressController,
+                  controller: _m_endAddressController,
                   validator: (value) {
                     if (value.isEmpty) {
                       return 'Please enter a valid address';
                     }
-                    data.destination = value;
-                    endAddressController.text = value;
-                    endLocationStr = value;
+                    _m_data.destination = value;
+                    _m_endAddressController.text = value;
+                    _m_endLocationStr = value;
                     return null;
                   },
                   decoration: InputDecoration(
@@ -266,18 +273,18 @@ class MyCustomFormState extends State<MyCustomForm> {
               ),
             ),
             SizedBox(
-              child: locationCoordinates == null
+              child: _m_locationCoordinates == null
                   ? Container()
-                  : map,
-              height: 400,
-              width: 400,
+                  : _m_map,
+              height: CONTAINER_ONE_DIMENSION,
+              width: CONTAINER_ONE_DIMENSION,
               ),
               Visibility(
               maintainInteractivity: false,
               maintainSize: true,
               maintainState: true,
               maintainAnimation: true,
-              visible: !mapVisible,
+              visible: !_m_mapVisible,
               child: Column(
                 children: [
                   SizedBox(
@@ -287,9 +294,9 @@ class MyCustomFormState extends State<MyCustomForm> {
                   child: Text('Find New Route'),
                     ),
                   ),
-                  Text(responseBody),
+                  Text(_m_responseBody),
                   Container(
-                    height: 500,
+                    height: CONTAINER_TWO_HEIGHT,
                     child: CustomScrollView(
                     slivers: <Widget>[
                     SliverList(
@@ -321,13 +328,13 @@ class MyCustomFormState extends State<MyCustomForm> {
 }
 
 class Album {
-  final List<String> routes;
+  final List<String> m_routes;
 
-  Album({this.routes, });
+  Album({this.m_routes, });
 
   factory Album.fromJson(Map<String, dynamic> json) {
     return Album(
-      routes: json['routes'],
+      m_routes: json['routes'],
     );
   }
 }
