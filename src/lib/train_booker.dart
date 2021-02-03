@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/taxiPlanner.dart';
+import 'package:flutter_app/taxi/taxiAlbum.dart';
+import 'package:flutter_app/taxi/taxiPlanner.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:geolocator/geolocator.dart';
@@ -50,7 +51,7 @@ class _Train_BookerPageState extends State<Train_BookerPage> {
                     future: futureAlbum,
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
-                        return Text(snapshot.data.title);
+                        return Text(snapshot.data.m_title);
                       } else if (snapshot.hasError) {
                         return Text("${snapshot.error}");
                       }
