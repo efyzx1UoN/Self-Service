@@ -16,36 +16,34 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.pink,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: HomePage(title: 'Self Service: Home'),
-
-
+      home: _homePage(title: 'Self Service: Home'),
     );
   }
 }
 
-class HomePage extends StatefulWidget {
-  HomePage({Key key, this.title}) : super(key: key);
+class _homePage extends StatefulWidget {
+  _homePage({Key key, this.title}) : super(key: key);
   final String title;
 
   @override
-  _HomePageState createState() => _HomePageState();
+  _homePageState createState() => _homePageState();
 }
 
-class _HomePageState extends State<HomePage> {
-  Data data = new Data();
+class _homePageState extends State<_homePage> {
+  Data _m_data = new Data();
 
-  Future _pageRoutePlanner() async {
-    final result = await Navigator.of(context).push(_createRoute(RoutePlannerPage()));
-    data = result;
+  Future _m_pageRoutePlanner() async {
+    final _m_result = await Navigator.of(context).push(_createRoute(RoutePlannerPage()));
+    _m_data = _m_result;
   }
 
-  Future _pageTaxiPlanner() async {
-    final result = await Navigator.of(context).push(_createRoute(TaxiPlannerPage()));
-    data = result;
+  Future _m_pageTaxiPlanner() async {
+    final _m_result = await Navigator.of(context).push(_createRoute(TaxiPlannerPage()));
+    _m_data = _m_result;
   }
-  Future _pagetrain_booker() async {
-    final result = await Navigator.of(context).push(_createRoute(Train_BookerPage()));
-    data = result;
+  Future _m_pagetrain_booker() async {
+    final _m_result = await Navigator.of(context).push(_createRoute(Train_BookerPage()));
+    _m_data = _m_result;
   }
 
   @override
@@ -62,21 +60,21 @@ class _HomePageState extends State<HomePage> {
               TextButton(
                 style: TextButton.styleFrom(primary: Colors.white, backgroundColor: Colors.pink),
                 onPressed: () {
-                  _pageRoutePlanner();
+                  _m_pageRoutePlanner();
                 },
                 child: Text('New Route Plan'),
               ),
               TextButton(
                 style: TextButton.styleFrom(primary: Colors.white, backgroundColor: Colors.pink),
                 onPressed: () {
-                  _pageTaxiPlanner();
+                  _m_pageTaxiPlanner();
                 },
                 child: Text('New Taxi Plan'),
               ),
               TextButton(
                 style: TextButton.styleFrom(primary: Colors.white, backgroundColor: Colors.pink),
                 onPressed: () {
-                  _pagetrain_booker();
+                  _m_pagetrain_booker();
                 },
                 child: Text('New Train Plan'),
               ),
@@ -92,14 +90,14 @@ Route _createRoute(StatefulWidget page) {
   return  PageRouteBuilder(
     pageBuilder: (context, animation, secondaryAnimation) => page,
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
-      var begin = Offset(0.0, 1.0);
-      var end = Offset.zero;
-      var curve = Curves.ease;
+      var _m_begin = Offset(0.0, 1.0);
+      var _m_end = Offset.zero;
+      var _m_curve = Curves.ease;
 
-      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+      var _m_tween = Tween(begin: _m_begin, end: _m_end).chain(CurveTween(curve: _m_curve));
 
       return SlideTransition(
-        position: animation.drive(tween),
+        position: animation.drive(_m_tween),
         child: child,
       );
     },
@@ -107,6 +105,22 @@ Route _createRoute(StatefulWidget page) {
 }
 
 class Data {
-  String destination = "nowhere";
-  String startingLocation = "nowhere";
+  String _m_destination = "nowhere";
+  String _m_startingLocation = "nowhere";
+
+  String getStartingLocation(){
+    return _m_startingLocation;
+  }
+
+  setStartingLocation(String value) {
+    _m_startingLocation = value;
+  }
+
+  String getDestination(){
+    return _m_destination;
+  }
+
+  setDestination(String value) {
+    _m_destination = value;
+  }
 }

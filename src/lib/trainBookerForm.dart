@@ -60,7 +60,7 @@ class TrainBookerFormState extends State<TrainBookerForm> {
                 if (value.isEmpty) {
                   return 'Please enter a valid address';
                 }
-                m_data.startingLocation = value;
+                m_data.setStartingLocation(value);
                 return null;
               },
               decoration: InputDecoration(
@@ -77,7 +77,7 @@ class TrainBookerFormState extends State<TrainBookerForm> {
                 if (value.isEmpty) {
                   return 'Please enter a valid address';
                 }
-                m_data.destination = value;
+                m_data.setDestination(value);
                 return null;
               },
               decoration: InputDecoration(
