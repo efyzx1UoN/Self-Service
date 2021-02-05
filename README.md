@@ -12,17 +12,21 @@ Our Task Board is being managed on Trello, ran by Callum.<br/>
 [Link](https://trello.com/b/eeP74gVM/se-group-project)<br/>
 
 
-## Current Task: Maintanence
+## Current Task: Sprint #3
 ### Brief
-The aim is to refactor the code to follow our coding conventions.
-We can put together a structure on Friday.
+The aim is to tick off as many user stories as possible in the first week to see if we can handle more within the sprint.
+
+Implementation - Shuxiang, Kieran, Callum
+Testing - Tom
+Maintanence - Ashley
+Design - Zihui
 
 ### Resources
 - [Coding Conventions](https://teams.microsoft.com/l/file/CDC9FA18-2F52-4428-B714-7E2BC80B827E?tenantId=67bda7ee-fd80-41ef-ac91-358418290a1e&fileType=docx&objectUrl=https%3A%2F%2Funiofnottm.sharepoint.com%2Fsites%2Fmsteams_de0399%2FShared%20Documents%2FGeneral%2FTeam%20Twelves%20Concise%20Coding%20Conventions.docx&baseUrl=https%3A%2F%2Funiofnottm.sharepoint.com%2Fsites%2Fmsteams_de0399&serviceName=teams&threadId=19:15aa2bd553914974bee29d36a04c3a2b@thread.tacv2&groupId=967fc2c2-a152-4e5c-875d-51d5227c5679)
 
 
 ### Deadlines
-- May (26th?) - Reveal
+- May (24th?) - Reveal
 
 ### Contributors
 
@@ -66,6 +70,7 @@ We can put together a structure on Friday.
 | 17/12/2020 [Minor] | User Stories continued | Experiment with http connection with JSON response. <br/>Got response, but with an error | Callum Davis<br>Zixiang Jin<br>Thomas Murphy |
 | 01/02/2020 [Major] | Discuss plans going forward for the upcoming sprints. | Team 12's Concise Coding Conventions <br/> Responsibility Rotation Plan <br/> <br/>Wednesday: Refactor <br/>Friday: Prepare for next sprint. | Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo<br/>Shuxiang Hu<br/>Zihui Zu |
 | 03/02/2020 [Major] | Refactoring with Coding Conventions <br/> -Variable naming and privacy <br/> -Class splitting | Paired Programming <br/> Callum and Tom: Route <br/> Kieran and Zihui: Taxi <br/> Ashley: Main <br/> Shuxiang: Train <br/> <br/>Friday: Merge together before meeting. | Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo<br/>Shuxiang Hu<br/>Zihui Zu |
+| 03/02/2020 [Major] | Merging Conventions <br/> -Resolving Conflicts <br/> -Solving executable inconsistencies | Paired Programming, program merged <br/> <br/> Meeting: <br/> -Sprint 3 <br/> -Try to have working demo <br/> -See how much we can implement in week 1 <br/>| Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo<br/>Shuxiang Hu<br/>Zihui Zu<br/>Steve Brooks |
 
 ### Assessment Deliverables
 |  |                                       |
