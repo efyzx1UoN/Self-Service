@@ -27,12 +27,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6bd99f9d-f221-4786-a044-a65f5d879e17" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/lib/trainBookerForm.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/team12_project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/team12_project.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ios/build/Runner.build/Release-iphoneos/Runner.build/dgph" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lib/taxi/MyCustomForm.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lib/taxi/TaxiPlannerPageState.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lib/taxi/taxiAlbum.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lib/taxi/taxiPlanner.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ios/Runner.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/src/ios/Runner.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ios/Runner.xcworkspace/contents.xcworkspacedata" beforeDir="false" afterPath="$PROJECT_DIR$/src/ios/Runner.xcworkspace/contents.xcworkspacedata" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/routePlanner.dart" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/routePlanner.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/taxiPlanner.dart" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/taxi/MyCustomFormState.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lib/train_booker.dart" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/train_booker.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -58,7 +62,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
+    <property name="android.sdk.path" value="$PROJECT_DIR$/../AppData/Local/Android/Sdk" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
