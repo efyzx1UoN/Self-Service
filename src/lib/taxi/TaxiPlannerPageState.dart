@@ -6,19 +6,10 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoder/geocoder.dart';
-import 'main.dart';
-import 'package:flutter_app/trainBookerForm.dart';
+import '../main.dart';
+import '../routePlanner.dart';
 
-class Train_BookerPage extends StatefulWidget {
-  Train_BookerPage({Key key, this.M_TITLE}) : super(key: key);
-
-  final String M_TITLE;
-
-  @override
-  _Train_BookerPageState createState() => _Train_BookerPageState();
-
-}
-class _Train_BookerPageState extends State<Train_BookerPage> {
+class TaxiPlannerPageState extends State<TaxiPlannerPage> {
   String m_startingLocation;
   String m_destination;
   Future<Album> m_futureAlbum;
@@ -38,11 +29,11 @@ class _Train_BookerPageState extends State<Train_BookerPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("New Train Plan"),
+        title: Text("New Taxi Plan"),
       ),
       body: new ListView(
           children: <Widget> [
-            TrainBookerForm(),
+            MyCustomForm(),
             Container(
               margin: const EdgeInsets.fromLTRB(20, 0, 20, 0),
               alignment: Alignment(-1.0,-1.0),
@@ -69,4 +60,3 @@ class _Train_BookerPageState extends State<Train_BookerPage> {
     );
   }
 }
-
