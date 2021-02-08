@@ -24,6 +24,22 @@ Design - Zihui
 ### Resources
 - [Coding Conventions](https://teams.microsoft.com/l/file/CDC9FA18-2F52-4428-B714-7E2BC80B827E?tenantId=67bda7ee-fd80-41ef-ac91-358418290a1e&fileType=docx&objectUrl=https%3A%2F%2Funiofnottm.sharepoint.com%2Fsites%2Fmsteams_de0399%2FShared%20Documents%2FGeneral%2FTeam%20Twelves%20Concise%20Coding%20Conventions.docx&baseUrl=https%3A%2F%2Funiofnottm.sharepoint.com%2Fsites%2Fmsteams_de0399&serviceName=teams&threadId=19:15aa2bd553914974bee29d36a04c3a2b@thread.tacv2&groupId=967fc2c2-a152-4e5c-875d-51d5227c5679)
 
+#### Team Twelves Concise Coding Conventions  
+
+(Inspired by Bobs Concise Coding Conventions) 
+
+No method should be longer than 75 lines. (Excluding lines that are brackets). All method should be visible on a single page without scrolling. / 
+One class per file.  <br/>
+Lines should be visible on your screen.   <br/>
+All class attributes should be prefixed with “m_”   <br/>
+All class attributes should use camelCase.   <br/>
+All class attributes are private. To use them externally, use getters and setters.  <br/> 
+All class attributes are declared at the top of the class.   <br/>
+Private methods begin with a lower-case letter. Public methods begin with a capital letter.   <br/>
+Methods should aim to have no more than 5 parameters.   <br/>
+Use symbolic constants for interchangeable numbers and strings.   <br/>
+Symbolic constants are written in “ALL_CAPS”    <br/>
+Classes should have single responsibility. (A class should not do more than the task it is designed for)   <br/>
 
 ### Deadlines
 - May (24th?) - Reveal
