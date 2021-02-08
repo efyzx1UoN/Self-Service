@@ -13,12 +13,10 @@ import 'geoTracker.dart';
 
 class RoutePlannerPage extends StatefulWidget {
   RoutePlannerPage({Key key, this.m_title}) : super(key: key);
-
   final String m_title;
 
   @override
   _RoutePlannerPageState createState() => _RoutePlannerPageState();
-
 }
 
 class _RoutePlannerPageState extends State<RoutePlannerPage> {
@@ -26,6 +24,7 @@ class _RoutePlannerPageState extends State<RoutePlannerPage> {
   void _pageHome() {
     Navigator.of(context).popUntil((route) => route.isFirst);
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -64,14 +63,14 @@ class RoutePlannerFormState extends State<MyCustomForm> {
   Data _m_data = new Data();
   final _m_startAddressController = TextEditingController();
   final _m_endAddressController = TextEditingController();
-  LatLng _m_locationCoordinates;
   bool _m_mapVisible = true;
-
 
   @override
   void initState(){
     super.initState();
-    _m_geoTracker.getLocation();
+    setState(() {
+      _m_geoTracker.getLocation();
+    });
   }
 
   void toggleMap(){
@@ -84,7 +83,7 @@ class RoutePlannerFormState extends State<MyCustomForm> {
   Widget build(BuildContext context) {
     // Build a Form widget using the _formKey created above.
     return Container(
-      margin: EdgeInsets.fromLTRB(SIDE_EDGE, 0, SIDE_EDGE, BOTTOM_EDGE),
+      margin: EdgeInsets.fromLTRB(geoTracker.SIDE_EDGE, 0, geoTracker.SIDE_EDGE, geoTracker.BOTTOM_EDGE),
       child: new Form(
         key: _formKey,
         child: Column(
@@ -106,11 +105,11 @@ class RoutePlannerFormState extends State<MyCustomForm> {
                     }
                     _m_data.startingLocation = value;
                     _m_startAddressController.text = value;
-                    _m_startLocationStr = value;
+                    _m_geoTracker.m_startLocationStr = value;
                     return null;
                   },
                   decoration: InputDecoration(
-                    hintText: _m_geoTracker.getCurrentLocation(),
+                    hintText: _m_geoTracker.m_currentLocation,
                     labelText: 'From:',
                     border: UnderlineInputBorder(
                     ),
@@ -126,7 +125,9 @@ class RoutePlannerFormState extends State<MyCustomForm> {
                     }
                     _m_data.destination = value;
                     _m_endAddressController.text = value;
-                    _m_endLocationStr = value;
+                    // _m_endLocationStr = value;
+                    _m_geoTracker.setEndLocationStr(value);
+
                     return null;
                   },
                   decoration: InputDecoration(
@@ -149,7 +150,9 @@ class RoutePlannerFormState extends State<MyCustomForm> {
                           // otherwise.
                           if (_formKey.currentState.validate()) {
                             // If the form is valid, display a Snackbar.
-                            _m_geoTracker.setPolylines();
+                            setState(() {
+                              _m_geoTracker.setPolylines();
+                            });
                             toggleMap();
                           }},
                         child: Text('Find Route'),
@@ -160,11 +163,11 @@ class RoutePlannerFormState extends State<MyCustomForm> {
               ),
             ),
             SizedBox(
-              child: _m_locationCoordinates == null
-                  ? Container()
-                  : _m_geoTracker.getMap(),
-              height: CONTAINER_ONE_DIMENSION,
-              width: CONTAINER_ONE_DIMENSION,
+              child: _m_geoTracker.m_map == null
+                  ? Container(child: Text("test"))
+                  : _m_geoTracker.m_map,
+              height: geoTracker.CONTAINER_ONE_DIMENSION,
+              width: geoTracker.CONTAINER_ONE_DIMENSION,
               ),
               Visibility(
               maintainInteractivity: false,
@@ -178,6 +181,24 @@ class RoutePlannerFormState extends State<MyCustomForm> {
         ),
       ),
     );
+  }
+
+  Data get m_data => _m_data;
+
+  set m_data(Data value) {
+    _m_data = value;
+  }
+
+  get m_startAddressController => _m_startAddressController;
+
+  get m_endAddressController => _m_endAddressController;
+
+  get m_geoTracker => _m_geoTracker;
+
+  bool get m_mapVisible => _m_mapVisible;
+
+  set m_mapVisible(bool value) {
+    _m_mapVisible = value;
   }
 }
 

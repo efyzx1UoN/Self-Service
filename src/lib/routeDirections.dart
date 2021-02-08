@@ -19,34 +19,37 @@ class routeDirections extends Container {
         SizedBox(
           width: double.infinity,
           child: ElevatedButton(
-            onPressed: () async {_m_parent.toggleMap();},
-          child: Text('Find New Route'),
+            onPressed: () async {
+              _m_parent.toggleMap();
+            },
+            child: Text('Find New Route'),
           ),
         ),
-        Text(_m_responseBody),
+        Text(_m_parent.m_geoTracker.m_responseBody),
         Container(
           height: CONTAINER_TWO_HEIGHT,
           child: CustomScrollView(
-          slivers: <Widget>[
-            SliverList(
-              delegate: SliverChildBuilderDelegate(
-                (BuildContext context, int index) {
-                  return Container(
-                  child: Row(
-                      children: <Widget>[
-                        Text('Route $index'),
-                        ElevatedButton(
-                          child: Text('Select'))
-                       ],
-                  ),
-                );
-                }
+            slivers: <Widget>[
+              SliverList(
+                delegate: SliverChildBuilderDelegate(
+                        (BuildContext context, int index) {
+                      return Container(
+                        child: Row(
+                          children: <Widget>[
+                            Text('Route $index'),
+                            ElevatedButton(
+                                child: Text('Select'))
+                          ],
+                        ),
+                      );
+                    }
+                ),
               ),
-            ),
-          ],
-         ),
-       ),
-     ],
+            ],
+          ),
+        ),
+      ],
     );
   }
+}
 
