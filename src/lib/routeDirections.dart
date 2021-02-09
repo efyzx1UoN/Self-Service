@@ -8,7 +8,7 @@ class routeDirections extends Container {
   RoutePlannerFormState _m_parent;
 
   routeDirections(RoutePlannerFormState parent) {
-    _m_parent = parent;
+    this._m_parent = parent;
   }
 
   @override
@@ -19,9 +19,7 @@ class routeDirections extends Container {
         SizedBox(
           width: double.infinity,
           child: ElevatedButton(
-            onPressed: () async {
-              _m_parent.toggleMap();
-            },
+            onPressed: _m_parent.toggleMap,
             child: Text('Find New Route'),
           ),
         ),

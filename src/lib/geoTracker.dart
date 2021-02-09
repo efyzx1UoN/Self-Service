@@ -32,6 +32,7 @@ class geoTracker {
   String _m_startLocationStr = "";
   LatLng _m_locationCoordinates;
 
+
   LatLng get m_locationCoordinates => _m_locationCoordinates;
 
   set m_locationCoordinates(LatLng value) {
@@ -92,8 +93,6 @@ class geoTracker {
           zoom: ZOOM_DEPTH,
         ),
       );
-
-
     }
 
   void getDirection() async {

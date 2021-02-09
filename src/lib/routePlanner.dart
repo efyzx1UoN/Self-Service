@@ -6,7 +6,6 @@ import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:google_map_polyline/google_map_polyline.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart';
-import 'taxiPlanner.dart';
 import 'routeDirections.dart';
 import 'main.dart';
 import 'geoTracker.dart';
@@ -42,7 +41,7 @@ class _RoutePlannerPageState extends State<RoutePlannerPage> {
                 ],
               ),
             ),
-            MyCustomForm(),
+            RoutePlannerForm(),
           ]
       ),
     );
@@ -51,12 +50,12 @@ class _RoutePlannerPageState extends State<RoutePlannerPage> {
 
 class RoutePlannerForm extends StatefulWidget {
   @override
-  MyCustomFormState createState() {
-    return MyCustomFormState();
+  RoutePlannerFormState createState() {
+    return RoutePlannerFormState();
   }
 }
 
-class RoutePlannerFormState extends State<MyCustomForm> {
+class RoutePlannerFormState extends State<RoutePlannerForm> {
   final _m_geoTracker = new geoTracker();
   final _formKey = GlobalKey<FormState>();
   // ignore: non_constant_identifier_names
@@ -164,7 +163,7 @@ class RoutePlannerFormState extends State<MyCustomForm> {
             ),
             SizedBox(
               child: _m_geoTracker.m_map == null
-                  ? Container(child: Text("test"))
+                  ? Container()
                   : _m_geoTracker.m_map,
               height: geoTracker.CONTAINER_ONE_DIMENSION,
               width: geoTracker.CONTAINER_ONE_DIMENSION,
