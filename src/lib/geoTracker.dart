@@ -7,6 +7,7 @@ import 'package:google_map_polyline/google_map_polyline.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart';
 import 'Album.dart';
+import 'observerState.dart';
 
 class geoTracker {
   PolylinePoints _m_polylinePoints;
@@ -31,7 +32,14 @@ class geoTracker {
   String _m_currentLocation = "";
   String _m_startLocationStr = "";
   LatLng _m_locationCoordinates;
+  ObserverState _m_listener;
 
+
+  State get m_listener => _m_listener;
+
+  set m_listener(State value) {
+    _m_listener = value;
+  }
 
   LatLng get m_locationCoordinates => _m_locationCoordinates;
 
@@ -93,6 +101,7 @@ class geoTracker {
           zoom: ZOOM_DEPTH,
         ),
       );
+      _m_listener.update();
     }
 
   void getDirection() async {
@@ -108,6 +117,7 @@ class geoTracker {
 
   void _onMapCreated(GoogleMapController controller) {
     _m_mapController = controller;
+    _m_listener.update();
   }
 
 
@@ -149,6 +159,7 @@ class geoTracker {
     );
 
     getDirection();
+    _m_listener.update();
   }
 
   Map<PolylineId, Polyline> get m_polylines => _m_polylines;

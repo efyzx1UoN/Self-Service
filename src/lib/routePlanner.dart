@@ -9,6 +9,7 @@ import 'package:http/http.dart';
 import 'routeDirections.dart';
 import 'main.dart';
 import 'geoTracker.dart';
+import 'observerState.dart';
 
 class RoutePlannerPage extends StatefulWidget {
   RoutePlannerPage({Key key, this.m_title}) : super(key: key);
@@ -18,7 +19,7 @@ class RoutePlannerPage extends StatefulWidget {
   _RoutePlannerPageState createState() => _RoutePlannerPageState();
 }
 
-class _RoutePlannerPageState extends State<RoutePlannerPage> {
+class _RoutePlannerPageState extends ObserverState {
   static const double SIDE_EDGE = 20;
   void _pageHome() {
     Navigator.of(context).popUntil((route) => route.isFirst);
@@ -55,7 +56,7 @@ class RoutePlannerForm extends StatefulWidget {
   }
 }
 
-class RoutePlannerFormState extends State<RoutePlannerForm> {
+class RoutePlannerFormState extends ObserverState {
   final _m_geoTracker = new geoTracker();
   final _formKey = GlobalKey<FormState>();
   // ignore: non_constant_identifier_names
@@ -64,12 +65,21 @@ class RoutePlannerFormState extends State<RoutePlannerForm> {
   final _m_endAddressController = TextEditingController();
   bool _m_mapVisible = true;
 
+
   @override
   void initState(){
     super.initState();
     setState(() {
+      _m_geoTracker.m_listener = this;
       _m_geoTracker.getLocation();
     });
+    /*
+    Future.delayed(const Duration(milliseconds: 5000), () { //This eventually needs to be event driven.
+      setState(() {
+        print("Test2");
+      });
+    }
+    );*/
   }
 
   void toggleMap(){
@@ -162,7 +172,7 @@ class RoutePlannerFormState extends State<RoutePlannerForm> {
               ),
             ),
             SizedBox(
-              child: _m_geoTracker.m_map == null
+              child: _m_geoTracker.m_locationCoordinates == null
                   ? Container()
                   : _m_geoTracker.m_map,
               height: geoTracker.CONTAINER_ONE_DIMENSION,

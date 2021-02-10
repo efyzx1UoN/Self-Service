@@ -23,7 +23,7 @@ class routeDirections extends Container {
             child: Text('Find New Route'),
           ),
         ),
-        Text(_m_parent.m_geoTracker.m_responseBody),
+        //Text(_m_parent.m_geoTracker.m_responseBody),
         Container(
           height: CONTAINER_TWO_HEIGHT,
           child: CustomScrollView(
