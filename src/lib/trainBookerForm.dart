@@ -6,6 +6,8 @@ import 'dart:convert';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoder/geocoder.dart';
 import 'main.dart';
+import 'package:flutter_app/SharedStringData.dart';
+
 
 class TrainBookerForm extends StatefulWidget {
   @override

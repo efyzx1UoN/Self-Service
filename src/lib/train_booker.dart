@@ -8,6 +8,8 @@ import 'package:geolocator/geolocator.dart';
 import 'package:geocoder/geocoder.dart';
 import 'main.dart';
 import 'package:flutter_app/trainBookerForm.dart';
+import 'package:flutter_app/SharedStringData.dart';
+
 
 class Train_BookerPage extends StatefulWidget {
   Train_BookerPage({Key key, this.M_TITLE}) : super(key: key);

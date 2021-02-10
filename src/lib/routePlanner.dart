@@ -7,6 +7,7 @@ import 'package:google_map_polyline/google_map_polyline.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'taxi/taxiPlanner.dart';
 import 'main.dart';
+import 'package:flutter_app/SharedStringData.dart';
 
 class RoutePlannerPage extends StatefulWidget {
   RoutePlannerPage({Key key, this.title}) : super(key: key);
