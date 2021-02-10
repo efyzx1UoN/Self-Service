@@ -5,24 +5,28 @@ import 'package:geocoding/geocoding.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:google_map_polyline/google_map_polyline.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'taxi/taxiPlanner.dart';
+import 'package:http/http.dart';
+import 'SharedStringData.dart';
+import 'routeDirections.dart';
 import 'main.dart';
-import 'package:flutter_app/SharedStringData.dart';
+import 'geoTracker.dart';
+import 'observerState.dart';
+
 
 class RoutePlannerPage extends StatefulWidget {
-  RoutePlannerPage({Key key, this.title}) : super(key: key);
-
-  final String title;
+  RoutePlannerPage({Key key, this.m_title}) : super(key: key);
+  final String m_title;
 
   @override
   _RoutePlannerPageState createState() => _RoutePlannerPageState();
-
 }
 
-class _RoutePlannerPageState extends State<RoutePlannerPage> {
+class _RoutePlannerPageState extends ObserverState {
+  static const double SIDE_EDGE = 20;
   void _pageHome() {
     Navigator.of(context).popUntil((route) => route.isFirst);
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -33,140 +37,57 @@ class _RoutePlannerPageState extends State<RoutePlannerPage> {
       body: new ListView(
           children: <Widget> [
             Container(
-              margin: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+              margin: const EdgeInsets.fromLTRB(SIDE_EDGE, 0, SIDE_EDGE, 0),
               alignment: Alignment(-1.0,-1.0),
               child: Row(
                 children: <Widget>[
                 ],
               ),
             ),
-            MyCustomForm(),
+            RoutePlannerForm(),
           ]
       ),
     );
   }
 }
 
-class MyCustomForm extends StatefulWidget {
+class RoutePlannerForm extends StatefulWidget {
   @override
-  MyCustomFormState createState() {
-    return MyCustomFormState();
+  RoutePlannerFormState createState() {
+    return RoutePlannerFormState();
   }
 }
 
-class MyCustomFormState extends State<MyCustomForm> {
+class RoutePlannerFormState extends ObserverState {
+  final _m_geoTracker = new geoTracker();
   final _formKey = GlobalKey<FormState>();
-  Data data = new Data();
-  final startAddressController = TextEditingController();
-  final endAddressController = TextEditingController();
-  final Geolocator _geolocator  = Geolocator();
-  Position startCoordinates ;
-  Position destinationCoordinates;
-  Set<Marker> markers = {};
-  List<LatLng> routeCoords;
-  final Set<Polyline> polyline = {};
-  List<Placemark> destinationPlacemark;
-  String currentLocation = "";
-  String startLocationStr = "";
-  String endLocationStr = "";
-  Location startLocation, endLocation;
-  double lat = 0;
-  double long = 0;
-  Position _currentPosition;
-  LatLng locationCoordinates;
-  bool mapVisible = true;
-  PolylinePoints polylinePoints;
-  Map<PolylineId, Polyline> polylines = {};
-  List<LatLng> polylineCoordinates = [];
-  GoogleMapController mapController;
-  GoogleMapPolyline googleMapPolyline = new GoogleMapPolyline(apiKey: "AIzaSyAjBVD5OeZbBKW0o_tOKfcOtuCPVIuyovE");
-  GoogleMap map;
+  // ignore: non_constant_identifier_names
+  Data _m_data = new Data();
+  final _m_startAddressController = TextEditingController();
+  final _m_endAddressController = TextEditingController();
+  bool _m_mapVisible = true;
 
-  void _onMapCreated(GoogleMapController controller) {
-    mapController = controller;
-  }
+
 
   @override
   void initState(){
     super.initState();
-    getLocation();
-  }
-
-  void getLocation() async {
-    Position coords = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high);
-
-    lat = coords.latitude;
-    long = coords.longitude;
-    locationCoordinates = new LatLng(lat, long);
-
-    final coordinates = new Coordinates(lat, long);
-    var addresses = await Geocoder.local.findAddressesFromCoordinates(coordinates);
-
     setState(() {
-      currentLocation = addresses.first.addressLine;
-      map = GoogleMap(
-        onMapCreated: _onMapCreated,
-        myLocationEnabled: true,
-        myLocationButtonEnabled: true,
-        mapType: MapType.normal,
-        zoomGesturesEnabled: true,
-        zoomControlsEnabled: true,
-        polylines: polyline.toSet(),
-        initialCameraPosition: CameraPosition(
-          target: locationCoordinates,
-          zoom: 11.0,
-        ),
-      );
+      _m_geoTracker.m_listener = this;
+      _m_geoTracker.getLocation();
     });
-  }
-
-  void setPolylines() async{
-    print("start");
-    List<Location> startLocations = await locationFromAddress(startLocationStr);
-    startLocation = startLocations.first;
-
-    List<Location> endLocations = await locationFromAddress(endLocationStr);
-    endLocation = endLocations.first;
-
-    routeCoords = await googleMapPolyline.getCoordinatesWithLocation(
-        origin: LatLng(startLocation.latitude, startLocation.longitude),
-        destination: LatLng(endLocation.latitude, endLocation.longitude),
-        mode: RouteMode.driving);
-
-    setState(() {
-      polyline.add(Polyline(
-        polylineId: PolylineId('Your route'),
-        visible: true,
-        width: 4,
-        points: routeCoords,
-        color: Colors.blue,
-        startCap: Cap.roundCap,
-        endCap: Cap.buttCap,
-      ));
-    });
-
-    setState(() {
-      map = GoogleMap(
-        onMapCreated: _onMapCreated,
-        myLocationEnabled: true,
-        myLocationButtonEnabled: true,
-        mapType: MapType.normal,
-        zoomGesturesEnabled: true,
-        zoomControlsEnabled: true,
-        polylines: polyline.toSet(),
-        initialCameraPosition: CameraPosition(
-          target: locationCoordinates,
-          zoom: 11.0,
-        ),
-      );}
-    );
-    print("end");
+    /*
+    Future.delayed(const Duration(milliseconds: 5000), () { //This eventually needs to be event driven.
+      setState(() {
+        print("Test2");
+      });
+    }
+    );*/
   }
 
   void toggleMap(){
     setState(() {
-      mapVisible = !mapVisible;
+      _m_mapVisible = !_m_mapVisible;
     });
   }
 
@@ -174,7 +95,7 @@ class MyCustomFormState extends State<MyCustomForm> {
   Widget build(BuildContext context) {
     // Build a Form widget using the _formKey created above.
     return Container(
-      margin: EdgeInsets.fromLTRB(20, 0, 20, 50),
+      margin: EdgeInsets.fromLTRB(geoTracker.SIDE_EDGE, 0, geoTracker.SIDE_EDGE, geoTracker.BOTTOM_EDGE),
       child: new Form(
         key: _formKey,
         child: Column(
@@ -185,22 +106,22 @@ class MyCustomFormState extends State<MyCustomForm> {
               maintainSize: false,
               maintainState: true,
               maintainAnimation: true,
-              visible: mapVisible,
+              visible: _m_mapVisible,
               child: Column(
                 children: <Widget>[
                 TextFormField(
-                  controller: startAddressController,
+                  controller: _m_startAddressController,
                   validator: (value) {
                     if (value.isEmpty) {
                       return 'Please enter a valid address';
                     }
-                    data.setStartingLocation(value);
-                    startAddressController.text = value;
-                    startLocationStr = value;
+                    _m_data.m_startingLocation = value;
+                    _m_startAddressController.text = value;
+                    _m_geoTracker.m_startLocationStr = value;
                     return null;
                   },
                   decoration: InputDecoration(
-                    hintText: currentLocation,
+                    hintText: _m_geoTracker.m_currentLocation,
                     labelText: 'From:',
                     border: UnderlineInputBorder(
                     ),
@@ -209,14 +130,15 @@ class MyCustomFormState extends State<MyCustomForm> {
                   ),
                 ),
                 TextFormField(
-                  controller: endAddressController,
+                  controller: _m_endAddressController,
                   validator: (value) {
                     if (value.isEmpty) {
                       return 'Please enter a valid address';
                     }
-                    data.setDestination(value);
-                    endAddressController.text = value;
-                    endLocationStr = value;
+                    _m_data.m_destination = value;
+                    _m_endAddressController.text = value;
+                    // _m_endLocationStr = value;
+                    _m_geoTracker.setEndLocationStr(value);
                     return null;
                   },
                   decoration: InputDecoration(
@@ -239,7 +161,9 @@ class MyCustomFormState extends State<MyCustomForm> {
                           // otherwise.
                           if (_formKey.currentState.validate()) {
                             // If the form is valid, display a Snackbar.
-                            setPolylines();
+                            setState(() {
+                              _m_geoTracker.setPolylines();
+                            });
                             toggleMap();
                           }},
                         child: Text('Find Route'),
@@ -250,56 +174,43 @@ class MyCustomFormState extends State<MyCustomForm> {
               ),
             ),
             SizedBox(
-              child: locationCoordinates == null
+              child: _m_geoTracker.m_locationCoordinates == null
                   ? Container()
-                  : map,
-              height: 400,
-              width: 400,
+                  : _m_geoTracker.m_map,
+              height: geoTracker.CONTAINER_ONE_DIMENSION,
+              width: geoTracker.CONTAINER_ONE_DIMENSION,
               ),
               Visibility(
               maintainInteractivity: false,
               maintainSize: true,
               maintainState: true,
               maintainAnimation: true,
-              visible: !mapVisible,
-              child: Column(
-                children: [
-                  SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                  onPressed: () async {toggleMap();},
-                  child: Text('Find New Route'),
-                    ),
-                  ),
-                  Container(
-                    height: 500,
-                    child: CustomScrollView(
-                    slivers: <Widget>[
-                    SliverList(
-                      delegate: SliverChildBuilderDelegate(
-                          (BuildContext context, int index) {
-                            return Container(
-                              child: Row(
-                                children: <Widget>[
-                              Text('Route $index: '),
-                                  ElevatedButton(onPressed: null,
-                                      child: Text('Select'))
-                              ],
-                              ),
-                            );
-                          }
-                      ),
-                    ),
-                  ],
-                  ),
-                  ),
-                ],
-              ),
+              visible: !_m_mapVisible,
+              child: routeDirections(this),
             ),
           ],
         ),
       ),
     );
+  }
+
+
+  Data get m_data => _m_data;
+
+  set m_data(Data value) {
+    _m_data = value;
+  }
+
+  get m_startAddressController => _m_startAddressController;
+
+  get m_endAddressController => _m_endAddressController;
+
+  get m_geoTracker => _m_geoTracker;
+
+  bool get m_mapVisible => _m_mapVisible;
+
+  set m_mapVisible(bool value) {
+    _m_mapVisible = value;
   }
 }
 

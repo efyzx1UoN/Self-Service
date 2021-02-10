@@ -14,6 +14,12 @@ class Data {
   String _m_destination = "nowhere";
   String _m_startingLocation = "nowhere";
 
+  String get m_destination => _m_destination;
+
+  set m_destination(String value) {
+    _m_destination = value;
+  }
+
   String getStartingLocation(){
     return _m_startingLocation;
   }
@@ -28,5 +34,11 @@ class Data {
 
   setDestination(String value) {
     _m_destination = value;
+  }
+
+  String get m_startingLocation => _m_startingLocation;
+
+  set m_startingLocation(String value) {
+    _m_startingLocation = value;
   }
 }

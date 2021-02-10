@@ -9,7 +9,7 @@ import '../routePlanner.dart';
 import 'package:flutter_app/SharedStringData.dart';
 
 
-class MyCustomFormState extends State<MyCustomForm> {
+class MyCustomFormState extends State<RoutePlannerForm> {
   final _formKey = GlobalKey<FormState>();
   Data _m_data = new Data();
   String _m_currentLocation = "";

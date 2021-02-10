@@ -33,7 +33,7 @@ class TaxiPlannerPageState extends State<TaxiPlannerPage> {
       ),
       body: new ListView(
           children: <Widget> [
-            MyCustomForm(),
+            RoutePlannerForm(),
             Container(
               margin: const EdgeInsets.fromLTRB(20, 0, 20, 0),
               alignment: Alignment(-1.0,-1.0),

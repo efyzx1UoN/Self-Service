@@ -27,6 +27,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6bd99f9d-f221-4786-a044-a65f5d879e17" name="Default Changelist" comment="">
+<<<<<<< HEAD
       <change afterPath="$PROJECT_DIR$/src/ios/build/Runner.build/Release-iphoneos/Runner.build/dgph" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/lib/taxi/MyCustomForm.dart" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/lib/taxi/TaxiPlannerPageState.dart" afterDir="false" />
@@ -38,6 +39,13 @@
       <change beforePath="$PROJECT_DIR$/src/lib/routePlanner.dart" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/routePlanner.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lib/taxiPlanner.dart" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/taxi/MyCustomFormState.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lib/train_booker.dart" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/train_booker.dart" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/geoTracker.dart" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/geoTracker.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/map.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/routeDirections.dart" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/routeDirections.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/routePlanner.dart" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/routePlanner.dart" afterDir="false" />
+>>>>>>> routePlannerClasses
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,32 +138,61 @@
     </state>
     <state x="120" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607086799213" />
     <state x="112" y="196" key="#com.intellij.execution.impl.EditConfigurationsDialog/1792.23.1366.1001/0.23.1792.1031@0.23.1792.1031" timestamp="1607720790763" />
-    <state x="100" y="100" width="1133" height="840" key="AVDManager" timestamp="1607086639596">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="574" y="97" key="#com.intellij.ide.util.MemberChooser" timestamp="1612791431829">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
+    <state x="574" y="97" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1612791431829" />
+    <state x="80" y="79" width="907" height="666" key="AVDManager" timestamp="1612793777883">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="80" y="79" width="907" height="666" key="AVDManager/0.0.1536.824@0.0.1536.824" timestamp="1612793777883" />
     <state x="100" y="100" width="1133" height="840" key="AVDManager/0.0.1920.1040@0.0.1920.1040" timestamp="1607086639596" />
     <state x="446" y="275" key="FileChooserDialogImpl" timestamp="1607086863643">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="446" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1607086863643" />
+<<<<<<< HEAD
     <state width="1750" height="281" key="GridCell.Tab.0.bottom" timestamp="1612363395574">
       <screen x="0" y="23" width="1792" height="1033" />
+=======
+    <state width="1491" height="5" key="GridCell.Tab.0.bottom" timestamp="1612794569991">
+      <screen x="0" y="0" width="1536" height="824" />
+>>>>>>> routePlannerClasses
     </state>
+    <state width="1491" height="5" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1612794569991" />
     <state width="1750" height="281" key="GridCell.Tab.0.bottom/0.23.1792.1031@0.23.1792.1031" timestamp="1607725838932" />
+<<<<<<< HEAD
     <state width="1750" height="281" key="GridCell.Tab.0.bottom/0.23.1792.1033@0.23.1792.1033" timestamp="1612363395574" />
     <state width="1750" height="281" key="GridCell.Tab.0.center" timestamp="1612363395573">
       <screen x="0" y="23" width="1792" height="1033" />
+=======
+    <state width="1491" height="5" key="GridCell.Tab.0.center" timestamp="1612794569990">
+      <screen x="0" y="0" width="1536" height="824" />
+>>>>>>> routePlannerClasses
     </state>
+    <state width="1491" height="5" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1612794569990" />
     <state width="1750" height="281" key="GridCell.Tab.0.center/0.23.1792.1031@0.23.1792.1031" timestamp="1607725838931" />
+<<<<<<< HEAD
     <state width="1750" height="281" key="GridCell.Tab.0.center/0.23.1792.1033@0.23.1792.1033" timestamp="1612363395573" />
     <state width="1750" height="281" key="GridCell.Tab.0.left" timestamp="1612363395573">
       <screen x="0" y="23" width="1792" height="1033" />
+=======
+    <state width="1491" height="5" key="GridCell.Tab.0.left" timestamp="1612794569989">
+      <screen x="0" y="0" width="1536" height="824" />
+>>>>>>> routePlannerClasses
     </state>
+    <state width="1491" height="5" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1612794569989" />
     <state width="1750" height="281" key="GridCell.Tab.0.left/0.23.1792.1031@0.23.1792.1031" timestamp="1607725838931" />
+<<<<<<< HEAD
     <state width="1750" height="281" key="GridCell.Tab.0.left/0.23.1792.1033@0.23.1792.1033" timestamp="1612363395573" />
     <state width="1750" height="281" key="GridCell.Tab.0.right" timestamp="1612363395574">
       <screen x="0" y="23" width="1792" height="1033" />
+=======
+    <state width="1491" height="5" key="GridCell.Tab.0.right" timestamp="1612794569991">
+      <screen x="0" y="0" width="1536" height="824" />
+>>>>>>> routePlannerClasses
     </state>
+    <state width="1491" height="5" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1612794569991" />
     <state width="1750" height="281" key="GridCell.Tab.0.right/0.23.1792.1031@0.23.1792.1031" timestamp="1607725838931" />
     <state width="1750" height="281" key="GridCell.Tab.0.right/0.23.1792.1033@0.23.1792.1033" timestamp="1612363395574" />
     <state x="397" y="177" key="SettingsEditor" timestamp="1607721014916">

@@ -9,7 +9,7 @@ import '../routePlanner.dart';
 
 class MyCustomForm extends StatefulWidget {
   @override
-  MyCustomFormState createState() {
-    return MyCustomFormState();
+  RoutePlannerFormState createState() {
+    return RoutePlannerFormState();
   }
 }
