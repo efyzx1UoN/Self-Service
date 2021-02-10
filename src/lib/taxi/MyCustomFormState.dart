@@ -6,6 +6,8 @@ import 'package:geolocator/geolocator.dart';
 import 'package:geocoder/geocoder.dart';
 import '../main.dart';
 import '../routePlanner.dart';
+import 'package:flutter_app/SharedStringData.dart';
+
 
 class MyCustomFormState extends State<MyCustomForm> {
   final _formKey = GlobalKey<FormState>();

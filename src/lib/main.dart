@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'routePlanner.dart';
 import 'taxi/taxiPlanner.dart';
 import 'train_booker.dart';
+import 'package:flutter_app/SharedStringData.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -104,23 +106,3 @@ Route _createRoute(StatefulWidget page) {
   );
 }
 
-class Data {
-  String _m_destination = "nowhere";
-  String _m_startingLocation = "nowhere";
-
-  String getStartingLocation(){
-    return _m_startingLocation;
-  }
-
-  setStartingLocation(String value) {
-    _m_startingLocation = value;
-  }
-
-  String getDestination(){
-    return _m_destination;
-  }
-
-  setDestination(String value) {
-    _m_destination = value;
-  }
-}
