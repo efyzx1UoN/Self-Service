@@ -110,6 +110,7 @@ class RoutePlannerFormState extends ObserverState {
               child: Column(
                 children: <Widget>[
                 TextFormField(
+                  key: Key('StartingLocationInput'),
                   controller: _m_startAddressController,
                   validator: (value) {
                     if (value.isEmpty) {
@@ -130,6 +131,7 @@ class RoutePlannerFormState extends ObserverState {
                   ),
                 ),
                 TextFormField(
+                  key: Key('DestinationInput'),
                   controller: _m_endAddressController,
                   validator: (value) {
                     if (value.isEmpty) {
