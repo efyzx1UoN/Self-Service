@@ -8,6 +8,9 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart';
 import 'Album.dart';
 import 'observerState.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+import 'package:flutter_app/route.dart';
 
 class geoTracker {
   PolylinePoints _m_polylinePoints;
@@ -158,8 +161,25 @@ class geoTracker {
       ),
     );
 
-    getDirection();
     _m_listener.update();
+  }
+
+    Future<List<MapRoute>> getRoutes() async {
+    double originLong = _m_startLocation.longitude;
+    double originLat = _m_startLocation.latitude;
+    double destinationLong = _m_endLocation.longitude;
+    double destinationLat = _m_endLocation.latitude;
+    http.Response response = await get(
+        'https://maps.googleapis.com/maps/api/directions/json?origin=$originLong,$originLat&destination=$destinationLong,$destinationLat&key=AIzaSyAjBVD5OeZbBKW0o_tOKfcOtuCPVIuyovE');
+
+    if (response.statusCode == 200){
+        Map routesData = jsonDecode(response.body);
+        List<dynamic> routes = routesData['routes'];
+        return routes.map((json) => MapRoute.fromJson(json)).toList();
+    }else{
+      throw Exception("Something went wrong, ${response.statusCode}");
+    }
+
   }
 
   Map<PolylineId, Polyline> get m_polylines => _m_polylines;
