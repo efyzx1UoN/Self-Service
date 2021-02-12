@@ -70,7 +70,7 @@ class routeDirections extends Container {
                                     var route = snapshot.data;
 
                                     return ListTile(
-                                      title: Text(route[index].data['']),
+                                      title: Text("some text"),
                                     );
                                   }),
                               ),
@@ -108,25 +108,25 @@ class routeDirections extends Container {
   }
 }
 
-class RoutesList extends StatelessWidget{
-  final List<MapRoute> mapRoutes;
-
-  RoutesList({Key key, this.mapRoutes}) : super(key : key);
-
-  @override
-  Widget build(BuildContext context){
-    return GridView.builder(
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-      ),
-      itemCount: mapRoutes.length,
-      itemBuilder: (context, index){
-        return ListTile(
-          leading: Icon(Icons.album),
-          title: Text(mapRoutes[index].m_routes["routes"]),
-        )
-      }
-    )
-  }
-}
+// class RoutesList extends StatelessWidget{
+//   final List<MapRoute> mapRoutes;
+//
+//   RoutesList({Key key, this.mapRoutes}) : super(key : key);
+//
+//   @override
+//   Widget build(BuildContext context){
+//     return GridView.builder(
+//       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+//         crossAxisCount: 2,
+//       ),
+//       itemCount: mapRoutes.length,
+//       itemBuilder: (context, index){
+//         return ListTile(
+//           leading: Icon(Icons.album),
+//           title: Text(mapRoutes[index].m_routes["routes"]),
+//         )
+//       }
+//     )
+//   }
+// }
 
