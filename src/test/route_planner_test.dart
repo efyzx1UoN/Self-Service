@@ -29,7 +29,7 @@ void main() {
       await tester.tap(find.byKey(Key("RouteOption1")));
       await tester.pumpAndSettle();
 
-      // Check if JSON response is valid. (Need to implement directions as a variable).
+      //TODO if JSON response returned results (Need to implement "m_directions" in routePlanner)
       //expect(state.m_directions.isNotNull(), true);
 
     });
@@ -73,5 +73,27 @@ void main() {
       RoutePlannerFormState state = tester.state(find.byType(RoutePlannerForm));
       expect(state.m_mapVisible, true);
     });
+  });
+
+  group("Travel Option Tests", () {
+    testWidgets('Select Travel Option', (WidgetTester tester) async {
+      // Build our app and trigger a frame.
+      await tester.pumpWidget(MyApp());
+
+      RoutePlannerFormState state = tester.state(find.byType(RoutePlannerForm));
+      expect(state.m_mapVisible, true);
+
+      //TODO Check default option when entering RoutePlanner page. (Need to implement "transportMethod" in routePlanner)
+      //expect(state.m_transportMethod, "None");
+
+      //TODO Tap and select the Taxi and Train Buttons. (Need to implement "transportMethod" routePlanner)
+      await tester.tap(find.byKey(Key("TaxiButton")));
+      await tester.pumpAndSettle();
+      //expect(state.m_transportMethod, "Taxi");
+      await tester.tap(find.byKey(Key("TrainButton")));
+      await tester.pumpAndSettle();
+      //expect(state.m_transportMethod, "Train");
+    });
+
   });
 }
