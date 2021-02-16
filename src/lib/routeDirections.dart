@@ -58,21 +58,24 @@ class routeDirections extends Container {
                 builder: (BuildContext context,
                   AsyncSnapshot<List<MapRoute>> snapshot){
                     if(snapshot.hasData){
+                      print("length of snapshot data is ${snapshot.data.length}");
                       return Row(
                         children: <Widget>[
                           Expanded(
                             child: Container(
                               child: Card(
-                                color: Colors.black.withOpacity(0.8),
+                                color: Colors.white24,
                                 child: ListView.builder(
                                   itemCount: snapshot.data.length,
                                   itemBuilder: (BuildContext context, int index){
                                     var route = snapshot.data;
 
                                     return ListTile(
-                                      title: Text("some text"),
+                                      title: Text('1. ${snapshot.data[0].legs[0].steps[0].html_instructions}'),
+                                      subtitle: Text('info: ${snapshot.data.length}'),
                                     );
-                                  }),
+                                  },
+                                padding: EdgeInsets.only(top:50, bottom: 50),),
                               ),
                             ),
                           ),
@@ -95,6 +98,7 @@ class routeDirections extends Container {
                           CircularProgressIndicator(),
                           SizedBox(
                             height: 20.0,
+                            width: 40.0,
                           )
                         ]
                       )
