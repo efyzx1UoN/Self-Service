@@ -9,9 +9,18 @@ class routeDirections extends Container {
   final double CONTAINER_TWO_HEIGHT = 500;
   RoutePlannerFormState _m_parent;
   geoTracker _m_geoTracker;
-
   routeDirections(RoutePlannerFormState parent) {
     this._m_parent = parent;
+  }
+
+  String removeAllHtmlTags(String htmlText) {
+    RegExp exp = RegExp(
+        r"<[^>]*>",
+        multiLine: true,
+        caseSensitive: true
+    );
+
+    return htmlText.replaceAll(exp, ' ');
   }
 
   @override
@@ -71,7 +80,7 @@ class routeDirections extends Container {
                                     var route = snapshot.data;
 
                                     return ListTile(
-                                      title: Text('1. ${snapshot.data[0].legs[0].steps[0].html_instructions}'),
+                                      title: Text('1. ${removeAllHtmlTags(snapshot.data[0].legs[0].steps[0].html_instructions)}'),
                                       subtitle: Text('info: ${snapshot.data.length}'),
                                     );
                                   },
