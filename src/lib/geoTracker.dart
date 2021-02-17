@@ -89,7 +89,6 @@ class geoTracker {
       final coordinates = new Coordinates(_m_lat, _m_long);
       var addresses = await Geocoder.local.findAddressesFromCoordinates(coordinates);
 
-
       _m_currentLocation = addresses.first.addressLine;
       _m_map = GoogleMap(
         onMapCreated: _onMapCreated,
@@ -104,6 +103,7 @@ class geoTracker {
           zoom: ZOOM_DEPTH,
         ),
       );
+
       _m_listener.update();
     }
 
@@ -135,7 +135,7 @@ class geoTracker {
       visible: true,
       width: POLYLINE_WIDTH,
       points: _m_routeCoords,
-      color: Colors.blue,
+      color: Colors.pink,
       startCap: Cap.roundCap,
       endCap: Cap.buttCap,
     ));
@@ -153,6 +153,9 @@ class geoTracker {
         zoom: ZOOM_DEPTH,
       ),
     );
+
+    await _m_mapController.moveCamera(CameraUpdate.newLatLng(new LatLng(_m_startLocation.latitude, _m_startLocation.longitude)));
+
     _m_listener.update();
     getRoutes();
   }
