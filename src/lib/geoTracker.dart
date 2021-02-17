@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:geocoder/geocoder.dart';
@@ -32,6 +34,7 @@ class geoTracker {
   static final double SIDE_EDGE = 20;
   static final double BOTTOM_EDGE = 50;
   static final double CONTAINER_ONE_DIMENSION = 400;
+  static final double ZOOM_BOUND = 7.5;
   String _m_currentLocation = "";
   String _m_startLocationStr = "";
   LatLng _m_locationCoordinates;
@@ -154,7 +157,14 @@ class geoTracker {
       ),
     );
 
-    await _m_mapController.moveCamera(CameraUpdate.newLatLng(new LatLng(_m_startLocation.latitude, _m_startLocation.longitude)));
+    LatLng middlePoint = new LatLng((_m_startLocation.latitude+_m_endLocation.latitude)/2, (_m_startLocation.longitude+_m_endLocation.longitude)/2);
+    double x = (_m_startLocation.latitude-_m_endLocation.latitude).abs()*(_m_startLocation.latitude-_m_endLocation.latitude).abs();
+    double y = (_m_startLocation.longitude-_m_endLocation.longitude).abs()*(_m_startLocation.longitude-_m_endLocation.longitude).abs();
+    double zoom = ZOOM_BOUND/sqrt(x+y);
+    print("x:"+x.toString()+" y:"+y.toString()+" zoom: "+zoom.toString());
+
+    await _m_mapController.animateCamera(CameraUpdate.newLatLngZoom(middlePoint, zoom));
+
 
     _m_listener.update();
     getRoutes();
