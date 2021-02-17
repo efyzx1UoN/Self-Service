@@ -8,6 +8,9 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart';
 import 'Album.dart';
 import 'observerState.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+import 'package:flutter_app/route.dart';
 
 class geoTracker {
   PolylinePoints _m_polylinePoints;
@@ -104,17 +107,6 @@ class geoTracker {
       _m_listener.update();
     }
 
-  void getDirection() async {
-    double originLong = _m_startLocation.longitude;
-    double originLat = _m_startLocation.latitude;
-    double destinationLong = _m_endLocation.longitude;
-    double destinationLat = _m_endLocation.latitude;
-    final Response response = await get(
-        'https://maps.googleapis.com/maps/api/directions/json?origin=$originLong,$originLat&destination=$destinationLong,$destinationLat&key=AIzaSyAjBVD5OeZbBKW0o_tOKfcOtuCPVIuyovE');
-    //jsonDecode(response.body);
-    _m_responseBody = response.body;
-  }
-
   void _onMapCreated(GoogleMapController controller) {
     _m_mapController = controller;
     _m_listener.update();
@@ -133,6 +125,10 @@ class geoTracker {
         origin: LatLng(_m_startLocation.latitude, _m_startLocation.longitude),
         destination: LatLng(_m_endLocation.latitude, _m_endLocation.longitude),
         mode: RouteMode.driving);
+    // print(_m_startLocation.latitude);
+    // print(_m_startLocation.longitude);
+    // print(_m_endLocation.latitude);
+    // print(_m_endLocation.longitude);
 
     _m_polyline.add(Polyline(
       polylineId: PolylineId('Your route'),
@@ -157,9 +153,36 @@ class geoTracker {
         zoom: ZOOM_DEPTH,
       ),
     );
-
-    getDirection();
     _m_listener.update();
+    getRoutes();
+  }
+
+    Future<List<MapRoute>> getRoutes() async {
+    double originLong = _m_startLocation.longitude;
+    double originLat = _m_startLocation.latitude;
+    double destinationLong = _m_endLocation.longitude;
+    double destinationLat = _m_endLocation.latitude;
+    http.Response response = await get(
+        'https://maps.googleapis.com/maps/api/directions/json?origin=$originLat,$originLong&destination=$destinationLat,$destinationLong&region=uk&key=AIzaSyAjBVD5OeZbBKW0o_tOKfcOtuCPVIuyovE');
+
+    if (response.statusCode == 200){
+        Map routesData = jsonDecode(response.body);
+        print(response.body.length);
+        List<dynamic> routesList = routesData["routes"];
+        print(routesList);
+        print(" ");
+
+        List<MapRoute> mapper = routesList.map((json) => MapRoute.fromJson(json)).toList();
+        print(mapper[0].bounds.northeast.lat);
+        print(mapper[0].legs[0].duration.value);
+        print(mapper[0].legs[0].steps[0].html_instructions);
+        print(mapper[0].legs[0].steps[1].html_instructions);
+
+        return routesList.map((json) => MapRoute.fromJson(json)).toList();
+    }else{
+      throw Exception("Something went wrong, ${response.statusCode}");
+    }
+
   }
 
   Map<PolylineId, Polyline> get m_polylines => _m_polylines;

@@ -163,6 +163,7 @@ class RoutePlannerFormState extends ObserverState {
                             // If the form is valid, display a Snackbar.
                             setState(() {
                               _m_geoTracker.setPolylines();
+                              // _m_geoTracker.getRoutes();
                             });
                             toggleMap();
                           }},
