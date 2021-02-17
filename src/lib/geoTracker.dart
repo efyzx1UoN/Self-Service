@@ -33,6 +33,13 @@ class geoTracker {
   String _m_startLocationStr = "";
   LatLng _m_locationCoordinates;
   ObserverState _m_listener;
+  String _m_endLocationStr = "";
+  Location _m_startLocation, _m_endLocation;
+  final Geolocator _geolocator  = Geolocator();
+  List<LatLng> _m_routeCoords;
+  Set<Polyline> _m_polyline;
+  String get m_endLocationStr => _m_endLocationStr;
+
 
 
   State get m_listener => _m_listener;
@@ -59,13 +66,21 @@ class geoTracker {
     _m_polylinePoints = value;
   }
 
-  String _m_endLocationStr = "";
-  Location _m_startLocation, _m_endLocation;
-  final Geolocator _geolocator  = Geolocator();
-  List<LatLng> _m_routeCoords;
-  final Set<Polyline> _m_polyline = {};
-
-  String get m_endLocationStr => _m_endLocationStr;
+  geoTracker(){
+    _m_map = GoogleMap(
+      onMapCreated: _onMapCreated,
+      myLocationEnabled: true,
+      myLocationButtonEnabled: true,
+      mapType: MapType.normal,
+      zoomGesturesEnabled: true,
+      zoomControlsEnabled: true,
+      polylines: Set<Polyline>.of(_m_polylines.values),
+      initialCameraPosition: CameraPosition(
+        target: new LatLng(0,0),
+        zoom: ZOOM_DEPTH,
+      ),
+    );
+  }
 
   void setEndLocationStr(endLocationStr){
     _m_endLocationStr = endLocationStr;
@@ -83,11 +98,11 @@ class geoTracker {
       _m_long = coords.longitude;
       _m_locationCoordinates = new LatLng(_m_lat, _m_long);
 
-      final coordinates = new Coordinates(_m_lat, _m_long);
+      Coordinates coordinates = new Coordinates(_m_lat, _m_long);
       var addresses = await Geocoder.local.findAddressesFromCoordinates(coordinates);
 
+      await _m_mapController.moveCamera(CameraUpdate.newLatLng(_m_locationCoordinates));
 
-      _m_currentLocation = addresses.first.addressLine;
       _m_map = GoogleMap(
         onMapCreated: _onMapCreated,
         myLocationEnabled: true,
@@ -95,12 +110,15 @@ class geoTracker {
         mapType: MapType.normal,
         zoomGesturesEnabled: true,
         zoomControlsEnabled: true,
-        polylines: _m_polyline.toSet(),
+        polylines: _m_polyline,
         initialCameraPosition: CameraPosition(
           target: _m_locationCoordinates,
           zoom: ZOOM_DEPTH,
         ),
       );
+
+      _m_currentLocation = addresses.first.addressLine;
+
       _m_listener.update();
     }
 
@@ -112,6 +130,7 @@ class geoTracker {
     final Response response = await get(
         'https://maps.googleapis.com/maps/api/directions/json?origin=$originLong,$originLat&destination=$destinationLong,$destinationLat&key=AIzaSyAjBVD5OeZbBKW0o_tOKfcOtuCPVIuyovE');
     //jsonDecode(response.body);
+
     _m_responseBody = response.body;
   }
 
@@ -133,6 +152,12 @@ class geoTracker {
         origin: LatLng(_m_startLocation.latitude, _m_startLocation.longitude),
         destination: LatLng(_m_endLocation.latitude, _m_endLocation.longitude),
         mode: RouteMode.driving);
+    // print(_m_startLocation.latitude);
+    // print(_m_startLocation.longitude);
+    // print(_m_endLocation.latitude);
+    // print(_m_endLocation.longitude);
+
+    await _m_mapController.moveCamera(CameraUpdate.newLatLng(new LatLng(_m_startLocation.latitude, _m_startLocation.longitude)));
 
     _m_polyline.add(Polyline(
       polylineId: PolylineId('Your route'),
@@ -151,7 +176,7 @@ class geoTracker {
       mapType: MapType.normal,
       zoomGesturesEnabled: true,
       zoomControlsEnabled: true,
-      polylines: _m_polyline.toSet(),
+      polylines: _m_polyline,
       initialCameraPosition: CameraPosition(
         target: _m_locationCoordinates,
         zoom: ZOOM_DEPTH,
@@ -161,6 +186,7 @@ class geoTracker {
     getDirection();
     _m_listener.update();
   }
+
 
   Map<PolylineId, Polyline> get m_polylines => _m_polylines;
 

@@ -101,6 +101,7 @@ class RoutePlannerFormState extends ObserverState {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
+            TextButton(onPressed: update, child: Text("Refresh")),
             Visibility(
               maintainInteractivity: false,
               maintainSize: false,
@@ -174,7 +175,7 @@ class RoutePlannerFormState extends ObserverState {
               ),
             ),
             SizedBox(
-              child: _m_geoTracker.m_locationCoordinates == null
+              child: _m_geoTracker.m_map == null
                   ? Container()
                   : _m_geoTracker.m_map,
               height: geoTracker.CONTAINER_ONE_DIMENSION,
