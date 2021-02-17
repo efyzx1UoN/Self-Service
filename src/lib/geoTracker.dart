@@ -34,7 +34,10 @@ class geoTracker {
   static final double SIDE_EDGE = 20;
   static final double BOTTOM_EDGE = 50;
   static final double CONTAINER_ONE_DIMENSION = 400;
-  static final double ZOOM_BOUND = 7.5;
+  static final double PIXELS_PER_MILE = 156543.03392;
+  static final double ZOOM_BASE = 14.2;
+  static final double ZOOM_COEFFICIENT = 8;
+  static final double ZOOM_OFFSET = 8;
   String _m_currentLocation = "";
   String _m_startLocationStr = "";
   LatLng _m_locationCoordinates;
@@ -156,15 +159,14 @@ class geoTracker {
         zoom: ZOOM_DEPTH,
       ),
     );
-
+    
     LatLng middlePoint = new LatLng((_m_startLocation.latitude+_m_endLocation.latitude)/2, (_m_startLocation.longitude+_m_endLocation.longitude)/2);
     double x = (_m_startLocation.latitude-_m_endLocation.latitude).abs()*(_m_startLocation.latitude-_m_endLocation.latitude).abs();
     double y = (_m_startLocation.longitude-_m_endLocation.longitude).abs()*(_m_startLocation.longitude-_m_endLocation.longitude).abs();
-    double zoom = ZOOM_BOUND/sqrt(x+y);
+    double zoom = PIXELS_PER_MILE * cos(ZOOM_COEFFICIENT*sqrt(x+y)*pi/180)/pow(2, ZOOM_BASE);
     print("x:"+x.toString()+" y:"+y.toString()+" zoom: "+zoom.toString());
 
     await _m_mapController.animateCamera(CameraUpdate.newLatLngZoom(middlePoint, zoom));
-
 
     _m_listener.update();
     getRoutes();
