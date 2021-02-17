@@ -75,13 +75,13 @@ class routeDirections extends Container {
                               child: Card(
                                 color: Colors.white24,
                                 child: ListView.builder(
-                                  itemCount: snapshot.data.length,
+                                  itemCount: snapshot.data[0].legs[0].steps.length,
                                   itemBuilder: (BuildContext context, int index){
                                     var route = snapshot.data;
 
                                     return ListTile(
-                                      title: Text('1. ${removeAllHtmlTags(snapshot.data[0].legs[0].steps[0].html_instructions)}'),
-                                      subtitle: Text('info: ${snapshot.data.length}'),
+                                      title: Text('${index + 1} : ${removeAllHtmlTags(route[0].legs[0].steps[index].html_instructions)}'),
+                                      subtitle: Text(' ${route[0].legs[0].steps[index].distance.text}'),
                                     );
                                   },
                                 padding: EdgeInsets.only(top:50, bottom: 50),),

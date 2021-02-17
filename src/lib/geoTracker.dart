@@ -107,17 +107,6 @@ class geoTracker {
       _m_listener.update();
     }
 
-  void getDirection() async {
-    double originLong = _m_startLocation.longitude;
-    double originLat = _m_startLocation.latitude;
-    double destinationLong = _m_endLocation.longitude;
-    double destinationLat = _m_endLocation.latitude;
-    final Response response = await get(
-        'https://maps.googleapis.com/maps/api/directions/json?origin=$originLong,$originLat&destination=$destinationLong,$destinationLat&key=AIzaSyAjBVD5OeZbBKW0o_tOKfcOtuCPVIuyovE');
-    //jsonDecode(response.body);
-    _m_responseBody = response.body;
-  }
-
   void _onMapCreated(GoogleMapController controller) {
     _m_mapController = controller;
     _m_listener.update();
