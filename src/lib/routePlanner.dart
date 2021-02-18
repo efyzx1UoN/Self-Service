@@ -11,6 +11,7 @@ import 'routeDirections.dart';
 import 'main.dart';
 import 'geoTracker.dart';
 import 'observerState.dart';
+import 'travelModeRadio.dart';
 
 
 class RoutePlannerPage extends StatefulWidget {
@@ -174,6 +175,7 @@ class RoutePlannerFormState extends ObserverState {
                 ],
               ),
             ),
+            TravelModeRadio(),
             SizedBox(
               child: _m_geoTracker.m_locationCoordinates == null
                   ? Container()
