@@ -173,11 +173,12 @@ class geoTracker {
         print(" ");
 
         List<MapRoute> mapper = routesList.map((json) => MapRoute.fromJson(json)).toList();
-        print(mapper[0].bounds.northeast.lat);
+        // print(mapper[0].bounds.northeast.lat);
         print(mapper[0].legs[0].duration.value);
-        print(mapper[0].legs[0].steps[0].html_instructions);
-        print(mapper[0].legs[0].steps[1].html_instructions);
-
+        // print(mapper[0].legs[0].steps[0].html_instructions);
+        // print(mapper[0].legs[0].steps[1].html_instructions);
+        print(mapper[1].legs[0].duration.value);
+        print(mapper[2].legs[0].duration.value);
         return routesList.map((json) => MapRoute.fromJson(json)).toList();
     }else{
       throw Exception("Something went wrong, ${response.statusCode}");
