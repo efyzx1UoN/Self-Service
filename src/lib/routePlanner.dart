@@ -27,7 +27,6 @@ class _RoutePlannerPageState extends ObserverState {
     Navigator.of(context).popUntil((route) => route.isFirst);
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,6 +66,9 @@ class RoutePlannerFormState extends ObserverState {
   final _m_endAddressController = TextEditingController();
   bool _m_mapVisible = true;
 
+  int m_selectedRouteIndex = 0;
+  bool m_routeVisibility = true;
+  bool m_stepsVisibility = false;
 
 
   @override
@@ -88,6 +90,8 @@ class RoutePlannerFormState extends ObserverState {
   void toggleMap(){
     setState(() {
       _m_mapVisible = !_m_mapVisible;
+      m_routeVisibility = true;
+      m_stepsVisibility = false;
     });
   }
 
