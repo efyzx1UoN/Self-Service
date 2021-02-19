@@ -60,6 +60,68 @@ class routeDirections extends Container {
         // ),
 
         Container(
+            height: CONTAINER_TWO_HEIGHT,
+                child: FutureBuilder(
+                  future: _m_parent.m_geoTracker.getRoutes(),
+                  builder: (BuildContext context,
+                      AsyncSnapshot<List<MapRoute>> snapshot){
+                    if(snapshot.hasData){
+                      print("length of snapshot data is ${snapshot.data.length}");
+                      return Row(
+                        children: <Widget>[
+                          Expanded(
+                            child: Container(
+                              child: Card(
+                                color: Colors.white,
+                                child: ListView.builder(
+                                  itemCount: snapshot.data.length,
+                                  itemBuilder: (BuildContext context, int index){
+                                    var route = snapshot.data;
+                                    return Container(
+                                      padding: EdgeInsets.only(left: 40),
+                                      height: 50,
+                                      child: Row(
+                                        children: <Widget>[
+                                          ElevatedButton(
+                                              onPressed: () { },
+                                              child: Text('Route ${index + 1} : ${route[index].legs[0].duration.text} (${route[index].legs[0].distance.text})')
+                                          )
+                                        ],
+                                      ),
+                                    );
+                                  },
+                                  padding: EdgeInsets.only(top:50, bottom: 50),),
+                              ),
+                            ),
+                          ),
+                        ],
+                      );
+                    }
+                    if(snapshot.hasError){
+                      return Center(
+                          child: Icon(
+                            Icons.error,
+                            color: Colors.red,
+                            size: 82.0,
+                          ));
+                    }
+
+                    return Center(
+                        child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              CircularProgressIndicator(),
+                              SizedBox(
+                                height: 20.0,
+                                width: 40.0,
+                              )
+                            ]
+                        )
+                    );
+                  },
+                )
+        ),
+        Container(
           height: CONTAINER_TWO_HEIGHT,
             child: SafeArea(
               child:FutureBuilder(

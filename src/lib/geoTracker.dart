@@ -178,7 +178,7 @@ class geoTracker {
     double destinationLong = _m_endLocation.longitude;
     double destinationLat = _m_endLocation.latitude;
     http.Response response = await get(
-        'https://maps.googleapis.com/maps/api/directions/json?origin=$originLat,$originLong&destination=$destinationLat,$destinationLong&region=uk&key=AIzaSyAjBVD5OeZbBKW0o_tOKfcOtuCPVIuyovE');
+        'https://maps.googleapis.com/maps/api/directions/json?origin=$originLat,$originLong&destination=$destinationLat,$destinationLong&region=uk&key=AIzaSyAjBVD5OeZbBKW0o_tOKfcOtuCPVIuyovE&alternatives=true');
 
     if (response.statusCode == 200){
         Map routesData = jsonDecode(response.body);
@@ -188,11 +188,12 @@ class geoTracker {
         print(" ");
 
         List<MapRoute> mapper = routesList.map((json) => MapRoute.fromJson(json)).toList();
-        print(mapper[0].bounds.northeast.lat);
+        // print(mapper[0].bounds.northeast.lat);
         print(mapper[0].legs[0].duration.value);
-        print(mapper[0].legs[0].steps[0].html_instructions);
-        print(mapper[0].legs[0].steps[1].html_instructions);
-
+        // print(mapper[0].legs[0].steps[0].html_instructions);
+        // print(mapper[0].legs[0].steps[1].html_instructions);
+        print(mapper[1].legs[0].duration.value);
+        print(mapper[2].legs[0].duration.value);
         return routesList.map((json) => MapRoute.fromJson(json)).toList();
     }else{
       throw Exception("Something went wrong, ${response.statusCode}");
