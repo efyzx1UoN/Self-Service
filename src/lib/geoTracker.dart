@@ -1,5 +1,7 @@
 import 'dart:math';
 
+import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:geocoder/geocoder.dart';
@@ -150,9 +152,12 @@ class geoTracker {
       onMapCreated: _onMapCreated,
       myLocationEnabled: true,
       myLocationButtonEnabled: true,
+      gestureRecognizers: Set()
+        ..add(Factory<PanGestureRecognizer>(() => PanGestureRecognizer())),
       mapType: MapType.normal,
       zoomGesturesEnabled: true,
       zoomControlsEnabled: true,
+      scrollGesturesEnabled: true,
       polylines: _m_polyline.toSet(),
       initialCameraPosition: CameraPosition(
         target: _m_locationCoordinates,
