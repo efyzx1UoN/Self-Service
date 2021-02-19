@@ -78,13 +78,28 @@ class routeDirections extends Container {
                                   itemBuilder: (BuildContext context, int index){
                                     var route = snapshot.data;
                                     return Container(
-                                      padding: EdgeInsets.only(left: 40),
+                                      padding: EdgeInsets.only(left: 30, right: 30),
                                       height: 50,
                                       child: Row(
                                         children: <Widget>[
+                                            Text.rich(
+                                              TextSpan(
+                                                children: <TextSpan>[
+                                                  TextSpan(text: '${route[index].legs[0].duration.text}',
+                                                           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17)
+                                                  ),
+                                                  TextSpan(text: '\n${route[index].legs[0].distance.text}',
+                                                           style: TextStyle(fontSize: 15, color: Colors.grey)
+                                                  ),
+                                                ],
+                                              )
+                                            ),
+                                          Spacer(),
                                           ElevatedButton(
                                               onPressed: () { },
-                                              child: Text('Route ${index + 1} : ${route[index].legs[0].duration.text} (${route[index].legs[0].distance.text})')
+                                              child: Text('GO',
+                                                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                                                         )
                                           )
                                         ],
                                       ),
