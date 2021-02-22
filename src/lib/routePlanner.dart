@@ -71,6 +71,13 @@ class RoutePlannerFormState extends ObserverState {
   bool m_routeVisibility = true;
   bool m_stepsVisibility = false;
 
+  TravelModeRadio _m_travelModeRadio = TravelModeRadio();
+
+  TravelModeRadio get m_travelModeRadio => _m_travelModeRadio;
+
+  set m_travelModeRadio(TravelModeRadio value) {
+    _m_travelModeRadio = value;
+  }
 
   @override
   void initState(){
@@ -115,9 +122,11 @@ class RoutePlannerFormState extends ObserverState {
               child: Column(
                 children: <Widget>[
                 TextFormField(
+                  key: Key('StartingLocationInput'),
                   controller: _m_startAddressController,
                   validator: (value) {
                     if (value.isEmpty) {
+                      print("FORM EMPTY");
                       return 'Please enter a valid address';
                     }
                     _m_data.m_startingLocation = value;
@@ -135,9 +144,11 @@ class RoutePlannerFormState extends ObserverState {
                   ),
                 ),
                 TextFormField(
+                  key: Key('DestinationInput'),
                   controller: _m_endAddressController,
                   validator: (value) {
                     if (value.isEmpty) {
+                      print("FORM EMPTY");
                       return 'Please enter a valid address';
                     }
                     _m_data.m_destination = value;
@@ -161,10 +172,12 @@ class RoutePlannerFormState extends ObserverState {
                       // padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 0),
                       width: double.infinity,
                       child: ElevatedButton(
+                        key: Key("LocationInputButton"),
                         onPressed: () async {
                           // Validate returns true if the form is valid, or false
                           // otherwise.
                           if (_formKey.currentState.validate()) {
+                            print("TESTING");
                             // If the form is valid, display a Snackbar.
                             setState(() {
                               _m_geoTracker.setPolylines();
@@ -179,7 +192,7 @@ class RoutePlannerFormState extends ObserverState {
                 ],
               ),
             ),
-            TravelModeRadio(),
+            _m_travelModeRadio,
             SizedBox(
               child: _m_geoTracker.m_locationCoordinates == null
                   ? Container()

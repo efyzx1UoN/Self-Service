@@ -8,6 +8,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_app/main.dart';
+import 'package:mockito/mockito.dart';
 
 void main() {
   group("Navigation", () {
@@ -21,7 +22,7 @@ void main() {
 
         // Tap the New Route Plan button.
         await tester.tap(find.widgetWithText(TextButton, "New Route Plan"));
-        await tester.pumpAndSettle();
+        await tester.pump();
 
         // Verify that we are now on the New Route Plan page.
         expect(find.widgetWithText(AppBar, "New Route Plan"), findsOneWidget);
@@ -37,7 +38,7 @@ void main() {
 
         // Tap the New Route Plan button.
         await tester.tap(find.widgetWithText(TextButton, "New Taxi Plan"));
-        await tester.pumpAndSettle();
+        await tester.pump();
 
         // Verify that we are now on the New Route Plan page.
         expect(find.widgetWithText(AppBar, "New Taxi Plan"), findsOneWidget);

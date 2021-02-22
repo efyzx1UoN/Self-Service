@@ -24,6 +24,7 @@ class TaxiPlannerPage extends StatefulWidget {
 
 }
 
+
 Future<http.Response> fetchDetails() {
   return http.get("https://m.uber.com/?client_id=0");
 }
