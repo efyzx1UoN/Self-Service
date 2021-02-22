@@ -2,7 +2,7 @@
 
 ![alt text](../images/logo.png "Welcome")
 ## Meeting Times (GMT)
-All meetings are 2 hours long.
+All meetings are 2 hours long.<br/>
 Monday: 14:00<br/>
 Wednesday: 13:00<br/>
 Friday: 09:00<br/>
@@ -12,14 +12,10 @@ Our Task Board is being managed on Trello, ran by Callum.<br/>
 [Link](https://trello.com/b/eeP74gVM/se-group-project)<br/>
 
 
-## Current Task: Sprint #3
+## Current Task: Sprint #4
 ### Brief
-The aim is to tick off as many user stories as possible in the first week to see if we can handle more within the sprint.
-
-Implementation - Shuxiang, Kieran, Callum
-Testing - Tom
-Maintanence - Ashley
-Design - Zihui
+Planning to use the short meeting plans.
+Catchup on user stories.
 
 ### Resources
 - [Coding Conventions](https://teams.microsoft.com/l/file/CDC9FA18-2F52-4428-B714-7E2BC80B827E?tenantId=67bda7ee-fd80-41ef-ac91-358418290a1e&fileType=docx&objectUrl=https%3A%2F%2Funiofnottm.sharepoint.com%2Fsites%2Fmsteams_de0399%2FShared%20Documents%2FGeneral%2FTeam%20Twelves%20Concise%20Coding%20Conventions.docx&baseUrl=https%3A%2F%2Funiofnottm.sharepoint.com%2Fsites%2Fmsteams_de0399&serviceName=teams&threadId=19:15aa2bd553914974bee29d36a04c3a2b@thread.tacv2&groupId=967fc2c2-a152-4e5c-875d-51d5227c5679)
@@ -91,6 +87,10 @@ Classes should have single responsibility. (A class should not do more than the 
 | 10/02/2020 [Major] | Bugs <br/> Merging branches together <br/> Sprint 3 prep | Fixed system and implemented observer pattern for future use.  <br/> Merged program.| Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo<br/>Shuxiang Hu<br/>Zihui Zu |
 | 12/02/2020 [Major] | Continuing with Sprint 3 <br/> Discussing technical issues <br/> Discussing work allocation issues | Points clarified <br/> Note to contact Mercedes in the case of future issues. <br/> | Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo (Post-meeting)<br/>Shuxiang Hu<br/>Zihui Zu <br/> Mercedes Torres |
 | 12/02/2020 [Minor] | General discussion | Note on next week being a good oppurtunity for project work.| Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo<br/>Shuxiang Hu<br/>Zihui Zu <br/> Geert De Mare |
+| 15/02/2020 [Major] | Continuing with Sprint 3 <br/> Group update | Bugs solved. <br/> Implement directions. (Kieran) <br/>Implement travel options. (Shuxiang) <br/> Design hotel planner. (Ashley and Zihui) <br/>Test plan and Unit Tests (Tom) <br/> | Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo (Post-meeting)<br/>Shuxiang Hu<br/>Zihui Zu|
+| 17/02/2020 [Major] | Continuing with Sprint 3 | Progress made, continuing. New tasks such as map snapping to polyines. | Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo (Post-meeting)<br/>Shuxiang Hu<br/>Zihui Zu|
+| 19/02/2020 [Major] | Meeting with Steve<br/>Reflections <br/> Demos (each person) <br/> Contribution | Demos shown, functional, future ideas shared <br/> Prepare for sprint 4. Implement hotels? Clean-up on suggestions for multiple polylines? (SEE Sprint#4.docx IN TEAMS) <br/> Plan to have shorter catch-up meetings.| Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo (Post-meeting)<br/>Shuxiang Hu<br/>Zihui Zu <br/> Steve Brooks|
+
 
 ### Assessment Deliverables
 |  |                                       |
