@@ -67,13 +67,34 @@ class RoutePlannerFormState extends ObserverState {
   final _m_endAddressController = TextEditingController();
   bool _m_mapVisible = true;
 
+  TimeOfDay _m_selectedTime = TimeOfDay.now();
+  String _m_selectedTimeString = TimeOfDay.now().hour.toString()
+      +":"+TimeOfDay.now().minute.toString().padLeft(1);
+  DateTime _m_selectedDate = DateTime.now();
+  String _m_selectedDateString = DateTime.now().day.toString()
+      +"/"+DateTime.now().month.toString()+"/"+DateTime.now().year.toString();
   int m_selectedRouteIndex = 0;
   bool m_routeVisibility = true;
   bool m_stepsVisibility = false;
 
+  TravelModeRadio _m_travelModeRadio = TravelModeRadio();
+
+
+
+
+  set m_travelModeRadio(TravelModeRadio value) {
+    _m_travelModeRadio = value;
+  }
+
   @override
   void initState(){
     super.initState();
+    _m_selectedTime = TimeOfDay.now();
+    _m_selectedTimeString = TimeOfDay.now().hour.toString()
+        +":"+TimeOfDay.now().minute.toString().padLeft(1);
+    _m_selectedDate = DateTime.now();
+    _m_selectedDateString = DateTime.now().day.toString()
+        +"/"+DateTime.now().month.toString()+"/"+DateTime.now().year.toString();
     setState(() {
       _m_geoTracker.m_listener = this;
       _m_geoTracker.getLocation();
@@ -92,6 +113,26 @@ class RoutePlannerFormState extends ObserverState {
       _m_mapVisible = !_m_mapVisible;
       m_routeVisibility = true;
       m_stepsVisibility = false;
+    });
+  }
+
+  void selectTime() async{
+     setState(() async {
+       TimeOfDay _m_selectedTime = await showTimePicker(
+        initialTime: TimeOfDay.now(),
+        context: context,
+      );
+     _m_selectedTimeString = _m_selectedTime.hour.toString()+":"+_m_selectedTime.minute.toString().padLeft(1);
+    });
+  }
+
+  void selectDate() async{
+    setState(() async {
+      DateTime _m_selectedDate = await showDatePicker(
+        initialDate: DateTime.now(),
+        context: context,
+      );
+      _m_selectedDateString = _m_selectedDate.day.toString()+"/"+_m_selectedDate.month.toString()+"/"+_m_selectedDate.year.toString();
     });
   }
 
@@ -114,9 +155,11 @@ class RoutePlannerFormState extends ObserverState {
               child: Column(
                 children: <Widget>[
                 TextFormField(
+                  key: Key('StartingLocationInput'),
                   controller: _m_startAddressController,
                   validator: (value) {
                     if (value.isEmpty) {
+                      print("FORM EMPTY");
                       return 'Please enter a valid address';
                     }
                     _m_data.m_startingLocation = value;
@@ -134,9 +177,11 @@ class RoutePlannerFormState extends ObserverState {
                   ),
                 ),
                 TextFormField(
+                  key: Key('DestinationInput'),
                   controller: _m_endAddressController,
                   validator: (value) {
                     if (value.isEmpty) {
+                      print("FORM EMPTY");
                       return 'Please enter a valid address';
                     }
                     _m_data.m_destination = value;
@@ -154,16 +199,58 @@ class RoutePlannerFormState extends ObserverState {
                     filled: false,
                   ),
                 ),
+                  Row(
+                      children: [
+                        Expanded(
+                          child: ElevatedButton(
+                            onPressed: () {
+                              showDatePicker(
+                                context: context,
+                                initialDate: DateTime.now(),
+                                firstDate: DateTime.now(),
+                                lastDate: DateTime(2100),
+                              ).then((date) {setState(() {
+                                _m_selectedDateString = date.day.toString().padLeft(2,'0')
+                                    +"/"+date.month.toString().padLeft(2,'0')+"/"+date.year.toString();
+                                _m_selectedDate = date;
+                              });
+                              });
+                            },
+                            child: Text("Depart on: "+_m_selectedDateString)
+                        ),
+                        ),
+
+                        Expanded(
+                          child: ElevatedButton(
+                              onPressed: () {
+                                showTimePicker(
+                                  context: context,
+                                  initialTime: TimeOfDay.now(),
+                                ).then((time) {setState(() {
+                                  _m_selectedTimeString = time.hour.toString().padLeft(2,'0')
+                                      +":"+time.minute.toString().padLeft(2,'0');
+                                  _m_selectedTime = time;
+                                });
+                                });
+                              },
+                              child: Text("Depart at: "+_m_selectedTimeString)
+                          ),
+                        ),
+                  ]
+                  ),
+                  _m_travelModeRadio,
                   Container(
                     // margin: EdgeInsets.fromLTRB(0, 50, 0, 100),
                     child: SizedBox(
                       // padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 0),
                       width: double.infinity,
                       child: ElevatedButton(
+                        key: Key("LocationInputButton"),
                         onPressed: () async {
                           // Validate returns true if the form is valid, or false
                           // otherwise.
                           if (_formKey.currentState.validate()) {
+                            print("TESTING");
                             // If the form is valid, display a Snackbar.
                             setState(() {
                               _m_geoTracker.setPolylines();
@@ -178,7 +265,6 @@ class RoutePlannerFormState extends ObserverState {
                 ],
               ),
             ),
-            TravelModeRadio(this),
             SizedBox(
               child: _m_geoTracker.m_locationCoordinates == null
                   ? Container()
@@ -200,6 +286,7 @@ class RoutePlannerFormState extends ObserverState {
     );
   }
 
+  TravelModeRadio get m_travelModeRadio => _m_travelModeRadio;
 
   Data get m_data => _m_data;
 

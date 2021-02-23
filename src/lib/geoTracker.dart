@@ -73,7 +73,7 @@ class geoTracker {
   }
 
   String _m_endLocationStr = "";
-  Location _m_startLocation, _m_endLocation;
+  Location _m_startLocation = new Location(longitude: 0, latitude: 0), _m_endLocation = new Location(longitude: 0, latitude: 0);
   final Geolocator _geolocator  = Geolocator();
   List<LatLng> _m_routeCoords;
   final Set<Polyline> _m_polyline = {};
@@ -203,7 +203,7 @@ class geoTracker {
         print(mapper[2].legs[0].duration.value);
         return routesList.map((json) => MapRoute.fromJson(json)).toList();
     }else{
-      throw Exception("Something went wrong, ${response.statusCode}");
+      //throw Exception("Something went wrong, ${response.statusCode}");
     }
 
   }
