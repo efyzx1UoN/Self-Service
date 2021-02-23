@@ -71,7 +71,6 @@ class RoutePlannerFormState extends ObserverState {
   bool m_routeVisibility = true;
   bool m_stepsVisibility = false;
 
-
   @override
   void initState(){
     super.initState();
@@ -179,7 +178,7 @@ class RoutePlannerFormState extends ObserverState {
                 ],
               ),
             ),
-            TravelModeRadio(),
+            TravelModeRadio(this),
             SizedBox(
               child: _m_geoTracker.m_locationCoordinates == null
                   ? Container()
