@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'routePlanner.dart';
 import 'taxi/taxiPlanner.dart';
 import 'train_booker.dart';
+import 'HotelBookingPage.dart';
+
 import 'package:flutter_app/SharedStringData.dart';
 
 void main() {
@@ -47,6 +49,10 @@ class _homePageState extends State<_homePage> {
     final _m_result = await Navigator.of(context).push(_createRoute(Train_BookerPage()));
     _m_data = _m_result;
   }
+  Future _m_pagetHotel_booker() async {
+    final _m_result = await Navigator.of(context).push(_createRoute(Hotel_BookingPage()));
+    _m_data = _m_result;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -80,6 +86,13 @@ class _homePageState extends State<_homePage> {
                 },
                 child: Text('New Train Plan'),
               ),
+              TextButton(
+                style: TextButton.styleFrom(primary: Colors.white, backgroundColor: Colors.pink),
+                onPressed: () {
+                  _m_pagetHotel_booker();
+                },
+                child: Text('New Hotel Plan'),
+              ),
             ],
           ),
         ),
@@ -87,6 +100,8 @@ class _homePageState extends State<_homePage> {
     );
   }
 }
+
+
 
 Route _createRoute(StatefulWidget page) {
   return  PageRouteBuilder(

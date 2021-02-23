@@ -8,4 +8,7 @@ class Album {
       m_routes: json['routes'],
     );
   }
+
+  String get m_title => null;
+
 }
