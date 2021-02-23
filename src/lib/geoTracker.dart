@@ -45,6 +45,8 @@ class geoTracker {
   LatLng _m_locationCoordinates;
   ObserverState _m_listener;
 
+  String m_travelMode = "transit";
+  String m_transitMode = "train";
 
   State get m_listener => _m_listener;
 
@@ -183,8 +185,8 @@ class geoTracker {
     double destinationLong = _m_endLocation.longitude;
     double destinationLat = _m_endLocation.latitude;
     http.Response response = await get(
-        'https://maps.googleapis.com/maps/api/directions/json?origin=$originLat,$originLong&destination=$destinationLat,$destinationLong&region=uk&key=AIzaSyAjBVD5OeZbBKW0o_tOKfcOtuCPVIuyovE&alternatives=true');
-
+        'https://maps.googleapis.com/maps/api/directions/json?origin=$originLat,$originLong&destination=$destinationLat,$destinationLong&region=uk&key=AIzaSyAjBVD5OeZbBKW0o_tOKfcOtuCPVIuyovE&alternatives=true&mode=$m_travelMode&transit_mode=$m_transitMode');
+    print("$m_travelMode&transit_mode=$m_transitMode");
     if (response.statusCode == 200){
         Map routesData = jsonDecode(response.body);
         print(response.body.length);
