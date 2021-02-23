@@ -13,7 +13,7 @@ class TravelModeRadio extends StatefulWidget{
 
   @override
   _TravelModeRadioState createState() {
-    return _TravelModeRadioState(m_parent);
+    return _TravelModeRadioState();
   }
 }
 
@@ -21,7 +21,6 @@ class _TravelModeRadioState extends State<TravelModeRadio>{
   List<String> lst = ['train','walk','car','bus'];
   int selectedIndex = 0;
 
-  _TravelModeRadioState(RoutePlannerFormState m_parent);
 
   @override
   Widget build(BuildContext context){

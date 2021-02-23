@@ -77,8 +77,7 @@ class RoutePlannerFormState extends ObserverState {
   bool m_routeVisibility = true;
   bool m_stepsVisibility = false;
 
-  TravelModeRadio _m_travelModeRadio = TravelModeRadio();
-
+  TravelModeRadio _m_travelModeRadio;
 
 
 
@@ -98,6 +97,7 @@ class RoutePlannerFormState extends ObserverState {
     setState(() {
       _m_geoTracker.m_listener = this;
       _m_geoTracker.getLocation();
+      _m_travelModeRadio = TravelModeRadio(this);
     });
     /*
     Future.delayed(const Duration(milliseconds: 5000), () { //This eventually needs to be event driven.
