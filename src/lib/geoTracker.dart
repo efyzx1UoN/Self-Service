@@ -195,7 +195,7 @@ class geoTracker {
         print(routesList);
         print(" ");
 
-        List<MapRoute> mapper = routesList.map((json) => MapRoute.fromJson(json)).toList();
+        //List<MapRoute> mapper = routesList.map((json) => MapRoute.fromJson(json)).toList();
 
         return routesList.map((json) => MapRoute.fromJson(json)).toList();
     }else{
