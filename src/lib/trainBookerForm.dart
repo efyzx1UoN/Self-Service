@@ -20,6 +20,7 @@ class TrainBookerFormState extends State<TrainBookerForm> {
   final M_FORMKEY = GlobalKey<FormState>();
   Data m_data = new Data();
   String m_currentLocation = "";
+  List<bool> _selections = List.generate(2, (_) => false);
 
 
   @override
@@ -90,6 +91,19 @@ class TrainBookerFormState extends State<TrainBookerForm> {
                 fillColor: Colors.white60,
                 filled: false,
               ),
+            ),
+            ToggleButtons(
+                children: [
+                  Icon(Icons.arrow_forward),
+                  Icon(Icons.compare_arrows),
+                ],
+                isSelected: _selections,
+                onPressed: (int index)
+                {
+                  setState((){
+                    _selections[index] = !_selections[index];
+                  });
+                }
             ),
             Container(
               margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
