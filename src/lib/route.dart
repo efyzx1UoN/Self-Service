@@ -51,10 +51,11 @@ class Legs {
   final EndLocation end_location;
   final String start_address;
   final StartLocation start_location;
+  final TransitDetails transit_details;
   final List<Steps> steps;
 
   Legs({this.distance, this.duration, this.end_address, this.end_location, this.start_address,
-      this.start_location, this.steps});
+      this.start_location, this.transit_details, this.steps});
   factory Legs.fromJson(Map<String, dynamic> json) => _$LegsFromJson(json);
 }
 
@@ -124,5 +125,92 @@ class PolyLine {
 
   PolyLine({this.points});
   factory PolyLine.fromJson(Map<String, String> json) => _$PolyLineFromJson(json);
+}
+
+@JsonSerializable()
+class ArrivalTime {
+  String text;
+  String time_zone;
+  double value;
+
+  ArrivalTime({this.text, this.time_zone, this.value});
+  factory ArrivalTime.fromJson(Map<String, dynamic> json) => _$ArrivalTimeFromJson(json);
+}
+
+@JsonSerializable()
+class DepartureTime {
+  String text;
+  String time_zone;
+  double value;
+
+  DepartureTime({this.text, this.time_zone, this.value});
+  factory DepartureTime.fromJson(Map<String, dynamic> json) => _$DepartureTimeFromJson(json);
+}
+
+@JsonSerializable()
+class Agency {
+  String name;
+  String phone;
+  String url;
+
+  Agency({this.name, this.phone, this.url});
+  factory Agency.fromJson(Map<String, dynamic> json) => _$AgencyFromJson(json);
+}
+
+@JsonSerializable()
+class Vehicle {
+  String icon;
+  String local_icon;
+  String name;
+  String type;
+
+  Vehicle({this.icon, this.local_icon, this.name, this.type});
+  factory Vehicle.fromJson(Map<String, dynamic> json) => _$VehicleFromJson(json);
+}
+
+@JsonSerializable()
+class Line {
+  List<Agency> agencies;
+  String color;
+  String name;
+  String short_name;
+  String text_color;
+  Vehicle vehicle;
+
+  Line({this.agencies, this.color, this.name, this.short_name, this.text_color, this.vehicle});
+  factory Line.fromJson(Map<String, dynamic> json) => _$LineFromJson(json);
+}
+
+
+@JsonSerializable()
+class ArrivalStop {
+  double lat;
+  double long;
+
+  ArrivalStop({this.lat, this.long});
+  factory ArrivalStop.fromJson(Map<String, double> json) => _$ArrivalStopFromJson(json);
+
+}
+
+@JsonSerializable()
+class DepartureStop {
+  double lat;
+  double long;
+
+  DepartureStop({this.lat, this.long});
+  factory DepartureStop.fromJson(Map<String, double> json) => _$DepartureStopFromJson(json);
+}
+
+@JsonSerializable()
+class TransitDetails {
+  ArrivalStop arrival_stop = ArrivalStop();
+  ArrivalTime arrival_time = ArrivalTime();
+  DepartureStop departure_stop = DepartureStop();
+  DepartureTime departure_time = DepartureTime();
+  String headsign;
+  Line line = Line();
+
+  TransitDetails({this.arrival_stop, this.arrival_time, this.departure_stop, this.departure_time, this.headsign, this.line});
+  factory TransitDetails.fromJson(Map<String, dynamic> json) => _$TransitDetailsFromJson(json);
 }
 
