@@ -140,18 +140,37 @@ class TrainBookerFormState extends State<TrainBookerForm> {
                       ),
                        ]
                       ),
-            ToggleButtons(
-                children: [
-                  Icon(Icons.arrow_forward),
-                  Icon(Icons.compare_arrows),
-                ],
-                isSelected: _selections,
-                onPressed: (int index)
-                {
-                  setState((){
-                    _selections[index] = !_selections[index];
-                  });
-                }
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(
+                child: FlatButton(
+                    onPressed: () =>{},
+                    color: Colors.black12,
+                    padding: EdgeInsets.all(10.0),
+                  child: Column(
+                    children: <Widget> [
+                      Text("Single"),
+                      Icon(Icons.arrow_forward_outlined),
+
+                    ],
+                  ),
+                ),
+                ),
+                Expanded(
+                child: FlatButton(
+                    onPressed: () =>{},
+                    color: Colors.black12,
+                    padding: EdgeInsets.all(10.0),
+                    child: Column(
+                      children: <Widget> [
+                        Text("Return"),
+                        Icon(Icons.compare_arrows_outlined),
+                      ],
+                    )
+                ),
+                ),
+              ],
             ),
             Container(
               margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
