@@ -21,7 +21,12 @@ class TrainBookerFormState extends State<TrainBookerForm> {
   Data m_data = new Data();
   String m_currentLocation = "";
   List<bool> _selections = List.generate(2, (_) => false);
-
+  TimeOfDay _m_selectedTime = TimeOfDay.now();
+  String _m_selectedTimeString = TimeOfDay.now().hour.toString()
+      +":"+TimeOfDay.now().minute.toString().padLeft(1);
+  DateTime _m_selectedDate = DateTime.now();
+  String _m_selectedDateString = DateTime.now().day.toString()
+      +"/"+DateTime.now().month.toString()+"/"+DateTime.now().year.toString();
 
   @override
   void initState(){
@@ -92,6 +97,49 @@ class TrainBookerFormState extends State<TrainBookerForm> {
                 filled: false,
               ),
             ),
+            Row(
+
+                    children: [
+                           Expanded(
+                                        child: ElevatedButton(
+                                            onPressed: () {
+                                              showDatePicker(
+                                                context: context,
+                                                initialDate: DateTime.now(),
+                                                firstDate: DateTime.now(),
+                                                lastDate: DateTime(2100),
+                                              ).then((date) {setState(() {
+                                                _m_selectedDateString = date.day.toString().padLeft(2,'0')
+                                                    +"/"+date.month.toString().padLeft(2,'0')+"/"+date.year.toString();
+                                                _m_selectedDate = date;
+                                              });
+                                              });
+                                            },
+
+                                                 child: Text("Depart at: ")
+                                                        ),
+                                                  ),
+                      Expanded(
+                        child: ElevatedButton(
+                            onPressed: () {
+                              showDatePicker(
+                                context: context,
+                                initialDate: DateTime.now(),
+                                firstDate: DateTime.now(),
+                                lastDate: DateTime(2100),
+                              ).then((date) {setState(() {
+                                _m_selectedDateString = date.day.toString().padLeft(2,'0')
+                                    +"/"+date.month.toString().padLeft(2,'0')+"/"+date.year.toString();
+                                _m_selectedDate = date;
+                              });
+                              });
+                            },
+
+                            child: Text("Depart at: ")
+                        ),
+                      ),
+                       ]
+                      ),
             ToggleButtons(
                 children: [
                   Icon(Icons.arrow_forward),

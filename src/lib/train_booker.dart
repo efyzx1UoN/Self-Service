@@ -83,10 +83,15 @@ class MyCustomFormState extends State<MyCustomForm> {
   final _formKey = GlobalKey<FormState>();
   Data data = new Data();
   String currentLocation = "";
-
+  TimeOfDay _m_selectedTime = TimeOfDay.now();
+  String _m_selectedTimeString = TimeOfDay.now().hour.toString()
+      +":"+TimeOfDay.now().minute.toString().padLeft(1);
+  DateTime _m_selectedDate = DateTime.now();
+  String _m_selectedDateString = DateTime.now().day.toString()
+      +"/"+DateTime.now().month.toString()+"/"+DateTime.now().year.toString();
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
     getLocation();
   }
@@ -102,12 +107,12 @@ class MyCustomFormState extends State<MyCustomForm> {
       long = coords.longitude;
     });
     final coordinates = new Coordinates(lat, long);
-    var addresses = await Geocoder.local.findAddressesFromCoordinates(coordinates);
+    var addresses = await Geocoder.local.findAddressesFromCoordinates(
+        coordinates);
 
     setState(() {
       currentLocation = addresses.first.addressLine;
     });
-
   }
 
   @override
@@ -115,45 +120,88 @@ class MyCustomFormState extends State<MyCustomForm> {
     // Build a Form widget using the _formKey created above.
     return Container(
       margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
-        child: new Form(
-          key: _formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              TextFormField(
-                validator: (value) {
-                  if (value.isEmpty) {
-                    return 'Please enter a valid address';
-                  }
-                  data.setStartingLocation(value);
-                  return null;
-                },
-                decoration: InputDecoration(
-                  hintText: currentLocation,
-                  labelText: 'From:',
-                  border: UnderlineInputBorder(
+      child: new Form(
+        key: _formKey,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            TextFormField(
+              validator: (value) {
+                if (value.isEmpty) {
+                  return 'Please enter a valid address';
+                }
+                data.setStartingLocation(value);
+                return null;
+              },
+              decoration: InputDecoration(
+                hintText: currentLocation,
+                labelText: 'From:',
+                border: UnderlineInputBorder(
+                ),
+                fillColor: Colors.white60,
+                filled: false,
+              ),
+            ),
+            TextFormField(
+              validator: (value) {
+                if (value.isEmpty) {
+                  return 'Please enter a valid address';
+                }
+                data.setDestination(value);
+                return null;
+              },
+              decoration: InputDecoration(
+                labelText: 'To:',
+                hintText: 'Destination',
+                border: UnderlineInputBorder(),
+                alignLabelWithHint: true,
+                fillColor: Colors.white60,
+                filled: false,
+              ),
+            ),
+
+            Row(
+                children: [
+                  Expanded(
+                    child: ElevatedButton(
+                        onPressed: () {
+                          showDatePicker(
+                            context: context,
+                            initialDate: DateTime.now(),
+                            firstDate: DateTime.now(),
+                            lastDate: DateTime(2100),
+                          ).then((date) {setState(() {
+                            _m_selectedDateString = date.day.toString().padLeft(2,'0')
+                                +"/"+date.month.toString().padLeft(2,'0')+"/"+date.year.toString();
+                            _m_selectedDate = date;
+                          });
+                          });
+                        },
+
+                        child: Text("Depart at: ")
+                    ),
                   ),
-                  fillColor: Colors.white60,
-                  filled: false,
-                ),
-              ),
-              TextFormField(
-                validator: (value) {
-                  if (value.isEmpty) {
-                    return 'Please enter a valid address';
-                  }
-                  data.setDestination(value);
-                  return null;
-                },
-                decoration: InputDecoration(
-                  labelText: 'To:',
-                  hintText: 'Destination',
-                  border: UnderlineInputBorder(),
-                  alignLabelWithHint: true,
-                  fillColor: Colors.white60,
-                  filled: false,
-                ),
-              ),
+                  Expanded(
+                    child: ElevatedButton(
+                        onPressed: () {
+                          showDatePicker(
+                            context: context,
+                            initialDate: DateTime.now(),
+                            firstDate: DateTime.now(),
+                            lastDate: DateTime(2100),
+                          ).then((date) {setState(() {
+                            _m_selectedDateString = date.day.toString().padLeft(2,'0')
+                                +"/"+date.month.toString().padLeft(2,'0')+"/"+date.year.toString();
+                            _m_selectedDate = date;
+                          });
+                          });
+                        },
+
+                        child: Text("Depart at: ")
+                    ),
+                  ),
+                ]
+            ),
             Container(
               margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
               child: SizedBox(
@@ -166,7 +214,8 @@ class MyCustomFormState extends State<MyCustomForm> {
                     if (_formKey.currentState.validate()) {
                       // If the form is valid, display a Snackbar.
                       Scaffold.of(context)
-                          .showSnackBar(SnackBar(content: Text('Starting Location and Destination Saved.')));
+                          .showSnackBar(SnackBar(content: Text(
+                          'Starting Location and Destination Saved.')));
                     }
                   },
                   child: Text('Update Route'),
