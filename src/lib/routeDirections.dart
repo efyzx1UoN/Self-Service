@@ -24,11 +24,33 @@ class routeDirections extends Container {
     return htmlText.replaceAll(exp, ' ');
   }
 
+
+
   String directionMessage(Steps step) {
     String string = step.travel_mode+" ";
     switch (step.travel_mode){
       case "TRANSIT": {
-        string += step.transit_details.headsign+"\n";
+        //Converted times for calculating travel time.
+        int dh = int.parse(step.transit_details.departure_time.text.substring(0,2));
+        int dm = int.parse(step.transit_details.departure_time.text.substring(3,5));
+        int ah = int.parse(step.transit_details.arrival_time.text.substring(0,2));
+        int am = int.parse(step.transit_details.arrival_time.text.substring(3,5));
+        int h;
+        int m;
+
+        if (dh*60+dm < ah*60+am){ // If there is no overlap to the next day
+          int dif = (ah*60 + am) - (dh*60 + dm);
+          h = dif ~/ 60;
+          m = dif % 60;
+        }
+        else{
+          int dif = (24*60) - (dh*60 + dm) + (ah*60 + am);
+          h = dif ~/ 60;
+          m = dif % 60;
+        }
+
+        string += step.transit_details.headsign
+            +" "+h.toString()+"h"+m.toString()+"m\n";
         string += "Departure from ";
         string += step.transit_details.departure_stop.name+": ";
         string += step.transit_details.departure_time.text+"\n";

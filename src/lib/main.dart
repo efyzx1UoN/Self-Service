@@ -95,7 +95,6 @@ Route _createRoute(StatefulWidget page) {
       var _m_begin = Offset(0.0, 1.0);
       var _m_end = Offset.zero;
       var _m_curve = Curves.ease;
-
       var _m_tween = Tween(begin: _m_begin, end: _m_end).chain(CurveTween(curve: _m_curve));
 
       return SlideTransition(
