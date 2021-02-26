@@ -189,12 +189,13 @@ class geoTracker {
     print("$m_travelMode&transit_mode=$m_transitMode");
     if (response.statusCode == 200){
         Map routesData = jsonDecode(response.body);
-        print(response.body.length);
+        print("Length of body:" + response.body.length.toString());
         List<dynamic> routesList = routesData["routes"];
+        print(routesData);
         print(routesList);
         print(" ");
 
-        List<MapRoute> mapper = routesList.map((json) => MapRoute.fromJson(json)).toList();
+        //List<MapRoute> mapper = routesList.map((json) => MapRoute.fromJson(json)).toList();
 
         return routesList.map((json) => MapRoute.fromJson(json)).toList();
     }else{

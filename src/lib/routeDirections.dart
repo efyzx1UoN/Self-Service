@@ -24,6 +24,26 @@ class routeDirections extends Container {
     return htmlText.replaceAll(exp, ' ');
   }
 
+  String directionMessage(Steps step) {
+    String string = step.travel_mode+" ";
+    switch (step.travel_mode){
+      case "TRANSIT": {
+        string += step.transit_details.headsign+"\n";
+        string += "Departure from ";
+        string += step.transit_details.departure_stop.name+": ";
+        string += step.transit_details.departure_time.text+"\n";
+        string += "Arriving at ";
+        string += step.transit_details.arrival_stop.name+": ";
+        string += step.transit_details.arrival_time.text+"\n";
+        string += step.transit_details.headsign+"\n";
+      };
+      break;
+      case "DRIVING": {string += step.distance.text.toString();}; break;
+      case "WALKING": {string += step.distance.text.toString();}; break;
+    }
+    return string;
+  }
+
   @override
   Widget build(BuildContext context) {
     // Build a Form widget using the _formKey created above.
@@ -163,13 +183,13 @@ class routeDirections extends Container {
                                 child: Card(
                                   color: Colors.white24,
                                   child: ListView.builder(
-                                    itemCount: snapshot.data[0].legs[0].steps.length,
+                                    itemCount: snapshot.data[_m_parent.m_selectedRouteIndex].legs[0].steps.length,
                                     itemBuilder: (BuildContext context, int index){
                                       var route = snapshot.data;
 
                                       return ListTile(
                                         title: Text('${index + 1} : ${removeAllHtmlTags(route[0].legs[0].steps[index].html_instructions)}'),
-                                        subtitle: Text(' ${route[0].legs[0].steps[index].distance.text}'),
+                                        subtitle: Text(removeAllHtmlTags(directionMessage(route[0].legs[0].steps[index]))),
                                       );
                                     },
                                   padding: EdgeInsets.only(top:50, bottom: 50),),
