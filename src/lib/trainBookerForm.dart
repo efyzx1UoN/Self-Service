@@ -16,10 +16,12 @@ class TrainBookerForm extends StatefulWidget {
   }
 
 }
+
 class TrainBookerFormState extends State<TrainBookerForm> {
   final M_FORMKEY = GlobalKey<FormState>();
   Data m_data = new Data();
   String m_currentLocation = "";
+  bool _hidden = false;
   List<bool> _selections = List.generate(2, (_) => false);
   TimeOfDay _m_selectedTime = TimeOfDay.now();
   String _m_selectedTimeString = TimeOfDay.now().hour.toString()
@@ -51,6 +53,11 @@ class TrainBookerFormState extends State<TrainBookerForm> {
       m_currentLocation = addresses.first.addressLine;
     });
 
+  }
+  void showReturn() {
+    setState(() {
+      _hidden = !_hidden;
+    });
   }
 
   @override
@@ -135,17 +142,68 @@ class TrainBookerFormState extends State<TrainBookerForm> {
                               });
                             },
 
-                            child: Text("Depart at: ")
+                            child: Text("Date : ")
                         ),
                       ),
                        ]
                       ),
+            Visibility(
+              maintainInteractivity: false,
+              maintainSize: false,
+              maintainState: true,
+              maintainAnimation: true,
+              visible: _hidden == true,
+                child: Row(
+              children: [
+                Expanded(
+                  child: ElevatedButton(
+                      onPressed: () {
+                        showDatePicker(
+                          context: context,
+                          initialDate: DateTime.now(),
+                          firstDate: DateTime.now(),
+                          lastDate: DateTime(2100),
+                        ).then((date) {setState(() {
+                          _m_selectedDateString = date.day.toString().padLeft(2,'0')
+                              +"/"+date.month.toString().padLeft(2,'0')+"/"+date.year.toString();
+                          _m_selectedDate = date;
+                        });
+                        });
+                      },
+
+                      child: Text("Return by: ")
+                  ),
+                ),
+                Expanded(
+                  child: ElevatedButton(
+                      onPressed: () {
+                        showDatePicker(
+                          context: context,
+                          initialDate: DateTime.now(),
+                          firstDate: DateTime.now(),
+                          lastDate: DateTime(2100),
+                        ).then((date) {setState(() {
+                          _m_selectedDateString = date.day.toString().padLeft(2,'0')
+                              +"/"+date.month.toString().padLeft(2,'0')+"/"+date.year.toString();
+                          _m_selectedDate = date;
+                        });
+                        });
+                      },
+
+                      child: Text("Return Date: ")
+                  ),
+                ),
+              ]
+            ),
+    ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Expanded(
                 child: FlatButton(
-                    onPressed: () =>{},
+                    onPressed: () =>{
+                      _hidden = false,
+                    },
                     color: Colors.black12,
                     padding: EdgeInsets.all(10.0),
                   child: Column(
@@ -159,7 +217,9 @@ class TrainBookerFormState extends State<TrainBookerForm> {
                 ),
                 Expanded(
                 child: FlatButton(
-                    onPressed: () =>{},
+                    onPressed: () =>{
+                      showReturn,
+                    },
                     color: Colors.black12,
                     padding: EdgeInsets.all(10.0),
                     child: Column(
