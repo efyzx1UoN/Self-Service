@@ -9,15 +9,15 @@ Friday: 09:00<br/>
 
 ## Task Board
 Our Task Board is being managed on Trello, ran by Callum.<br/>
-[Link](https://trello.com/b/eeP74gVM/se-group-project)<br/>
+[Link](https://trello.com/b/NtE3xafn/sprint-4)<br/>
 
 
 ## Current Task: Sprint #4
 ### Brief
 - Planning to use the short meeting plans.
 - Catchup on user stories.
-- Taxi Booker
-- Train Booker
+- Finish Route Planner by the end of week 1?
+- Finish Train Planner by the end of week 2?
 
 
 ### Resources
@@ -94,7 +94,8 @@ Classes should have single responsibility. (A class should not do more than the 
 | 17/02/2020 [Major] | Continuing with Sprint 3 | Progress made, continuing. New tasks such as map snapping to polyines. | Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo<br/>Shuxiang Hu<br/>Zihui Zu|
 | 19/02/2020 [Major] | Meeting with Steve<br/>Reflections <br/> Demos (each person) <br/> Contribution | Demos shown, functional, future ideas shared <br/> Prepare for sprint 4. Implement hotels? Clean-up on suggestions for multiple polylines? (SEE Sprint#4.docx IN TEAMS) <br/> Plan to have shorter catch-up meetings.| Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo <br/>Shuxiang Hu<br/>Zihui Zu <br/> Steve Brooks|
 | 22/02/2020 [Major] | Meeting with Steve<br/>Preparing for Sprint 4 <br/>Issues with Hotel APIs | Hotel booking removed from scope. <br/> Sprint 4 to focus on Route Planner, taxi and train.| Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo <br/>Shuxiang Hu<br/>Zihui Zu <br/> Steve Brooks|
-| 22/02/2020 [Major] | User stories. <br/> Android Studios pub issues.  | Tasks allocated (see trello board) <br/> Problems with Ashley's android studios under investigation after peer programming.| Callum Davis<br>Thomas Murphy<br/>Ashley Nnawugo <br/>Shuxiang Hu<br/>Zihui Zu<br>(To be filled in: Zixiang Jin)|
+| 24/02/2020 [Major] | User stories. <br/> Android Studios pub issues.  | Tasks allocated (see trello board) <br/> Problems with Ashley's android studios under investigation after peer programming.| Callum Davis<br>Thomas Murphy<br/>Ashley Nnawugo <br/>Shuxiang Hu<br/>Zihui Zu<br>(To be filled in: Zixiang Jin)|
+| 26/02/2020 [Major] | User stories. <br/> Plans going ahead for the sprint (workload). | Allocated rest of user stories <br/> Finishing Route Planner by Monday <br/> (Hopefully) finishing TrainBooker by end of sprint. | Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo <br/>Shuxiang Hu<br/>Zihui Zu|
 
 ### Assessment Deliverables
 |  |                                       |
