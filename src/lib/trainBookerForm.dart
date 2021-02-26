@@ -60,6 +60,12 @@ class TrainBookerFormState extends State<TrainBookerForm> {
     });
   }
 
+  void hiddenReturn() {
+    setState(() {
+      _hidden = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     // Build a Form widget using the _formKey created above.
@@ -201,9 +207,7 @@ class TrainBookerFormState extends State<TrainBookerForm> {
               children: [
                 Expanded(
                 child: FlatButton(
-                    onPressed: () =>{
-                      _hidden = false,
-                    },
+                    onPressed: hiddenReturn,
                     color: Colors.black12,
                     padding: EdgeInsets.all(10.0),
                   child: Column(
@@ -217,9 +221,7 @@ class TrainBookerFormState extends State<TrainBookerForm> {
                 ),
                 Expanded(
                 child: FlatButton(
-                    onPressed: () =>{
-                      showReturn,
-                    },
+                    onPressed: showReturn,
                     color: Colors.black12,
                     padding: EdgeInsets.all(10.0),
                     child: Column(
