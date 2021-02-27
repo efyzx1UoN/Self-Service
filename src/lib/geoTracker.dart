@@ -17,7 +17,9 @@ import 'package:http/http.dart' as http;
 import 'package:flutter_app/route.dart';
 
 class geoTracker {
+  List<MapRoute> m_routes;
   PolylinePoints _m_polylinePoints;
+  // List<LatLng> m_routeCoords2 = [];
   Map<PolylineId, Polyline> _m_polylines = {};
   List<LatLng> _m_polylineCoordinates = [];
   Position _m_startCoordinates ;
@@ -47,6 +49,8 @@ class geoTracker {
 
   String m_travelMode = "transit";
   String m_transitMode = "train";
+
+  int m_numOfRoutes;
 
   State get m_listener => _m_listener;
 
@@ -135,11 +139,27 @@ class geoTracker {
         origin: LatLng(_m_startLocation.latitude, _m_startLocation.longitude),
         destination: LatLng(_m_endLocation.latitude, _m_endLocation.longitude),
         mode: RouteMode.driving);
+    // m_routeCoords2.add(LatLng(37.368851,-122.0363436));
+    // m_routeCoords2.add(LatLng(37.3784344,-122.0307968));
+    // m_routeCoords2.add(LatLng(37.3784344,-122.0307968));
+    // m_routeCoords2.add(LatLng(37.42937000000001,-122.14193));
+    // m_routeCoords2.add(LatLng(37.4291335,-122.1419519 ));
+    // m_routeCoords2.add(LatLng(37.4419482,-122.1429522));
     // print(_m_startLocation.latitude);
     // print(_m_startLocation.longitude);
     // print(_m_endLocation.latitude);
     // print(_m_endLocation.longitude);
-
+    print('Hello\n');
+    m_routes = await getRoutes();
+    print("Hi\n\n");
+    for(MapRoute route in m_routes){
+      for(Legs leg in route.legs){
+        for(Steps step in leg.steps){
+          print("This\n");
+          print(step.polyline.points+"\n");
+        }
+      }
+    }
     _m_polyline.add(Polyline(
       polylineId: PolylineId('Your route'),
       visible: true,
@@ -149,6 +169,7 @@ class geoTracker {
       startCap: Cap.roundCap,
       endCap: Cap.buttCap,
     ));
+
 
     _m_map = GoogleMap(
       onMapCreated: _onMapCreated,
@@ -176,7 +197,7 @@ class geoTracker {
     await _m_mapController.animateCamera(CameraUpdate.newLatLngZoom(middlePoint, zoom));
 
     _m_listener.update();
-    getRoutes();
+
   }
 
     Future<List<MapRoute>> getRoutes() async {
@@ -194,7 +215,42 @@ class geoTracker {
         print(routesData);
         print(routesList);
         print(" ");
+        m_numOfRoutes = routesList.length;
+        print("number of routes: " + m_numOfRoutes.toString());
+        //for each route
+        for(int i=0;i<m_numOfRoutes;i++){
 
+          List<dynamic> steps = routesList[i]['legs'][0]['steps'];
+          int num_steps = steps.length;
+          List<LatLng> coords = List<LatLng> ();
+          print("Route "+i.toString()+" has " + num_steps.toString()+'steps\n');
+
+          //add the coords of start and end of each step into the list
+          for(int j = 0;j<num_steps;j++){
+
+            double sLat = steps[j]['start_location']['lat'];
+            double sLng = steps[j]['start_location']['lng'];
+            coords.add(LatLng(sLat, sLng));
+            double dLat = steps[j]['end_location']['lat'];
+            double dLng = steps[j]['end_location']['lng'];
+            coords.add(LatLng(dLat, dLng));
+            print("Step "+j.toString()+": from " + coords[2*j].latitude.toString()+coords[2*j].longitude.toString()+" to "+dLat.toString()+dLng.toString()+'\n');
+          }
+
+
+          print(coords.length.toString()+"\n");
+          _m_polyline.add(Polyline(
+            polylineId: PolylineId('Your route2'),
+            visible: true,
+            width: POLYLINE_WIDTH,
+            points: coords,
+            color: Colors.blue,
+            startCap: Cap.roundCap,
+            endCap: Cap.buttCap,
+          ));
+          print("End of steps loop\n");
+
+        }
         //List<MapRoute> mapper = routesList.map((json) => MapRoute.fromJson(json)).toList();
 
         return routesList.map((json) => MapRoute.fromJson(json)).toList();
