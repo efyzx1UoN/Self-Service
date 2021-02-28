@@ -211,7 +211,7 @@ class routeDirections extends Container {
 
                                       return ListTile(
                                         title: Text('${index + 1} : ${removeAllHtmlTags(route[0].legs[0].steps[index].html_instructions)}'),
-                                        subtitle: Text(removeAllHtmlTags(directionMessage(route[0].legs[0].steps[index]))),
+                                        subtitle: Text(removeAllHtmlTags(directionMessage(route[0].legs[0].steps[index])) +'  '+ route[0].legs[0].steps[index].duration.text),
                                       );
                                     },
                                   padding: EdgeInsets.only(top:50, bottom: 50),),
