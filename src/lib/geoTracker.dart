@@ -240,11 +240,11 @@ class geoTracker {
 
           print(coords.length.toString()+"\n");
           _m_polyline.add(Polyline(
-            polylineId: PolylineId('Your route2'),
+            polylineId: PolylineId('Your route'+i.toString()),
             visible: true,
             width: POLYLINE_WIDTH,
             points: coords,
-            color: Colors.blue,
+            color: Colors.blue[200+i*200],
             startCap: Cap.roundCap,
             endCap: Cap.buttCap,
           ));
