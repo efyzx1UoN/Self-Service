@@ -4,6 +4,7 @@ import 'package:flutter_app/geoTracker.dart';
 import 'routePlanner.dart';
 import 'package:flutter_app/routePlanner.dart';
 import 'package:flutter_app/route.dart';
+import 'package:flutter_app/times.dart';
 
 class routeDirections extends Container {
   final double CONTAINER_TWO_HEIGHT = 500;
@@ -31,10 +32,27 @@ class routeDirections extends Container {
     switch (step.travel_mode){
       case "TRANSIT": {
         //Converted times for calculating travel time.
-        int dh = int.parse(step.transit_details.departure_time.text.substring(0,2));
-        int dm = int.parse(step.transit_details.departure_time.text.substring(3,5));
-        int ah = int.parse(step.transit_details.arrival_time.text.substring(0,2));
-        int am = int.parse(step.transit_details.arrival_time.text.substring(3,5));
+        print("STEP: "+step.transit_details.arrival_time.text);
+        print("STEP: "+step.transit_details.departure_time.text);
+        int dh;
+        int dm;
+        int ah;
+        int am;
+
+        Times dTimes = new Times(step.transit_details.departure_time.text);
+        dh = dTimes.hour;
+        dm = dTimes.minute;
+        print(dTimes.hour.toString() +", "+dTimes.minute.toString());
+        Times aTimes = new Times(step.transit_details.arrival_time.text);
+        ah = aTimes.hour;
+        am = aTimes.minute;
+        print(aTimes.hour.toString() +", "+aTimes.minute.toString());
+
+        //int dh = int.parse(step.transit_details.departure_time.text.substring(0,2));
+        //int dm = int.parse(step.transit_details.departure_time.text.substring(3,5));
+        //int ah = int.parse(step.transit_details.arrival_time.text.substring(0,2));
+        //int am = int.parse(step.transit_details.arrival_time.text.substring(3,5));
+
         int h;
         int m;
 
@@ -60,8 +78,8 @@ class routeDirections extends Container {
         string += step.transit_details.headsign+"\n";
       };
       break;
-      case "DRIVING": {string += step.distance.text.toString();}; break;
-      case "WALKING": {string += step.distance.text.toString();}; break;
+      case "DRIVING": {string += step.distance.text.toString();} break;
+      case "WALKING": {string += step.distance.text.toString();} break;
     }
     return string;
   }
@@ -210,8 +228,8 @@ class routeDirections extends Container {
                                       var route = snapshot.data;
 
                                       return ListTile(
-                                        title: Text('${index + 1} : ${removeAllHtmlTags(route[0].legs[0].steps[index].html_instructions)}'),
-                                        subtitle: Text(removeAllHtmlTags(directionMessage(route[0].legs[0].steps[index])) +'  '+ route[0].legs[0].steps[index].duration.text),
+                                        title: Text('${index + 1} : ${removeAllHtmlTags(route[_m_parent.m_selectedRouteIndex].legs[0].steps[index].html_instructions)}'),
+                                        subtitle: Text(removeAllHtmlTags(directionMessage(route[_m_parent.m_selectedRouteIndex].legs[0].steps[index])) +'  '+ route[_m_parent.m_selectedRouteIndex].legs[0].steps[index].duration.text),
                                       );
                                     },
                                   padding: EdgeInsets.only(top:50, bottom: 50),),

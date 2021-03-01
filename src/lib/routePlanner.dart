@@ -89,11 +89,11 @@ class RoutePlannerFormState extends ObserverState {
   void initState(){
     super.initState();
     _m_selectedTime = TimeOfDay.now();
-    _m_selectedTimeString = TimeOfDay.now().hour.toString()
-        +":"+TimeOfDay.now().minute.toString().padLeft(1);
+    _m_selectedTimeString = TimeOfDay.now().hour.toString().padLeft(2,'0')
+        +":"+TimeOfDay.now().minute.toString().padLeft(2,'0');
     _m_selectedDate = DateTime.now();
-    _m_selectedDateString = DateTime.now().day.toString()
-        +"/"+DateTime.now().month.toString()+"/"+DateTime.now().year.toString();
+    _m_selectedDateString = DateTime.now().day.toString().padLeft(2,'0')
+        +"/"+DateTime.now().month.toString().padLeft(2,'0')+"/"+DateTime.now().year.toString();
     setState(() {
       _m_geoTracker.m_listener = this;
       _m_geoTracker.getLocation();
