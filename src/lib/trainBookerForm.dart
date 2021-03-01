@@ -25,10 +25,16 @@ class TrainBookerFormState extends State<TrainBookerForm> {
   List<bool> _selections = List.generate(2, (_) => false);
   TimeOfDay _m_selectedTime = TimeOfDay.now();
   String _m_selectedTimeString = TimeOfDay.now().hour.toString()
-      +":"+TimeOfDay.now().minute.toString().padLeft(1);
+      +":"+TimeOfDay.now().minute.toString().padLeft(2,'0');
   DateTime _m_selectedDate = DateTime.now();
-  String _m_selectedDateString = DateTime.now().day.toString()
+  String _m_selectedDateString = DateTime.now().day.toString().padLeft(2,'0')
       +"/"+DateTime.now().month.toString()+"/"+DateTime.now().year.toString();
+  String _m_selectedTimeStringReturn = TimeOfDay.now().hour.toString()
+      +":"+TimeOfDay.now().minute.toString().padLeft(2,'0');
+  DateTime _m_selectedDateReturn = DateTime.now();
+  String _m_selectedDateStringReturn = DateTime.now().day.toString().padLeft(2,'0')
+      +"/"+DateTime.now().month.toString()+"/"+DateTime.now().year.toString();
+
 
   @override
   void initState(){
@@ -129,26 +135,23 @@ class TrainBookerFormState extends State<TrainBookerForm> {
                                               });
                                             },
 
-                                                 child: Text("Depart at: ")
+                                                 child: Text("Depart at: " + _m_selectedDateString)
                                                         ),
                                                   ),
                       Expanded(
                         child: ElevatedButton(
                             onPressed: () {
-                              showDatePicker(
+                              showTimePicker(
                                 context: context,
-                                initialDate: DateTime.now(),
-                                firstDate: DateTime.now(),
-                                lastDate: DateTime(2100),
-                              ).then((date) {setState(() {
-                                _m_selectedDateString = date.day.toString().padLeft(2,'0')
-                                    +"/"+date.month.toString().padLeft(2,'0')+"/"+date.year.toString();
-                                _m_selectedDate = date;
+                                initialTime: TimeOfDay.now(),
+                              ).then((time) {setState(() {
+                                _m_selectedTimeString = time.hour.toString().padLeft(2,'0')
+                                    +":"+time.minute.toString().padLeft(2,'0');
+                                _m_selectedTime = time;
                               });
                               });
                             },
-
-                            child: Text("Date : ")
+                            child: Text("Depart at: "+_m_selectedTimeString)
                         ),
                       ),
                        ]
@@ -170,33 +173,30 @@ class TrainBookerFormState extends State<TrainBookerForm> {
                           firstDate: DateTime.now(),
                           lastDate: DateTime(2100),
                         ).then((date) {setState(() {
-                          _m_selectedDateString = date.day.toString().padLeft(2,'0')
+                          _m_selectedDateStringReturn = date.day.toString().padLeft(2,'0')
                               +"/"+date.month.toString().padLeft(2,'0')+"/"+date.year.toString();
-                          _m_selectedDate = date;
+                          _m_selectedDateReturn = date;
                         });
                         });
                       },
 
-                      child: Text("Return by: ")
+                      child: Text("Return by: " + _m_selectedDateStringReturn)
                   ),
                 ),
                 Expanded(
                   child: ElevatedButton(
                       onPressed: () {
-                        showDatePicker(
+                        showTimePicker(
                           context: context,
-                          initialDate: DateTime.now(),
-                          firstDate: DateTime.now(),
-                          lastDate: DateTime(2100),
-                        ).then((date) {setState(() {
-                          _m_selectedDateString = date.day.toString().padLeft(2,'0')
-                              +"/"+date.month.toString().padLeft(2,'0')+"/"+date.year.toString();
-                          _m_selectedDate = date;
+                          initialTime: TimeOfDay.now(),
+                        ).then((time) {setState(() {
+                          _m_selectedTimeStringReturn = time.hour.toString().padLeft(2,'0')
+                              +":"+time.minute.toString().padLeft(2,'0');
+                          _m_selectedTimeStringReturn = time as String;
                         });
                         });
                       },
-
-                      child: Text("Return Date: ")
+                      child: Text("Depart at: "+_m_selectedTimeStringReturn)
                   ),
                 ),
               ]
