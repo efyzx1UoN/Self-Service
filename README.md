@@ -96,6 +96,7 @@ Classes should have single responsibility. (A class should not do more than the 
 | 22/02/2020 [Major] | Meeting with Steve<br/>Preparing for Sprint 4 <br/>Issues with Hotel APIs | Hotel booking removed from scope. <br/> Sprint 4 to focus on Route Planner, taxi and train.| Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo <br/>Shuxiang Hu<br/>Zihui Zu <br/> Steve Brooks|
 | 24/02/2020 [Major] | User stories. <br/> Android Studios pub issues.  | Tasks allocated (see trello board) <br/> Problems with Ashley's android studios under investigation after peer programming.| Callum Davis<br>Thomas Murphy<br/>Ashley Nnawugo <br/>Shuxiang Hu<br/>Zihui Zu<br>(To be filled in: Zixiang Jin)|
 | 26/02/2020 [Major] | User stories. <br/> Plans going ahead for the sprint (workload). | Allocated rest of user stories <br/> Finishing Route Planner by Monday <br/> (Hopefully) finishing TrainBooker by end of sprint. | Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo <br/>Shuxiang Hu<br/>Zihui Zu|
+| 26/02/2020 [Major] | Update on progress. <br/> Issues with Train Booker inputs | On track. Allocated new user stories to Trello going forward. <br/> Peer programmed (Tom and Ashley) on fixing input boxes for date and time. Merged to master. | Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo <br/>Shuxiang Hu<br/>Zihui Zu|
 
 ### Assessment Deliverables
 |  |                                       |
