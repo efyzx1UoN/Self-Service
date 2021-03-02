@@ -39,6 +39,13 @@ class _TravelModeRadioState extends State<TravelModeRadio>{
   void changeIndex(int index){
     setState(() {
       selectedIndex = index;
+      if(index == 0){
+        widget.m_parent.m_trainVisibility = true;
+      }
+      else{
+        widget.m_parent.m_trainVisibility = false;
+      }
+      widget.m_parent.m_routeVisibility = !widget.m_parent.m_trainVisibility;
       switch(index){
         case 0:
           widget.m_parent.m_geoTracker.m_travelMode = "transit";
@@ -55,6 +62,7 @@ class _TravelModeRadioState extends State<TravelModeRadio>{
           widget.m_parent.m_geoTracker.m_transitMode = "bus";
           break;
       }
+      widget.m_parent.update();
     });
   }
   Widget modeRadio(String txt,int index){
