@@ -17,7 +17,7 @@ class Train {
 
 @JsonSerializable()
 class StationDetail {
-  List<Stations> calling_at;
+  List<Station> calling_at;
 
   StationDetail({this.calling_at});
 
