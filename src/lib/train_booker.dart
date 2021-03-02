@@ -9,7 +9,7 @@ import 'package:geocoder/geocoder.dart';
 import 'main.dart';
 import 'package:flutter_app/trainBookerForm.dart';
 import 'package:flutter_app/SharedStringData.dart';
-
+import 'trainBookerMap.dart';
 
 class Train_BookerPage extends StatefulWidget {
   Train_BookerPage({Key key, this.M_TITLE}) : super(key: key);
@@ -30,6 +30,17 @@ class _Train_BookerPageState extends State<Train_BookerPage> {
     super.initState();
     m_futureAlbum = fetchAlbum();
 
+
+    StationMap.StationInfoAddall();
+    print(json.encode(StationMap.StationInfo));
+    //print(json.encode(StationMap.list));
+    //print(json.encode(StationMap.list.lookup('A')));
+    var a =StationMap.StationInfo['London'];
+    if(a!=null){
+      print(a);
+    }else{
+      print("Error!!!");
+    }
   }
 
   void _pageHome() {
@@ -90,10 +101,17 @@ class MyCustomFormState extends State<MyCustomForm> {
   String _m_selectedDateString = DateTime.now().day.toString()
       +"/"+DateTime.now().month.toString()+"/"+DateTime.now().year.toString();
 
+  //String StationInfo() => StationMap.StationInfo.toString();
+
   @override
   void initState() {
     super.initState();
     getLocation();
+    /*Map StationInfo={
+      "Station":"Abbey Wood",
+      "CRS Code":"ABW"
+    };
+    print(json.encode(StationInfo));*/
   }
 
   void getLocation() async {
@@ -228,4 +246,6 @@ class MyCustomFormState extends State<MyCustomForm> {
     );
   }
 }
+
+
 
