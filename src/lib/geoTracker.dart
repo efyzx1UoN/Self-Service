@@ -42,6 +42,8 @@ class geoTracker {
   static final double ZOOM_BASE = 14.2;
   static final double ZOOM_COEFFICIENT = 8;
   static final double ZOOM_OFFSET = 8;
+  static final int HTTP_OKAY = 200;
+  static final int COLOR_GRADIANT = 200;
   String _m_currentLocation = "";
   String _m_startLocationStr = "";
   LatLng _m_locationCoordinates;
@@ -208,7 +210,7 @@ class geoTracker {
     http.Response response = await get(
         'https://maps.googleapis.com/maps/api/directions/json?origin=$originLat,$originLong&destination=$destinationLat,$destinationLong&region=uk&key=AIzaSyAjBVD5OeZbBKW0o_tOKfcOtuCPVIuyovE&alternatives=true&mode=$m_travelMode&transit_mode=$m_transitMode');
     print("$m_travelMode&transit_mode=$m_transitMode");
-    if (response.statusCode == 200){
+    if (response.statusCode == HTTP_OKAY){
         Map routesData = jsonDecode(response.body);
         print("Length of body:" + response.body.length.toString());
         List<dynamic> routesList = routesData["routes"];
@@ -237,14 +239,13 @@ class geoTracker {
             print("Step "+j.toString()+": from " + coords[2*j].latitude.toString()+coords[2*j].longitude.toString()+" to "+dLat.toString()+dLng.toString()+'\n');
           }
 
-
           print(coords.length.toString()+"\n");
           _m_polyline.add(Polyline(
             polylineId: PolylineId('Your route'+i.toString()),
             visible: true,
             width: POLYLINE_WIDTH,
             points: coords,
-            color: Colors.blue[200+i*200],
+            color: Colors.blue[COLOR_GRADIANT+i*COLOR_GRADIANT],
             startCap: Cap.roundCap,
             endCap: Cap.buttCap,
           ));
@@ -257,7 +258,6 @@ class geoTracker {
     }else{
       //throw Exception("Something went wrong, ${response.statusCode}");
     }
-
   }
 
   Map<PolylineId, Polyline> get m_polylines => _m_polylines;
