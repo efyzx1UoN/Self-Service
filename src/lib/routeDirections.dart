@@ -42,7 +42,12 @@ class routeDirections extends Container {
       }
     }
     if(stationCounter > 1){
-      transferMsg = "$stationCounter transfer(s)";
+      if(stationCounter == 2) {
+        transferMsg = "1 transfer";
+      }
+      else{
+        transferMsg = "$stationCounter transfers";
+      }
     }
     else{
       transferMsg = "direct";
@@ -172,7 +177,7 @@ class routeDirections extends Container {
                                       var route = snapshot.data;
                                       var transitDetails = getTransitDetails(route[index]);
                                       return Container(
-                                        padding: EdgeInsets.only(left: 20, right: 20, top: 20),
+                                        padding: EdgeInsets.only(left: 10, right: 10, top: 15),
                                         child: SingleChildScrollView(
                                           scrollDirection: Axis.horizontal,
                                           child: Row(
@@ -186,11 +191,11 @@ class routeDirections extends Container {
                                                   },
                                                 child: Container(
                                                   padding: const EdgeInsets.only(top: 20.0, bottom: 20 ),
-                                                  child:Row(
+                                                  child: Row(
                                                     children: [
                                                       Align(
-                                                          alignment: Alignment.center,
-                                                          //child: Icon(Icons.play_circle_fill)
+                                                          alignment: Alignment.topLeft,
+                                                          child: Icon(Icons.directions_train_sharp, size: 20)
                                                       ),
                                                       Column(
                                                         children: [
@@ -236,7 +241,7 @@ class routeDirections extends Container {
                                                               margin: const EdgeInsets.only( left: 5.0),
                                                               child: Text(
                                                                 '${route[index].legs[0].duration.text}',
-                                                                style: TextStyle( fontSize: 10.0),
+                                                                style: TextStyle( fontSize: 10.0, fontStyle: FontStyle.italic),
                                                               )
                                                           ),
                                                         ],
