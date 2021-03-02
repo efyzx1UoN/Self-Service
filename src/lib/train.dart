@@ -1,6 +1,8 @@
 
 import 'package:json_annotation/json_annotation.dart';
 
+part 'train.g.dart';
+
 @JsonSerializable()
 class Train {
   String aimed_departure_time;
@@ -13,6 +15,7 @@ class Train {
 
 }
 
+@JsonSerializable()
 class StationDetail {
   List<Stations> calling_at;
 
@@ -21,7 +24,7 @@ class StationDetail {
   factory StationDetail.fromJson(Map<String, dynamic> json) => _$StationDetailFromJson(json);
 }
 
-
+@JsonSerializable()
 class Station {
   String station_name;
   String platform;
