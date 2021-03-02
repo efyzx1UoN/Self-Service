@@ -35,7 +35,8 @@ class _Train_BookerPageState extends State<Train_BookerPage> {
     print(json.encode(StationMap.StationInfo));
     //print(json.encode(StationMap.list));
     //print(json.encode(StationMap.list.lookup('A')));
-    var a =StationMap.StationInfo['London'];
+    var b='Nottingham';
+    var a =StationMap.StationInfo[b];
     if(a!=null){
       print(a);
     }else{
