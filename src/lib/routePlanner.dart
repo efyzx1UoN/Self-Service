@@ -74,8 +74,9 @@ class RoutePlannerFormState extends ObserverState {
   String _m_selectedDateString = DateTime.now().day.toString()
       +"/"+DateTime.now().month.toString()+"/"+DateTime.now().year.toString();
   int m_selectedRouteIndex = 0;
-  bool m_routeVisibility = true;
+  bool m_routeVisibility = false;
   bool m_stepsVisibility = false;
+  bool m_trainVisibility = true;
 
   TravelModeRadio _m_travelModeRadio;
 
@@ -111,8 +112,14 @@ class RoutePlannerFormState extends ObserverState {
   void toggleMap(){
     setState(() {
       _m_mapVisible = !_m_mapVisible;
-      m_routeVisibility = true;
+      if(_m_geoTracker.m_travelMode == 'transit' && _m_geoTracker.m_transitMode == 'train'){
+        m_routeVisibility = false;
+      }
+      else{
+        m_routeVisibility = true;
+      }
       m_stepsVisibility = false;
+      m_trainVisibility = !m_routeVisibility;
     });
   }
 
