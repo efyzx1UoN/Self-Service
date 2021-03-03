@@ -228,14 +228,13 @@ class geoTracker {
           List<dynamic> steps = routesList[i]['legs'][0]['steps'];
           int num_steps = steps.length;
           List<LatLng> coords = List<LatLng> ();
-          print("Route "+i.toString()+" has " + num_steps.toString()+'steps\n');
+          //print("Route "+i.toString()+" has " + num_steps.toString()+'steps\n');
 
           //add the coords of start and end of each step into the list
           for(int j = 0;j<num_steps;j++){
 
             PolyUtil points = PolyUtil();
             List<LatLng> pointList = points.decode(steps[j]['polyline']['points']);
-            print(pointList[0].toString());
 
             double sLat = steps[j]['start_location']['lat'];
             double sLng = steps[j]['start_location']['lng'];
@@ -263,9 +262,8 @@ class geoTracker {
             endCap: Cap.buttCap,
           ));
           print("End of steps loop\n");
-          _m_listener.update();
         }
-        //List<MapRoute> mapper = routesList.map((json) => MapRoute.fromJson(json)).toList();
+        List<MapRoute> mapper = routesList.map((json) => MapRoute.fromJson(json)).toList();
 
         return routesList.map((json) => MapRoute.fromJson(json)).toList();
     }else{
