@@ -233,15 +233,16 @@ class geoTracker {
             double sLat = steps[j]['start_location']['lat'];
             double sLng = steps[j]['start_location']['lng'];
             coords.add(LatLng(sLat, sLng));
-            double dLat = steps[j]['end_location']['lat'];
-            double dLng = steps[j]['end_location']['lng'];
-            coords.add(LatLng(dLat, dLng));
-            print("Step "+j.toString()+": from " + coords[2*j].latitude.toString()+coords[2*j].longitude.toString()+" to "+dLat.toString()+dLng.toString()+'\n');
           }
-
-          print(coords.length.toString()+"\n");
+          double dLat = steps[num_steps-1]['end_location']['lat'];
+          double dLng = steps[num_steps-1]['end_location']['lng'];
+          coords.add(LatLng(dLat, dLng));
+          for(LatLng coord in coords){
+            print(coord.latitude.toString() + '   ' + coord.longitude.toString()+"\n");
+          }
+          //print(coords.length.toString()+"\n");
           _m_polyline.add(Polyline(
-            polylineId: PolylineId('Your route'+i.toString()),
+            polylineId: PolylineId('Your route '+i.toString()),
             visible: true,
             width: POLYLINE_WIDTH,
             points: coords,
