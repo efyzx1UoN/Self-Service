@@ -188,8 +188,8 @@ class routeDirections extends Container {
                                       var route = snapshot.data;
 
                                       return ListTile(
-                                        title: Text('${index + 1} : ${removeAllHtmlTags(route[0].legs[0].steps[index].html_instructions)}'),
-                                        subtitle: Text(removeAllHtmlTags(directionMessage(route[0].legs[0].steps[index]))),
+                                        title: Text('${index + 1} : ${removeAllHtmlTags(route[_m_parent.m_selectedRouteIndex].legs[0].steps[index].html_instructions)}'),
+                                        subtitle: Text(removeAllHtmlTags(directionMessage(route[_m_parent.m_selectedRouteIndex].legs[0].steps[index]))),
                                       );
                                     },
                                   padding: EdgeInsets.only(top:50, bottom: 50),),
