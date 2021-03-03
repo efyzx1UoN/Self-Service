@@ -141,10 +141,13 @@ class geoTracker {
     List<Location> endLocations = await locationFromAddress(_m_endLocationStr);
     _m_endLocation = endLocations.first;
 
+    /*
     _m_routeCoords = await _m_googleMapPolyline.getCoordinatesWithLocation(
         origin: LatLng(_m_startLocation.latitude, _m_startLocation.longitude),
         destination: LatLng(_m_endLocation.latitude, _m_endLocation.longitude),
         mode: RouteMode.driving);
+     */
+
     // m_routeCoords2.add(LatLng(37.368851,-122.0363436));
     // m_routeCoords2.add(LatLng(37.3784344,-122.0307968));
     // m_routeCoords2.add(LatLng(37.3784344,-122.0307968));
@@ -156,6 +159,19 @@ class geoTracker {
     // print(_m_endLocation.latitude);
     // print(_m_endLocation.longitude);
     print('Hello\n');
+
+    /*
+    _m_polyline.add(Polyline(
+      polylineId: PolylineId('Your routeX'),
+      visible: true,
+      width: POLYLINE_WIDTH,
+      points: _m_routeCoords,
+      color: Colors.pink,
+      startCap: Cap.roundCap,
+      endCap: Cap.buttCap,
+    ));
+    */
+
     m_routes = await getRoutes();
     print("Hi\n\n");
     for(MapRoute route in m_routes){
@@ -166,16 +182,6 @@ class geoTracker {
         }
       }
     }
-    _m_polyline.add(Polyline(
-      polylineId: PolylineId('Your route'),
-      visible: true,
-      width: POLYLINE_WIDTH,
-      points: _m_routeCoords,
-      color: Colors.pink,
-      startCap: Cap.roundCap,
-      endCap: Cap.buttCap,
-    ));
-
 
     _m_map = GoogleMap(
       onMapCreated: _onMapCreated,
@@ -220,6 +226,7 @@ class geoTracker {
         List<dynamic> routesList = routesData["routes"];
         print(routesData);
         print(routesList);
+        routesList.sort((a,b) => a['legs'][0]['duration']['value'].toString().compareTo(b['legs'][0]['duration']['value'].toString()));
         print(" ");
         m_numOfRoutes = routesList.length;
         print("number of routes: " + m_numOfRoutes.toString());
@@ -260,9 +267,9 @@ class geoTracker {
           _m_polyline.add(Polyline(
             polylineId: PolylineId('Your route '+i.toString()),
             visible: true,
-            width: POLYLINE_WIDTH,
+            width: (i==0) ? POLYLINE_WIDTH*2 : POLYLINE_WIDTH,
             points: coords,
-            color: Colors.blue[COLOR_GRADIANT+i*COLOR_GRADIANT],
+            color: (i==0) ? Colors.pink : Colors.blue[COLOR_GRADIANT+i*COLOR_GRADIANT],
             startCap: Cap.roundCap,
             endCap: Cap.buttCap,
           ));
