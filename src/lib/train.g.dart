@@ -10,7 +10,10 @@ Train _$TrainFromJson(Map<String, dynamic> json) {
   return Train(
     aimed_departure_time: json['aimed_departure_time'] as String,
     destination_name: json['destination_name'] as String,
-    station_detail: json['station_detail'] as Map<String, dynamic>,
+    station_detail: json['station_detail'] == null
+        ? null
+        : StationDetail.fromJson(
+            json['station_detail'] as Map<String, dynamic>),
   );
 }
 
@@ -22,7 +25,10 @@ Map<String, dynamic> _$TrainToJson(Train instance) => <String, dynamic>{
 
 StationDetail _$StationDetailFromJson(Map<String, dynamic> json) {
   return StationDetail(
-    calling_at: json['calling_at'] as List,
+    calling_at: (json['calling_at'] as List)
+        ?.map((e) =>
+            e == null ? null : Station.fromJson(e as Map<String, dynamic>))
+        ?.toList(),
   );
 }
 

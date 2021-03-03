@@ -7,7 +7,7 @@ part 'train.g.dart';
 class Train {
   String aimed_departure_time;
   String destination_name;
-  Map<String, dynamic> station_detail;
+  StationDetail station_detail;
 
   Train({this.aimed_departure_time, this.destination_name, this.station_detail});
 
