@@ -5,9 +5,12 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:geocoder/geocoder.dart';
+import 'package:geocoder/services/distant_google.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_map_polyline/google_map_polyline.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:google_maps_util/google_maps_util.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart';
 import 'Album.dart';
@@ -17,7 +20,9 @@ import 'package:http/http.dart' as http;
 import 'package:flutter_app/route.dart';
 
 class geoTracker {
+  List<MapRoute> m_routes;
   PolylinePoints _m_polylinePoints;
+  // List<LatLng> m_routeCoords2 = [];
   Map<PolylineId, Polyline> _m_polylines = {};
   List<LatLng> _m_polylineCoordinates = [];
   Position _m_startCoordinates ;
@@ -40,6 +45,8 @@ class geoTracker {
   static final double ZOOM_BASE = 14.2;
   static final double ZOOM_COEFFICIENT = 8;
   static final double ZOOM_OFFSET = 8;
+  static final int HTTP_OKAY = 200;
+  static final int COLOR_GRADIANT = 200;
   String _m_currentLocation = "";
   String _m_startLocationStr = "";
   LatLng _m_locationCoordinates;
@@ -47,6 +54,8 @@ class geoTracker {
 
   String m_travelMode = "transit";
   String m_transitMode = "train";
+
+  int m_numOfRoutes;
 
   State get m_listener => _m_listener;
 
@@ -125,23 +134,35 @@ class geoTracker {
 
   void setPolylines() async{
     print("start");
+    _m_polyline.clear();
     List<Location> startLocations = await locationFromAddress(_m_startLocationStr);
     _m_startLocation = startLocations.first;
 
     List<Location> endLocations = await locationFromAddress(_m_endLocationStr);
     _m_endLocation = endLocations.first;
 
+    /*
     _m_routeCoords = await _m_googleMapPolyline.getCoordinatesWithLocation(
         origin: LatLng(_m_startLocation.latitude, _m_startLocation.longitude),
         destination: LatLng(_m_endLocation.latitude, _m_endLocation.longitude),
         mode: RouteMode.driving);
+     */
+
+    // m_routeCoords2.add(LatLng(37.368851,-122.0363436));
+    // m_routeCoords2.add(LatLng(37.3784344,-122.0307968));
+    // m_routeCoords2.add(LatLng(37.3784344,-122.0307968));
+    // m_routeCoords2.add(LatLng(37.42937000000001,-122.14193));
+    // m_routeCoords2.add(LatLng(37.4291335,-122.1419519 ));
+    // m_routeCoords2.add(LatLng(37.4419482,-122.1429522));
     // print(_m_startLocation.latitude);
     // print(_m_startLocation.longitude);
     // print(_m_endLocation.latitude);
     // print(_m_endLocation.longitude);
+    print('Hello\n');
 
+    /*
     _m_polyline.add(Polyline(
-      polylineId: PolylineId('Your route'),
+      polylineId: PolylineId('Your routeX'),
       visible: true,
       width: POLYLINE_WIDTH,
       points: _m_routeCoords,
@@ -149,6 +170,18 @@ class geoTracker {
       startCap: Cap.roundCap,
       endCap: Cap.buttCap,
     ));
+    */
+
+    m_routes = await getRoutes();
+    print("Hi\n\n");
+    for(MapRoute route in m_routes){
+      for(Legs leg in route.legs){
+        for(Steps step in leg.steps){
+          print("This\n");
+          print(step.polyline.points+"\n");
+        }
+      }
+    }
 
     _m_map = GoogleMap(
       onMapCreated: _onMapCreated,
@@ -176,7 +209,7 @@ class geoTracker {
     await _m_mapController.animateCamera(CameraUpdate.newLatLngZoom(middlePoint, zoom));
 
     _m_listener.update();
-    getRoutes();
+
   }
 
     Future<List<MapRoute>> getRoutes() async {
@@ -187,21 +220,83 @@ class geoTracker {
     http.Response response = await get(
         'https://maps.googleapis.com/maps/api/directions/json?origin=$originLat,$originLong&destination=$destinationLat,$destinationLong&region=uk&key=AIzaSyAjBVD5OeZbBKW0o_tOKfcOtuCPVIuyovE&alternatives=true&mode=$m_travelMode&transit_mode=$m_transitMode');
     print("$m_travelMode&transit_mode=$m_transitMode");
-    if (response.statusCode == 200){
+    if (response.statusCode == HTTP_OKAY){
         Map routesData = jsonDecode(response.body);
         print("Length of body:" + response.body.length.toString());
         List<dynamic> routesList = routesData["routes"];
         print(routesData);
         print(routesList);
+        routesList.sort((a,b) => a['legs'][0]['duration']['value'].toString().compareTo(b['legs'][0]['duration']['value'].toString()));
         print(" ");
+        m_numOfRoutes = routesList.length;
+        print("number of routes: " + m_numOfRoutes.toString());
+        //for each route
+        for(int i=0;i<m_numOfRoutes;i++){
+          print("STRING: "+routesList[i]['legs'][0]['duration']['value'].toString());
+          List<dynamic> steps = routesList[i]['legs'][0]['steps'];
+          int num_steps = steps.length;
+          List<LatLng> coords = List<LatLng> ();
+          //print("Route "+i.toString()+" has " + num_steps.toString()+'steps\n');
 
-        //List<MapRoute> mapper = routesList.map((json) => MapRoute.fromJson(json)).toList();
+          //add the coords of start and end of each step into the list
+          for(int j = 0;j<num_steps;j++){
+
+            PolyUtil points = PolyUtil();
+            List<LatLng> pointList = points.decode(steps[j]['polyline']['points']);
+
+            double sLat = steps[j]['start_location']['lat'];
+            double sLng = steps[j]['start_location']['lng'];
+
+            coords.add(LatLng(sLat, sLng));
+            double dLat = steps[j]['end_location']['lat'];
+            double dLng = steps[j]['end_location']['lng'];
+
+            for (int k=0; k < pointList.length ; k++){
+              coords.add(pointList[k]);
+            }
+
+            coords.add(LatLng(dLat, dLng));
+            print("Step "+j.toString()+": from " + coords[2*j].latitude.toString()+coords[2*j].longitude.toString()+" to "+dLat.toString()+dLng.toString()+'\n');
+          }
+          double dLat = steps[num_steps-1]['end_location']['lat'];
+          double dLng = steps[num_steps-1]['end_location']['lng'];
+          coords.add(LatLng(dLat, dLng));
+          for(LatLng coord in coords){
+            print(coord.latitude.toString() + '   ' + coord.longitude.toString()+"\n");
+          }
+          if (i==0) {
+            _m_polyline.add(Polyline(
+              polylineId: PolylineId('Your route ' + 0.toString()),
+              visible: true,
+              width: POLYLINE_WIDTH,
+              points: coords,
+              color: Colors.red,
+              startCap: Cap.roundCap,
+              endCap: Cap.buttCap,
+            ));
+          }
+
+          //print(coords.length.toString()+"\n");
+          _m_polyline.add(Polyline(
+            polylineId: PolylineId('Your route '+i.toString()),
+            visible: true,
+            width: (i==0) ? POLYLINE_WIDTH*2 : POLYLINE_WIDTH,
+            points: coords,
+            color: (i==0) ? Colors.pink : Colors.blue[COLOR_GRADIANT+i*COLOR_GRADIANT],
+            startCap: Cap.roundCap,
+            endCap: Cap.buttCap,
+          ));
+          print("End of steps loop\n");
+        }
+
+
+
+        List<MapRoute> mapper = routesList.map((json) => MapRoute.fromJson(json)).toList();
 
         return routesList.map((json) => MapRoute.fromJson(json)).toList();
     }else{
       //throw Exception("Something went wrong, ${response.statusCode}");
     }
-
   }
 
   Map<PolylineId, Polyline> get m_polylines => _m_polylines;
