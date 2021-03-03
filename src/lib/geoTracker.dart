@@ -5,9 +5,12 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:geocoder/geocoder.dart';
+import 'package:geocoder/services/distant_google.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_map_polyline/google_map_polyline.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:google_maps_util/google_maps_util.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart';
 import 'Album.dart';
@@ -131,6 +134,7 @@ class geoTracker {
 
   void setPolylines() async{
     print("start");
+    _m_polyline.clear();
     List<Location> startLocations = await locationFromAddress(_m_startLocationStr);
     _m_startLocation = startLocations.first;
 
@@ -221,7 +225,6 @@ class geoTracker {
         print("number of routes: " + m_numOfRoutes.toString());
         //for each route
         for(int i=0;i<m_numOfRoutes;i++){
-
           List<dynamic> steps = routesList[i]['legs'][0]['steps'];
           int num_steps = steps.length;
           List<LatLng> coords = List<LatLng> ();
@@ -230,11 +233,21 @@ class geoTracker {
           //add the coords of start and end of each step into the list
           for(int j = 0;j<num_steps;j++){
 
+            PolyUtil points = PolyUtil();
+            List<LatLng> pointList = points.decode(steps[j]['polyline']['points']);
+            print(pointList[0].toString());
+
             double sLat = steps[j]['start_location']['lat'];
             double sLng = steps[j]['start_location']['lng'];
+
             coords.add(LatLng(sLat, sLng));
             double dLat = steps[j]['end_location']['lat'];
             double dLng = steps[j]['end_location']['lng'];
+
+            for (int k=0; k < pointList.length ; k++){
+              coords.add(pointList[k]);
+            }
+
             coords.add(LatLng(dLat, dLng));
             print("Step "+j.toString()+": from " + coords[2*j].latitude.toString()+coords[2*j].longitude.toString()+" to "+dLat.toString()+dLng.toString()+'\n');
           }
@@ -250,7 +263,7 @@ class geoTracker {
             endCap: Cap.buttCap,
           ));
           print("End of steps loop\n");
-
+          _m_listener.update();
         }
         //List<MapRoute> mapper = routesList.map((json) => MapRoute.fromJson(json)).toList();
 

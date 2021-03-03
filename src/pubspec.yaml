@@ -24,6 +24,7 @@ dependencies:
   http: any
   flutter:
     sdk: flutter
+  google_maps_util:
   geocoding: ^1.0.5
   geolocator: ^6.1.13
   oauth2_client: ^1.5.0
