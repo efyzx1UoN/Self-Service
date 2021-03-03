@@ -1,12 +1,15 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/taxi/taxiPlanner.dart';
+import 'package:flutter_app/train.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoder/geocoder.dart';
+import 'package:http/http.dart';
 import 'main.dart';
 import 'package:flutter_app/SharedStringData.dart';
+
 
 
 class TrainBookerForm extends StatefulWidget {
@@ -40,6 +43,21 @@ class TrainBookerFormState extends State<TrainBookerForm> {
   void initState(){
     super.initState();
     getLocation();
+  }
+
+  void getJsonResponse() async {
+    http.Response response = await get("https://transportapi.com/v3/uk/train/station/BHM///timetable.json?app_id=b1b5d114&app_key=85fa7b99e23aa90b5071c8a6f4a72026&calling_at=EUS&station_detail=calling_at&train_status=passenger");
+    if(response.statusCode == 200){
+      print(response.body.length);
+      Map jsonResponse = jsonDecode(response.body);
+      Map<String, dynamic> departuresMap = jsonResponse["departures"];
+      List<dynamic> journeyList = departuresMap["all"];
+      List<Train> journeys = journeyList.map((e) => Train.fromJson(e)).toList();
+      print("aimed departure time is ${journeys[0].aimed_departure_time}");
+      print("calling at station is ${journeys[0].station_detail.calling_at[0].station_name}");
+
+    }
+
   }
 
   void getLocation() async {
@@ -243,6 +261,7 @@ class TrainBookerFormState extends State<TrainBookerForm> {
                   onPressed: () {
                     // Validate returns true if the form is valid, or false
                     // otherwise.
+                    getJsonResponse();
                     if (M_FORMKEY.currentState.validate()) {
                       // If the form is valid, display a Snackbar.
                       Scaffold.of(context)

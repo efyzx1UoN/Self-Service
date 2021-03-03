@@ -776,10 +776,14 @@
           <value>
             <list>
 <<<<<<< HEAD
+<<<<<<< HEAD
               <option value="$USER_HOME$/Desktop/flutter/.pub-cache/hosted/pub.flutter-io.cn/oauth2_client-1.7.0/lib" />
 =======
               <option value="$PROJECT_DIR$/../../flutter/.pub-cache/hosted/pub.dartlang.org/oauth2_client-1.6.2/lib" />
 >>>>>>> displayIndividualRoute
+=======
+              <option value="$USER_HOME$/Desktop/flutter/.pub-cache/hosted/pub.flutter-io.cn/oauth2_client-1.7.1/lib" />
+>>>>>>> a468147c6b46aafdc0393c9551897a3703bdab66
             </list>
           </value>
         </entry>
@@ -1371,7 +1375,7 @@
       <root url="file://$USER_HOME$/Desktop/flutter/.pub-cache/hosted/pub.flutter-io.cn/node_interop-1.2.1/lib" />
       <root url="file://$USER_HOME$/Desktop/flutter/.pub-cache/hosted/pub.flutter-io.cn/node_io-1.2.0/lib" />
       <root url="file://$USER_HOME$/Desktop/flutter/.pub-cache/hosted/pub.flutter-io.cn/node_preamble-1.4.13/lib" />
-      <root url="file://$USER_HOME$/Desktop/flutter/.pub-cache/hosted/pub.flutter-io.cn/oauth2_client-1.7.0/lib" />
+      <root url="file://$USER_HOME$/Desktop/flutter/.pub-cache/hosted/pub.flutter-io.cn/oauth2_client-1.7.1/lib" />
       <root url="file://$USER_HOME$/Desktop/flutter/.pub-cache/hosted/pub.flutter-io.cn/package_config-1.9.3/lib" />
       <root url="file://$USER_HOME$/Desktop/flutter/.pub-cache/hosted/pub.flutter-io.cn/path-1.8.0-nullsafety.1/lib" />
       <root url="file://$USER_HOME$/Desktop/flutter/.pub-cache/hosted/pub.flutter-io.cn/pedantic-1.10.0-nullsafety.2/lib" />

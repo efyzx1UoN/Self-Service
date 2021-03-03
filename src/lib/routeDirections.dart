@@ -25,6 +25,41 @@ class routeDirections extends Container {
     return htmlText.replaceAll(exp, ' ');
   }
 
+  List<String> getTransitDetails(MapRoute route){
+    var stationCounter = 0;
+    String startStation, endStation, startTime, endTime, transferMsg;
+
+    List<Steps> steps = route.legs[0].steps;
+    for(var i = 0; i < steps.length; i++){
+      if(steps[i].travel_mode == "TRANSIT"){
+        if(stationCounter == 0){
+          startStation = steps[i].transit_details.departure_stop.name;
+          startTime = steps[i].transit_details.departure_time.text;
+        }
+        endStation = steps[i].transit_details.arrival_stop.name;
+        endTime = steps[i].transit_details.arrival_time.text;
+        stationCounter++;
+      }
+    }
+    if(stationCounter > 1){
+      if(stationCounter == 2) {
+        transferMsg = "1 transfer";
+      }
+      else{
+        transferMsg = "$stationCounter transfers";
+      }
+    }
+    else{
+      transferMsg = "direct";
+    }
+    List<String> transit_details = List<String>(5);
+    transit_details[0] = startStation;
+    transit_details[1] = endStation;
+    transit_details[2] = startTime;
+    transit_details[3] = endTime;
+    transit_details[4] = transferMsg;
+    return transit_details;
+  }
 
 
   String directionMessage(Steps step) {
@@ -121,7 +156,7 @@ class routeDirections extends Container {
         // ),
 
         Visibility(
-          visible: _m_parent.m_routeVisibility,
+          visible: _m_parent.m_trainVisibility,
           child: Container(
               height: CONTAINER_TWO_HEIGHT,
                   child: FutureBuilder(
@@ -140,37 +175,104 @@ class routeDirections extends Container {
                                     itemCount: snapshot.data.length,
                                     itemBuilder: (BuildContext context, int index){
                                       var route = snapshot.data;
+                                      var transitDetails = getTransitDetails(route[index]);
                                       return Container(
-                                        padding: EdgeInsets.only(left: 30, right: 30),
-                                        height: 50,
-                                        child: Row(
-                                          children: <Widget>[
-                                              Text.rich(
-                                                TextSpan(
-                                                  children: <TextSpan>[
-                                                    TextSpan(text: '${route[index].legs[0].duration.text}',
-                                                             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17)
-                                                    ),
-                                                    TextSpan(text: '\n${route[index].legs[0].distance.text}',
-                                                             style: TextStyle(fontSize: 15, color: Colors.grey)
-                                                    ),
-                                                  ],
+                                        padding: EdgeInsets.only(left: 10, right: 10, top: 15),
+                                        child: SingleChildScrollView(
+                                          scrollDirection: Axis.horizontal,
+                                          child: Row(
+                                            children: <Widget>[
+                                              ElevatedButton(
+                                                  onPressed: () {
+                                                    _m_parent.m_trainVisibility = false;
+                                                    _m_parent.m_stepsVisibility = true;
+                                                    _m_parent.m_selectedRouteIndex = index;
+                                                    _m_parent.update();
+                                                  },
+                                                child: Container(
+                                                  padding: const EdgeInsets.only(top: 20.0, bottom: 20 ),
+                                                  child: Row(
+                                                    children: [
+                                                      Align(
+                                                          alignment: Alignment.topLeft,
+                                                          child: Icon(Icons.directions_train_sharp, size: 20)
+                                                      ),
+                                                      Column(
+                                                        children: [
+                                                          Container(
+                                                            alignment: Alignment.topLeft,
+                                                            margin: const EdgeInsets.only( left: 5.0),
+                                                            child: Text(
+                                                              '${transitDetails[2]}',
+                                                              style: TextStyle( fontSize: 10.0),
+                                                            )
+                                                          ),
+                                                          Container(
+                                                              alignment: Alignment.topLeft,
+                                                              margin: const EdgeInsets.only( left: 5.0),
+                                                              child: Text(
+                                                                '${transitDetails[0]}',
+                                                                style: TextStyle( fontSize: 15.0),
+                                                              )
+                                                          ),
+                                                        ]
+                                                      ),
+                                                      Column(
+                                                        children: [
+                                                          Container(
+                                                              alignment: Alignment.center,
+                                                              margin: const EdgeInsets.only( left: 5.0),
+                                                              child: Text(
+                                                                '${transitDetails[4]}',
+                                                                overflow: TextOverflow.ellipsis,
+                                                                style: TextStyle( fontSize: 10.0, fontStyle: FontStyle.italic),
+                                                              )
+                                                          ),
+                                                          Container(
+                                                              alignment: Alignment.center,
+                                                              margin: const EdgeInsets.only( left: 5.0),
+                                                              child: Text(
+                                                                ' ----> ',
+                                                                style: TextStyle( fontSize: 15.0),
+                                                              )
+                                                          ),
+                                                          Container(
+                                                              alignment: Alignment.center,
+                                                              margin: const EdgeInsets.only( left: 5.0),
+                                                              child: Text(
+                                                                '${route[index].legs[0].duration.text}',
+                                                                style: TextStyle( fontSize: 10.0, fontStyle: FontStyle.italic),
+                                                              )
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      Column(
+                                                        children: [
+                                                          Container(
+                                                              alignment: Alignment.topRight,
+                                                              margin: const EdgeInsets.only( left: 5.0, right: 5.0),
+                                                              child: Text(
+                                                                '${transitDetails[3]}',
+                                                                style: TextStyle( fontSize: 10.0),
+                                                              )
+                                                          ),
+
+                                                          Container(
+                                                              alignment: Alignment.topRight,
+                                                              margin: const EdgeInsets.only( left: 5.0, right: 5.0),
+                                                              child: Text(
+                                                                '${transitDetails[1]}',
+                                                                style: TextStyle( fontSize: 15.0),
+                                                              )
+                                                          ),
+                                                        ],
+                                                      )
+                                                    ],
+                                                  ),
                                                 )
-                                              ),
-                                            Spacer(),
-                                            ElevatedButton(
-                                                onPressed: () {
-                                                  _m_parent.m_routeVisibility = false;
-                                                  _m_parent.m_stepsVisibility = true;
-                                                  _m_parent.m_selectedRouteIndex = index;
-                                                  _m_parent.update();
-                                                },
-                                                child: Text('GO',
-                                                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                                                           )
-                                            )
-                                          ],
-                                        ),
+                                              )
+                                            ],
+                                          ),),
                                       );
                                     },
                                     padding: EdgeInsets.only(top:50, bottom: 50),),
@@ -206,6 +308,91 @@ class routeDirections extends Container {
           ),
         ),
         Visibility(
+          visible: _m_parent.m_routeVisibility,
+          child: Container(
+              height: CONTAINER_TWO_HEIGHT,
+              child: FutureBuilder(
+                future: _m_parent.m_geoTracker.getRoutes(),
+                builder: (BuildContext context,
+                    AsyncSnapshot<List<MapRoute>> snapshot){
+                  if(snapshot.hasData){
+                    print("length of snapshot data is ${snapshot.data.length}");
+                    return Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: Container(
+                            child: Card(
+                              color: Colors.white,
+                              child: ListView.builder(
+                                itemCount: snapshot.data.length,
+                                itemBuilder: (BuildContext context, int index){
+                                  var route = snapshot.data;
+                                  return Container(
+                                    padding: EdgeInsets.only(left: 30, right: 30),
+                                    height: 50,
+                                    child: Row(
+                                      children: <Widget>[
+                                        Text.rich(
+                                            TextSpan(
+                                              children: <TextSpan>[
+                                                TextSpan(text: '${route[index].legs[0].duration.text}',
+                                                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17)
+                                                ),
+                                                TextSpan(text: '\n${route[index].legs[0].distance.text}',
+                                                    style: TextStyle(fontSize: 15, color: Colors.grey)
+                                                ),
+                                              ],
+                                            )
+                                        ),
+                                        Spacer(),
+                                        ElevatedButton(
+                                            onPressed: () {
+                                              _m_parent.m_routeVisibility = false;
+                                              _m_parent.m_stepsVisibility = true;
+                                              _m_parent.m_selectedRouteIndex = index;
+                                              _m_parent.update();
+                                            },
+                                            child: Text('GO',
+                                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                                            )
+                                        )
+                                      ],
+                                    ),
+                                  );
+                                },
+                                padding: EdgeInsets.only(top:50, bottom: 50),),
+                            ),
+                          ),
+                        ),
+                      ],
+                    );
+                  }
+                  if(snapshot.hasError){
+                    return Center(
+                        child: Icon(
+                          Icons.error,
+                          color: Colors.red,
+                          size: 82.0,
+                        ));
+                  }
+
+                  return Center(
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            CircularProgressIndicator(),
+                            SizedBox(
+                              height: 20.0,
+                              width: 40.0,
+                            )
+                          ]
+                      )
+                  );
+                },
+              )
+          ),
+        ),
+        Visibility(
           visible: _m_parent.m_stepsVisibility,
           child: Container(
             height: CONTAINER_TWO_HEIGHT,
@@ -229,7 +416,7 @@ class routeDirections extends Container {
 
                                       return ListTile(
                                         title: Text('${index + 1} : ${removeAllHtmlTags(route[_m_parent.m_selectedRouteIndex].legs[0].steps[index].html_instructions)}'),
-                                        subtitle: Text(removeAllHtmlTags(directionMessage(route[_m_parent.m_selectedRouteIndex].legs[0].steps[index])) +'  '+ route[_m_parent.m_selectedRouteIndex].legs[0].steps[index].duration.text),
+                                        subtitle: Text(removeAllHtmlTags(directionMessage(route[_m_parent.m_selectedRouteIndex].legs[0].steps[index])) +'\n'+ route[_m_parent.m_selectedRouteIndex].legs[0].steps[index].duration.text),
                                       );
                                     },
                                   padding: EdgeInsets.only(top:50, bottom: 50),),
