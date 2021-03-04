@@ -45,18 +45,26 @@ class TrainBookerFormState extends State<TrainBookerForm> {
     getLocation();
   }
 
-  void getJsonResponse() async {
+  Future<Results> getJsonResponse() async {
     http.Response response = await get("https://transportapi.com/v3/uk/train/station/BHM///timetable.json?app_id=b1b5d114&app_key=85fa7b99e23aa90b5071c8a6f4a72026&calling_at=EUS&station_detail=calling_at&train_status=passenger");
     if(response.statusCode == 200){
       print(response.body.length);
       Map jsonResponse = jsonDecode(response.body);
+      // Results result = jsonResponse.map((e) => Results.fromJson(e));
+      Results result = Results.fromJson(jsonResponse);
+
       Map<String, dynamic> departuresMap = jsonResponse["departures"];
       List<dynamic> journeyList = departuresMap["all"];
       List<Train> journeys = journeyList.map((e) => Train.fromJson(e)).toList();
       print("aimed departure time is ${journeys[0].aimed_departure_time}");
       print("calling at station is ${journeys[0].station_detail.calling_at[0].station_name}");
 
+      return result;
     }
+    else{
+      throw Exception("Something went wrong, ${response.statusCode}");
+    }
+
 
   }
 
@@ -261,11 +269,13 @@ class TrainBookerFormState extends State<TrainBookerForm> {
                   onPressed: () {
                     // Validate returns true if the form is valid, or false
                     // otherwise.
-                    getJsonResponse();
+
                     if (M_FORMKEY.currentState.validate()) {
                       // If the form is valid, display a Snackbar.
                       Scaffold.of(context)
                           .showSnackBar(SnackBar(content: Text('Starting Location and Destination Saved.')));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) =>
+                          TrainResults(result: getJsonResponse())));
                     }
                   },
                   child: Text('Update Route'),
@@ -275,6 +285,70 @@ class TrainBookerFormState extends State<TrainBookerForm> {
           ],
         ),
       ),
+    );
+  }
+}
+
+class TrainResults extends StatelessWidget {
+  // final Future<List<Train>> journeys;
+  final Future<Results> result;
+  TrainResults({this.result});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Available journeys"),
+      ),
+      body: Center(
+
+        child: FutureBuilder(
+          future: result,
+          builder: (BuildContext context,
+              AsyncSnapshot<Results> snapshot){
+              if(snapshot.hasData){
+                return Row(
+                  children: <Widget>[
+                    Expanded(child: ListView.builder(
+                      itemCount: snapshot.data.departures.all.length,
+                      itemBuilder: (BuildContext context, int index){
+                        var journey = snapshot.data.departures.all[index];
+                        String origin = snapshot.data.station_name;
+                        String departureTime = journey.aimed_departure_time;
+                        String arrivalTime = journey.station_detail.calling_at[0].aimed_arrival_time;
+                        return ListTile(
+                          title:Text( '${origin} --- ${journey.destination_name}'),
+                          subtitle: Text('${departureTime} -------------- ${arrivalTime}'),
+
+                        );
+                      }
+                    ))
+                  ],
+                );
+              }
+              if(snapshot.hasError){
+                return Center(
+                    child: Icon(
+                      Icons.error,
+                      color: Colors.red,
+                      size: 82.0,
+                    ));
+              }
+
+              return Center(
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        CircularProgressIndicator(),
+                        SizedBox(
+                          height: 20.0,
+                          width: 40.0,
+                        )
+                      ]
+                  )
+              );
+          })
+      )
     );
   }
 }

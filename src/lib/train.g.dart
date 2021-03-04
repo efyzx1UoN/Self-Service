@@ -6,6 +6,36 @@ part of 'train.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+Results _$ResultsFromJson(Map<String, dynamic> json) {
+  return Results(
+    station_name: json['station_name'] as String,
+    station_code: json['station_code'] as String,
+    departures: json['departures'] == null
+        ? null
+        : Departures.fromJson(json['departures'] as Map<String, dynamic>),
+  );
+}
+
+Map<String, dynamic> _$ResultsToJson(Results instance) => <String, dynamic>{
+      'station_name': instance.station_name,
+      'station_code': instance.station_code,
+      'departures': instance.departures,
+    };
+
+Departures _$DeparturesFromJson(Map<String, dynamic> json) {
+  return Departures(
+    all: (json['all'] as List)
+        ?.map(
+            (e) => e == null ? null : Train.fromJson(e as Map<String, dynamic>))
+        ?.toList(),
+  );
+}
+
+Map<String, dynamic> _$DeparturesToJson(Departures instance) =>
+    <String, dynamic>{
+      'all': instance.all,
+    };
+
 Train _$TrainFromJson(Map<String, dynamic> json) {
   return Train(
     aimed_departure_time: json['aimed_departure_time'] as String,
