@@ -9,6 +9,7 @@ import 'package:geocoder/geocoder.dart';
 import 'package:http/http.dart';
 import 'main.dart';
 import 'package:flutter_app/SharedStringData.dart';
+import 'package:flutter_app/TrainBookerMap.dart';
 
 
 
@@ -46,18 +47,19 @@ class TrainBookerFormState extends State<TrainBookerForm> {
   }
 
   Future<Results> getJsonResponse() async {
-    http.Response response = await get("https://transportapi.com/v3/uk/train/station/BHM///timetable.json?app_id=b1b5d114&app_key=85fa7b99e23aa90b5071c8a6f4a72026&calling_at=EUS&station_detail=calling_at&train_status=passenger");
+    print("starting location: ${m_data.m_startingLocation}");
+    Map<String, String> stationMap = StationMap.StationInfo;
+    StationMap.StationInfoAddall();
+    print(StationMap.StationInfo.length);
+    String origin  = StationMap.StationInfo[m_data.m_startingLocation];
+    String destination = StationMap.StationInfo[m_data.m_destination];
+    print("origin code: $origin, destination code: $destination");
+    http.Response response = await get("https://transportapi.com/v3/uk/train/station/$origin///timetable.json?app_id=b1b5d114&app_key=85fa7b99e23aa90b5071c8a6f4a72026&calling_at=$destination&station_detail=calling_at&train_status=passenger");
     if(response.statusCode == 200){
       print(response.body.length);
       Map jsonResponse = jsonDecode(response.body);
       // Results result = jsonResponse.map((e) => Results.fromJson(e));
       Results result = Results.fromJson(jsonResponse);
-
-      Map<String, dynamic> departuresMap = jsonResponse["departures"];
-      List<dynamic> journeyList = departuresMap["all"];
-      List<Train> journeys = journeyList.map((e) => Train.fromJson(e)).toList();
-      print("aimed departure time is ${journeys[0].aimed_departure_time}");
-      print("calling at station is ${journeys[0].station_detail.calling_at[0].station_name}");
 
       return result;
     }
