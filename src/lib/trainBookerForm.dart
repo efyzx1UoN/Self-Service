@@ -52,8 +52,8 @@ class TrainBookerFormState extends State<TrainBookerForm> {
     Map<String, String> stationMap = StationMap.StationInfo;
     StationMap.StationInfoAddall();
     print(StationMap.StationInfo.length);
-    String origin  = StationMap.StationInfo[m_data.m_startingLocation];
-    String destination = StationMap.StationInfo[m_data.m_destination];
+    String origin  = StationMap.StationInfo[m_data.m_startingLocation.toLowerCase()];
+    String destination = StationMap.StationInfo[m_data.m_destination.toLowerCase()];
     print("origin code: $origin, destination code: $destination");
     http.Response response = await get("https://transportapi.com/v3/uk/train/station/$origin///timetable.json?app_id=b1b5d114&app_key=85fa7b99e23aa90b5071c8a6f4a72026&calling_at=$destination&station_detail=calling_at&train_status=passenger");
     if(response.statusCode == 200){

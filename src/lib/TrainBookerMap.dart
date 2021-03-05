@@ -87,26 +87,26 @@ class StationMap {
 
     //1111
     StationInfo.addAll({'Hampton (London) ':'HMP','Lee (London)':'LEE'});
-    StationInfo.addAll({'London Blackfriars ':'BFR','London Bridge ':'LBG'});
+    StationInfo.addAll({'london Blackfriars ':'BFR','london Bridge ':'LBG'});
 
-    StationInfo.addAll({'London Cannon Street ':'CST','London Charing Cross':'CHX'});
-    StationInfo.addAll({'London Euston':'EUS','London Fenchurch Street':'FST'});
+    StationInfo.addAll({'london Cannon Street ':'CST','London Charing Cross':'CHX'});
+    StationInfo.addAll({'london euston':'EUS','London Fenchurch Street':'FST'});
 
     //2222
-    StationInfo.addAll({'London Fields ':'LOF','London Kings Cross':'KGX'});
-    StationInfo.addAll({'London Liverpool Street ':'LST','London Marylebone ':'MYB'});
+    StationInfo.addAll({'london fields ':'LOF','london kings cross':'KGX'});
+    StationInfo.addAll({'london liverpool street ':'LST','london marylebone ':'MYB'});
 
-    StationInfo.addAll({'London Paddington':'PAD','London Road (Brighton)':'LRB'});
-    StationInfo.addAll({'London Road (Guildford)':'LRD','London St Pancras (Intl)':'SPX'});
+    StationInfo.addAll({'London paddington':'PAD','london road (brighton)':'LRB'});
+    StationInfo.addAll({'London road (Guildford)':'LRD','london st pancras (Intl)':'SPX'});
 
-    StationInfo.addAll({'London St Pancras International':'STP','London Victoria':'VIC'});
-    StationInfo.addAll({'London Waterloo':'WAT','London Waterloo East':'WAE'});
+    StationInfo.addAll({'london st pancras international':'STP','london victoria':'VIC'});
+    StationInfo.addAll({'london waterloo':'WAT','london waterloo east':'WAE'});
 
-    StationInfo.addAll({'Nottingham':'NOT','Oxford ':'OXF'});
-    StationInfo.addAll({'Birmingham International ':'BHI','Boston':'BSN'});
-    StationInfo.addAll({'Birmingham New Street' : 'BHM', 'Birmingham Moor Street' : 'BMO'});
-    StationInfo.addAll({'Glasgow Central' : 'GLC', 'Leeds' : 'LDS'});
-    StationInfo.addAll({'Liverpool Central' : 'LVC', 'Liverpool Lime Street' : 'LVC'});
+    StationInfo.addAll({'nottingham':'NOT','oxford ':'OXF'});
+    StationInfo.addAll({'birmingham international ':'BHI','Boston':'BSN'});
+    StationInfo.addAll({'birmingham new street' : 'BHM', 'birmingham moor street' : 'BMO'});
+    StationInfo.addAll({'glasgow central' : 'GLC', 'leeds' : 'LDS'});
+    StationInfo.addAll({'liverpool central' : 'LVC', 'liverpool lime street' : 'LVC'});
 
   }
 }
