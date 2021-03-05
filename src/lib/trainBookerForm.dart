@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/taxi/taxiPlanner.dart';
 import 'package:flutter_app/train.dart';
@@ -319,9 +320,9 @@ class TrainResults extends StatelessWidget {
                         String departureTime = journey.aimed_departure_time;
                         String arrivalTime = journey.station_detail.calling_at[0].aimed_arrival_time;
                         return ListTile(
+                          contentPadding: const EdgeInsets.all(10),
                           title:Text( '${origin} --- ${journey.destination_name}'),
                           subtitle: Text('${departureTime} -------------- ${arrivalTime}'),
-
                         );
                       }
                     ))
