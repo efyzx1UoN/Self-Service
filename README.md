@@ -12,12 +12,9 @@ Our Task Board is being managed on Trello, ran by Callum.<br/>
 [Link](https://trello.com/b/NtE3xafn/sprint-4)<br/>
 
 
-## Current Task: Sprint #4
+## Current Task: Sprint #5
 ### Brief
-- Planning to use the short meeting plans.
-- Catchup on user stories.
-- Finish Route Planner by the end of week 1?
-- Finish Train Planner by the end of week 2?
+- To be discussed 08/03/2021
 
 
 ### Resources
@@ -98,6 +95,8 @@ Classes should have single responsibility. (A class should not do more than the 
 | 26/02/2020 [Major] | User stories. <br/> Plans going ahead for the sprint (workload). | Allocated rest of user stories <br/> Finishing Route Planner by Monday <br/> (Hopefully) finishing TrainBooker by end of sprint. | Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo <br/>Shuxiang Hu<br/>Zihui Zu|
 | 01/02/2020 [Major] | Update on progress. <br/> Issues with Train Booker inputs | On track. Allocated new user stories to Trello going forward. <br/> Peer programmed (Tom and Ashley) on fixing input boxes for date and time. Merged to master. | Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo <br/>Shuxiang Hu<br/>Zihui Zu|
 | 03/02/2020 [Major] | Merging branches <br/> Discussion on parsing data | Polylines merged onto master. TrainBooker sub-branches merged. <br/> Peer programmed (group) on polylines and train booker | Callum Davis<br>Thomas Murphy<br/>Ashley Nnawugo <br/>Shuxiang Hu<br/>Zihui Zu<br>(To be filled in: Zixiang Jin)|
+| 05/03/2020 [Major] | Meeting with Steve<br/> Demos </br> Plans for Sprint #5 | Demo shown of working multiple polylines and beginning of train planner page <br/> Good progress made. <br/>EBI: Take average of user story completion to help decide the count for next sprint.| Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo <br/>Shuxiang Hu<br/>Zihui Zu <br/> Steve Brooks|
+
 
 ### Assessment Deliverables
 |  |                                       |
