@@ -19,6 +19,10 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter_app/route.dart';
 
+/// Class: geoTracker
+///
+/// Description: Receive user start location and end location and setup the data
+/// needed for displaying the results to user
 class geoTracker {
   List<MapRoute> m_routes;
   PolylinePoints _m_polylinePoints;
@@ -52,7 +56,9 @@ class geoTracker {
   LatLng _m_locationCoordinates;
   ObserverState _m_listener;
 
+  // travel mode corresponds to driving, transit, walking
   String m_travelMode = "transit";
+  // If the travel mode is transit, transit mode corresponds to train, bus
   String m_transitMode = "train";
 
   int m_numOfRoutes;
@@ -97,6 +103,9 @@ class geoTracker {
     _m_currentLocation = location;
   }
 
+  /// Function: getLocation()
+  ///
+  /// Description: Get user's current location from Geolocator
   void getLocation() async {
       Position coords = await Geolocator.getCurrentPosition(
           desiredAccuracy: LocationAccuracy.high);
@@ -131,7 +140,9 @@ class geoTracker {
     _m_listener.update();
   }
 
-
+  /// Function: setPolylines()
+  ///
+  /// Description: Display the polylines on google map after calling getRoutes()
   void setPolylines() async{
     print("start");
     _m_polyline.clear();
@@ -212,20 +223,27 @@ class geoTracker {
 
   }
 
+    /// Function: getRoutes()
+    ///
+    /// Description: Parse json data, set up corresponding polylines and return the
+    /// json response in a list
     Future<List<MapRoute>> getRoutes() async {
     double originLong = _m_startLocation.longitude;
     double originLat = _m_startLocation.latitude;
     double destinationLong = _m_endLocation.longitude;
     double destinationLat = _m_endLocation.latitude;
+    //request the json response for different routes
     http.Response response = await get(
         'https://maps.googleapis.com/maps/api/directions/json?origin=$originLat,$originLong&destination=$destinationLat,$destinationLong&region=uk&key=AIzaSyAjBVD5OeZbBKW0o_tOKfcOtuCPVIuyovE&alternatives=true&mode=$m_travelMode&transit_mode=$m_transitMode');
     print("$m_travelMode&transit_mode=$m_transitMode");
+    // if the data is valid
     if (response.statusCode == HTTP_OKAY){
         Map routesData = jsonDecode(response.body);
         print("Length of body:" + response.body.length.toString());
         List<dynamic> routesList = routesData["routes"];
         print(routesData);
         print(routesList);
+        // sort the response in order of travel duration (shortest to longest)
         routesList.sort((a,b) => a['legs'][0]['duration']['value'].toString().compareTo(b['legs'][0]['duration']['value'].toString()));
         print(" ");
         m_numOfRoutes = routesList.length;
