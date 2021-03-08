@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/taxi/taxiAlbum.dart';
 import 'package:flutter_app/taxi/taxiPlanner.dart';
+import 'package:flutter_app/trainMapManager.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:geolocator/geolocator.dart';
@@ -29,7 +30,8 @@ class _Train_BookerPageState extends State<Train_BookerPage> {
   void initState() {
     super.initState();
     m_futureAlbum = fetchAlbum();
-
+    
+    TrainMapManager.instance; //Initialise train codes.
   }
 
   void _pageHome() {
