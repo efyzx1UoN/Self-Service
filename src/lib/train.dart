@@ -4,6 +4,26 @@ import 'package:json_annotation/json_annotation.dart';
 part 'train.g.dart';
 
 @JsonSerializable()
+class Results {
+  String station_name;
+  String station_code;
+  Departures departures;
+
+  Results({this.station_name, this.station_code, this.departures});
+
+  factory Results.fromJson(Map<String, dynamic> json) => _$ResultsFromJson(json);
+}
+
+@JsonSerializable()
+class Departures {
+  List<Train> all;
+
+  Departures({this.all});
+
+  factory Departures.fromJson(Map<String, dynamic> json) => _$DeparturesFromJson(json);
+}
+
+@JsonSerializable()
 class Train {
   String aimed_departure_time;
   String destination_name;
