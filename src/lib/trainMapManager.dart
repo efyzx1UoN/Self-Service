@@ -17,10 +17,12 @@ class TrainMapManager {
 
 
   void generateMap() async {
+    ///Open Excel Spreadsheet
     final directory = await getApplicationDocumentsDirectory();
     ByteData data = await rootBundle.load("assets/trainmap.xlsx");
     List<int> contents = data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
 
+    ///Read field data from Excel Spreadsheet, adding rows to the map
     var excel = ex.Excel.decodeBytes(contents);
     int i = 0;
     for (var table in excel.tables.keys) {
@@ -29,11 +31,11 @@ class TrainMapManager {
       print(excel.tables[table].maxRows);
       for (var row in excel.tables[table].rows) {
         stationInfo.addAll({row[0].toString().toLowerCase():row[1]});
-        print("Map: "+row[1]+" : "+row[0].toString().toLowerCase());
+        //print("Map: "+row[1]+" : "+row[0].toString().toLowerCase());
         i++;
       }
     }
-    print("RECORD COUNT: "+i.toString());
+    //print("RECORD COUNT: "+i.toString());
   }
 
 }

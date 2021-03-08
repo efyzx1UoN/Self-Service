@@ -145,8 +145,7 @@ class TrainBookerFormState extends State<TrainBookerForm> {
               ),
             ),
             Row(
-
-                    children: [
+                children: [
                            Expanded(
                                         child: ElevatedButton(
                                             onPressed: () {
