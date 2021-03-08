@@ -31,11 +31,9 @@ class TrainMapManager {
       print(excel.tables[table].maxRows);
       for (var row in excel.tables[table].rows) {
         stationInfo.addAll({row[0].toString().toLowerCase():row[1]});
-        //print("Map: "+row[1]+" : "+row[0].toString().toLowerCase());
-        i++;
+        print("Map: "+row[1]+" : "+row[0].toString().toLowerCase());
       }
     }
-    //print("RECORD COUNT: "+i.toString());
   }
 
 }
