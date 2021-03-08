@@ -106,7 +106,7 @@ class StationMap {
     StationInfo.addAll({'birmingham international ':'BHI','Boston':'BSN'});
     StationInfo.addAll({'birmingham new street' : 'BHM', 'birmingham moor street' : 'BMO'});
     StationInfo.addAll({'glasgow central' : 'GLC', 'leeds' : 'LDS'});
-    StationInfo.addAll({'liverpool central' : 'LVC', 'liverpool lime street' : 'LVC'});
+    StationInfo.addAll({'liverpool central' : 'LVC', 'liverpool lime street' : 'LIV'});
 
   }
 }
