@@ -312,8 +312,9 @@ class TrainResults extends StatelessWidget {
               if(snapshot.hasData){
                 return Row(
                   children: <Widget>[
-                    Expanded(child: ListView.builder(
+                    Expanded(child: ListView.separated(
                       itemCount: snapshot.data.departures.all.length,
+                      separatorBuilder: (BuildContext context, int index) => Divider(),
                       itemBuilder: (BuildContext context, int index){
                         var journey = snapshot.data.departures.all[index];
                         String origin = snapshot.data.station_name;
