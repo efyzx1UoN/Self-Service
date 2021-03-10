@@ -181,6 +181,10 @@ class RoutePlannerFormState extends ObserverState {
     });
   }
 
+  void removeUnselectedRoutes(){
+    print('Hi\n\n\n\n\n\n\n\n\n\n\n\n');
+    m_geoTracker.removeUnselectedRoutes(m_selectedRouteIndex);
+  }
   @override
   Widget build(BuildContext context) {
     // Build a Form widget using the _formKey created above.

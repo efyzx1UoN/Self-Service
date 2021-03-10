@@ -198,9 +198,11 @@ class routeDirections extends Container {
                                             children: <Widget>[
                                               ElevatedButton(
                                                   onPressed: () {
+                                                    print('Hello\n\n\n\n\n\n\n\n\n\n\n');
                                                     _m_parent.m_trainVisibility = false;
                                                     _m_parent.m_stepsVisibility = true;
                                                     _m_parent.m_selectedRouteIndex = index;
+                                                    _m_parent.removeUnselectedRoutes();
                                                     _m_parent.update();
                                                   },
                                                 child: Container(
@@ -364,6 +366,7 @@ class routeDirections extends Container {
                                               _m_parent.m_routeVisibility = false;
                                               _m_parent.m_stepsVisibility = true;
                                               _m_parent.m_selectedRouteIndex = index;
+                                              _m_parent.removeUnselectedRoutes();
                                               _m_parent.update();
                                             },
                                             child: Text('GO',
