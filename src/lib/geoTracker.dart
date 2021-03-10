@@ -56,6 +56,11 @@ class geoTracker {
   String _m_startLocationStr = "";
   LatLng _m_locationCoordinates;
   ObserverState _m_listener;
+  String _m_endLocationStr = "";
+  Location _m_startLocation = new Location(longitude: 0, latitude: 0), _m_endLocation = new Location(longitude: 0, latitude: 0);
+  final Geolocator _geolocator  = Geolocator();
+  List<LatLng> _m_routeCoords;
+  final Set<Polyline> _m_polyline = {};
 
   // travel mode corresponds to driving, transit, walking
   String m_travelMode = "transit";
@@ -88,11 +93,113 @@ class geoTracker {
     _m_polylinePoints = value;
   }
 
-  String _m_endLocationStr = "";
-  Location _m_startLocation = new Location(longitude: 0, latitude: 0), _m_endLocation = new Location(longitude: 0, latitude: 0);
-  final Geolocator _geolocator  = Geolocator();
-  List<LatLng> _m_routeCoords;
-  final Set<Polyline> _m_polyline = {};
+
+  Map<PolylineId, Polyline> get m_polylines => _m_polylines;
+
+  set m_polylines(Map<PolylineId, Polyline> value) {
+    _m_polylines = value;
+  }
+
+  List<LatLng> get m_polylineCoordinates => _m_polylineCoordinates;
+
+  set m_polylineCoordinates(List<LatLng> value) {
+    _m_polylineCoordinates = value;
+  }
+
+  Position get m_startCoordinates => _m_startCoordinates;
+
+  set m_startCoordinates(Position value) {
+    _m_startCoordinates = value;
+  }
+
+  Position get m_destinationCoordinates => _m_destinationCoordinates;
+
+  set m_destinationCoordinates(Position value) {
+    _m_destinationCoordinates = value;
+  }
+
+  Set<Marker> get m_markers => _m_markers;
+
+  set m_markers(Set<Marker> value) {
+    _m_markers = value;
+  }
+
+  GoogleMapController get m_mapController => _m_mapController;
+
+  set m_mapController(GoogleMapController value) {
+    _m_mapController = value;
+  }
+
+  List<Album> get m_directions => _m_directions;
+
+  set m_directions(List<Album> value) {
+    _m_directions = value;
+  }
+
+  double get m_lat => _m_lat;
+
+  set m_lat(double value) {
+    _m_lat = value;
+  }
+
+  double get m_long => _m_long;
+
+  set m_long(double value) {
+    _m_long = value;
+  }
+
+  String get m_responseBody => _m_responseBody;
+
+  set m_responseBody(String value) {
+    _m_responseBody = value;
+  }
+
+  List<Placemark> get m_destinationPlacemark => _m_destinationPlacemark;
+
+  set m_destinationPlacemark(List<Placemark> value) {
+    _m_destinationPlacemark = value;
+  }
+
+  GoogleMapPolyline get m_googleMapPolyline => _m_googleMapPolyline;
+
+  set m_googleMapPolyline(GoogleMapPolyline value) {
+    _m_googleMapPolyline = value;
+  }
+
+  GoogleMap get m_map => _m_map;
+
+  set m_map(GoogleMap value) {
+    _m_map = value;
+  }
+
+  String get m_currentLocation => _m_currentLocation;
+
+  set m_currentLocation(String value) {
+    _m_currentLocation = value;
+  }
+
+  Location get m_startLocation => _m_startLocation;
+
+  set m_startLocation(Location value) {
+    _m_startLocation = value;
+  }
+
+  get m_endLocation => _m_endLocation;
+
+  set m_endLocation(value) {
+    _m_endLocation = value;
+  }
+
+  Geolocator get geolocator => _geolocator;
+
+  List<LatLng> get m_routeCoords => _m_routeCoords;
+
+  set m_routeCoords(List<LatLng> value) {
+    _m_routeCoords = value;
+  }
+
+  Set<Polyline> get m_polyline => _m_polyline;
+
 
   String get m_endLocationStr => _m_endLocationStr;
 
@@ -136,6 +243,11 @@ class geoTracker {
       _m_listener.update();
     }
 
+  /// Function: onMapCreated()
+  ///
+  /// Description: Called upon the map loading, set the controller to facilitate
+  /// usage of the map and request for the display to be updated to show the
+  /// map.
   void _onMapCreated(GoogleMapController controller) {
     _m_mapController = controller;
     _m_listener.update();
@@ -308,8 +420,6 @@ class geoTracker {
           print("End of steps loop\n");
         }
 
-
-
         List<MapRoute> mapper = routesList.map((json) => MapRoute.fromJson(json)).toList();
 
         return routesList.map((json) => MapRoute.fromJson(json)).toList();
@@ -317,110 +427,4 @@ class geoTracker {
       //throw Exception("Something went wrong, ${response.statusCode}");
     }
   }
-
-  Map<PolylineId, Polyline> get m_polylines => _m_polylines;
-
-  set m_polylines(Map<PolylineId, Polyline> value) {
-    _m_polylines = value;
-  }
-
-  List<LatLng> get m_polylineCoordinates => _m_polylineCoordinates;
-
-  set m_polylineCoordinates(List<LatLng> value) {
-    _m_polylineCoordinates = value;
-  }
-
-  Position get m_startCoordinates => _m_startCoordinates;
-
-  set m_startCoordinates(Position value) {
-    _m_startCoordinates = value;
-  }
-
-  Position get m_destinationCoordinates => _m_destinationCoordinates;
-
-  set m_destinationCoordinates(Position value) {
-    _m_destinationCoordinates = value;
-  }
-
-  Set<Marker> get m_markers => _m_markers;
-
-  set m_markers(Set<Marker> value) {
-    _m_markers = value;
-  }
-
-  GoogleMapController get m_mapController => _m_mapController;
-
-  set m_mapController(GoogleMapController value) {
-    _m_mapController = value;
-  }
-
-  List<Album> get m_directions => _m_directions;
-
-  set m_directions(List<Album> value) {
-    _m_directions = value;
-  }
-
-  double get m_lat => _m_lat;
-
-  set m_lat(double value) {
-    _m_lat = value;
-  }
-
-  double get m_long => _m_long;
-
-  set m_long(double value) {
-    _m_long = value;
-  }
-
-  String get m_responseBody => _m_responseBody;
-
-  set m_responseBody(String value) {
-    _m_responseBody = value;
-  }
-
-  List<Placemark> get m_destinationPlacemark => _m_destinationPlacemark;
-
-  set m_destinationPlacemark(List<Placemark> value) {
-    _m_destinationPlacemark = value;
-  }
-
-  GoogleMapPolyline get m_googleMapPolyline => _m_googleMapPolyline;
-
-  set m_googleMapPolyline(GoogleMapPolyline value) {
-    _m_googleMapPolyline = value;
-  }
-
-  GoogleMap get m_map => _m_map;
-
-  set m_map(GoogleMap value) {
-    _m_map = value;
-  }
-
-  String get m_currentLocation => _m_currentLocation;
-
-  set m_currentLocation(String value) {
-    _m_currentLocation = value;
-  }
-
-  Location get m_startLocation => _m_startLocation;
-
-  set m_startLocation(Location value) {
-    _m_startLocation = value;
-  }
-
-  get m_endLocation => _m_endLocation;
-
-  set m_endLocation(value) {
-    _m_endLocation = value;
-  }
-
-  Geolocator get geolocator => _geolocator;
-
-  List<LatLng> get m_routeCoords => _m_routeCoords;
-
-  set m_routeCoords(List<LatLng> value) {
-    _m_routeCoords = value;
-  }
-
-  Set<Polyline> get m_polyline => _m_polyline;
 }

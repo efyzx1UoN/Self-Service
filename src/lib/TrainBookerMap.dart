@@ -1,3 +1,7 @@
+/// Class: StationMap
+/// Deprecated
+/// Description: Stores pre-defined database of all acceptable codes and their
+/// names.
 class StationMap {
   static Map<String, String> StationInfo = new Map();
   static StationInfoAddall(){

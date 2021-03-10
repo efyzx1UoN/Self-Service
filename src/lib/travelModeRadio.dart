@@ -3,13 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_app/routePlanner.dart';
 
-
+/// Class: TravelModeRadio
+///
+/// Description: Section of RoutePlannerForm that handles transit options.
 class TravelModeRadio extends StatefulWidget{
   RoutePlannerFormState m_parent;
   TravelModeRadio(RoutePlannerFormState routePlannerFormState){
     m_parent = routePlannerFormState;
   }
-
 
   @override
   _TravelModeRadioState createState() {
@@ -17,6 +18,10 @@ class TravelModeRadio extends StatefulWidget{
   }
 }
 
+/// Class: TravelModeRadioState
+///
+/// Description: State containing all currently active widgets and how to
+/// operate on them.
 class _TravelModeRadioState extends State<TravelModeRadio>{
   List<String> lst = ['train','walk','car','bus'];
   int selectedIndex = 0;
@@ -36,6 +41,10 @@ class _TravelModeRadioState extends State<TravelModeRadio>{
     );
   }
 
+  /// Function: changeIndex
+  ///
+  /// Description: Take a new index of the radio and set the observing form's
+  /// selected travel and transit mode.
   void changeIndex(int index){
     setState(() {
       selectedIndex = index;

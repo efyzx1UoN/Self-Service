@@ -8,6 +8,10 @@ void main() {
   runApp(MyApp());
 }
 
+/// Class: MyApp
+///
+/// Description: The instance of the app. Initialise display and title before
+/// opening the home page.
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
@@ -23,6 +27,10 @@ class MyApp extends StatelessWidget {
   }
 }
 
+/// Class: homePage
+///
+/// Description: Create a widget for the home page.
+///
 class _homePage extends StatefulWidget {
   _homePage({Key key, this.title}) : super(key: key);
   final String title;
@@ -31,6 +39,10 @@ class _homePage extends StatefulWidget {
   _homePageState createState() => _homePageState();
 }
 
+/// Class: homePageState
+///
+/// Description: State containing all currently active widgets and how to
+/// operate on them.
 class _homePageState extends State<_homePage> {
   Data _m_data = new Data();
 
@@ -88,6 +100,9 @@ class _homePageState extends State<_homePage> {
   }
 }
 
+/// Function: createRoute
+///
+/// Description: Create animated page transition when switching page.
 Route _createRoute(StatefulWidget page) {
   return  PageRouteBuilder(
     pageBuilder: (context, animation, secondaryAnimation) => page,

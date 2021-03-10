@@ -6,6 +6,10 @@ import 'package:flutter_app/routePlanner.dart';
 import 'package:flutter_app/route.dart';
 import 'package:flutter_app/times.dart';
 
+/// Class: routeDirections
+///
+/// Description: Specialized container with route directions portion of the
+/// RoutePlanner page.
 class routeDirections extends Container {
   final double CONTAINER_TWO_HEIGHT = 500;
   RoutePlannerFormState _m_parent;
@@ -14,7 +18,10 @@ class routeDirections extends Container {
     this._m_parent = parent;
   }
 
-
+  /// Function: removeAllHtmlTags
+  ///
+  /// Description: Performs regular expression check on string, removing all
+  /// HTML syntax characters from input string.
   String removeAllHtmlTags(String htmlText) {
     RegExp exp = RegExp(
         r"<[^>]*>",
@@ -25,6 +32,10 @@ class routeDirections extends Container {
     return htmlText.replaceAll(exp, ' ');
   }
 
+  /// Function: getTransitDetails
+  ///
+  /// Description: Iterates through input MapRoute and returns the details in
+  /// an organised list of strings.
   List<String> getTransitDetails(MapRoute route){
     var stationCounter = 0;
     String startStation, endStation, startTime, endTime, transferMsg;
@@ -61,7 +72,10 @@ class routeDirections extends Container {
     return transit_details;
   }
 
-
+  /// Function: directionMessage
+  ///
+  /// Description: Generates and returns a message depending on the travel mode
+  /// of the step provided.
   String directionMessage(Steps step) {
     String string = step.travel_mode+" ";
     switch (step.travel_mode){

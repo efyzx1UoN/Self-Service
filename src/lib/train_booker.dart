@@ -12,6 +12,9 @@ import 'package:flutter_app/trainBookerForm.dart';
 import 'package:flutter_app/SharedStringData.dart';
 
 
+/// Class: TrainBookerPage
+///
+/// Description: Train Booker Page.
 class Train_BookerPage extends StatefulWidget {
   Train_BookerPage({Key key, this.M_TITLE}) : super(key: key);
 
@@ -21,6 +24,11 @@ class Train_BookerPage extends StatefulWidget {
   _Train_BookerPageState createState() => _Train_BookerPageState();
 
 }
+
+/// Class: TrainBookerPageState
+///
+/// Description: State containing all currently active widgets and how to
+/// operate on them.
 class _Train_BookerPageState extends State<Train_BookerPage> {
   String m_startingLocation;
   String m_destination;
@@ -34,6 +42,9 @@ class _Train_BookerPageState extends State<Train_BookerPage> {
     TrainMapManager.instance; //Initialise train codes.
   }
 
+  /// Function: pageHome
+  /// Deprecated
+  /// Description: Returns to the home page of the app.
   void _pageHome() {
     Navigator.of(context).popUntil((route) => route.isFirst);
   }
@@ -74,6 +85,10 @@ class _Train_BookerPageState extends State<Train_BookerPage> {
   }
 }
 
+
+/// Class: MyCustomForm
+///
+/// Description: Creates form for selecting travel times.
 class MyCustomForm extends StatefulWidget {
   @override
   MyCustomFormState createState() {
@@ -81,6 +96,11 @@ class MyCustomForm extends StatefulWidget {
   }
 
 }
+
+/// Class: MyCustomFormState
+///
+/// Description: State containing all currently active widgets and how to
+/// operate on them.
 class MyCustomFormState extends State<MyCustomForm> {
   final _formKey = GlobalKey<FormState>();
   Data data = new Data();
@@ -98,6 +118,9 @@ class MyCustomFormState extends State<MyCustomForm> {
     getLocation();
   }
 
+  /// Function: getLocation
+  ///
+  /// Description: Receive Co-ordinates from Geolocator and update global state.
   void getLocation() async {
     double lat;
     double long;

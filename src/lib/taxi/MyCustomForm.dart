@@ -7,6 +7,10 @@ import 'package:geocoder/geocoder.dart';
 import '../main.dart';
 import '../routePlanner.dart';
 
+
+/// Class: MyCustomForm
+///
+/// Description: Creates a widget for the input location form.
 class MyCustomForm extends StatefulWidget {
   @override
   RoutePlannerFormState createState() {

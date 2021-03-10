@@ -9,6 +9,10 @@ import 'package:geocoder/geocoder.dart';
 import '../main.dart';
 import '../routePlanner.dart';
 
+/// Class: TaxiPlannerPageState
+///
+/// Description: State containing all currently active widgets on page and how to
+/// operate on them.
 class TaxiPlannerPageState extends State<TaxiPlannerPage> {
   String m_startingLocation;
   String m_destination;
@@ -21,6 +25,9 @@ class TaxiPlannerPageState extends State<TaxiPlannerPage> {
 
   }
 
+  /// Function: PageHome()
+  /// Deprecated
+  /// Description: returns to home page of the app.
   void _pageHome() {
     Navigator.of(context).popUntil((route) => route.isFirst);
   }

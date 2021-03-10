@@ -20,7 +20,9 @@ import 'observerState.dart';
 import 'travelModeRadio.dart';
 import 'package:path/path.dart' as pth;
 
-
+/// Class: RoutePlannerPage
+///
+/// Description: The Route Planner Page
 class RoutePlannerPage extends StatefulWidget {
   RoutePlannerPage({Key key, this.m_title}) : super(key: key);
   final String m_title;
@@ -29,6 +31,10 @@ class RoutePlannerPage extends StatefulWidget {
   _RoutePlannerPageState createState() => _RoutePlannerPageState();
 }
 
+/// Function: RoutePlannerPageState
+///
+/// Description: State containing all currently active widgets on page and how to
+/// operate on them.
 class _RoutePlannerPageState extends ObserverState {
   static const double SIDE_EDGE = 20;
   void _pageHome() {
@@ -58,6 +64,9 @@ class _RoutePlannerPageState extends ObserverState {
   }
 }
 
+/// Class: RoutePlannerForm
+///
+/// Description: The input details form at the top of a RoutePlanner page.
 class RoutePlannerForm extends StatefulWidget {
   @override
   RoutePlannerFormState createState() {
@@ -65,6 +74,10 @@ class RoutePlannerForm extends StatefulWidget {
   }
 }
 
+/// Class: RoutePlannerFormState
+///
+/// Description: State containing all currently active widgets on the form and
+/// how to operate on them.
 class RoutePlannerFormState extends ObserverState {
   final _m_geoTracker = new geoTracker();
   final _formKey = GlobalKey<FormState>();
@@ -85,9 +98,27 @@ class RoutePlannerFormState extends ObserverState {
   bool m_stepsVisibility = false;
   bool m_trainVisibility = true;
 
+  TravelModeRadio get m_travelModeRadio => _m_travelModeRadio;
+
+  Data get m_data => _m_data;
+
+  set m_data(Data value) {
+    _m_data = value;
+  }
+
+  get m_startAddressController => _m_startAddressController;
+
+  get m_endAddressController => _m_endAddressController;
+
+  get m_geoTracker => _m_geoTracker;
+
+  bool get m_mapVisible => _m_mapVisible;
+
+  set m_mapVisible(bool value) {
+    _m_mapVisible = value;
+  }
+
   TravelModeRadio _m_travelModeRadio;
-
-
 
   set m_travelModeRadio(TravelModeRadio value) {
     _m_travelModeRadio = value;
@@ -298,26 +329,6 @@ class RoutePlannerFormState extends ObserverState {
         ),
       ),
     );
-  }
-
-  TravelModeRadio get m_travelModeRadio => _m_travelModeRadio;
-
-  Data get m_data => _m_data;
-
-  set m_data(Data value) {
-    _m_data = value;
-  }
-
-  get m_startAddressController => _m_startAddressController;
-
-  get m_endAddressController => _m_endAddressController;
-
-  get m_geoTracker => _m_geoTracker;
-
-  bool get m_mapVisible => _m_mapVisible;
-
-  set m_mapVisible(bool value) {
-    _m_mapVisible = value;
   }
 }
 

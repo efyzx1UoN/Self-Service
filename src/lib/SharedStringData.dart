@@ -10,6 +10,10 @@ import 'main.dart';
 import 'package:flutter_app/trainBookerForm.dart';
 import 'package:flutter_app/routePlanner.dart';
 
+/// Class: Data
+///
+/// Description: Storage class to contain location details to transfer from
+/// other pages with a route planner.
 class Data {
   String _m_destination = "nowhere";
   String _m_startingLocation = "nowhere";

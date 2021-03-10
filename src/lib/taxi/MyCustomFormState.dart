@@ -8,7 +8,10 @@ import '../main.dart';
 import '../routePlanner.dart';
 import 'package:flutter_app/SharedStringData.dart';
 
-
+/// Class: MyCustomFormState
+///
+/// Description: State containing all currently active widgets and how to
+/// operate on them.
 class MyCustomFormState extends State<RoutePlannerForm> {
   final _formKey = GlobalKey<FormState>();
   Data _m_data = new Data();
@@ -21,6 +24,9 @@ class MyCustomFormState extends State<RoutePlannerForm> {
     getLocation();
   }
 
+  /// Function: getLocation
+  ///
+  /// Description: Receive Co-ordinates from Geolocator and update global state.
   void getLocation() async {
     double lat;
     double long;

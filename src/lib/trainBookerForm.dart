@@ -13,7 +13,9 @@ import 'package:flutter_app/SharedStringData.dart';
 import 'package:flutter_app/trainMapManager.dart';
 
 
-
+/// Class: TrainBookerPage
+///
+/// Description: Train Booker Page.
 class TrainBookerForm extends StatefulWidget {
   @override
   TrainBookerFormState createState() {
@@ -22,6 +24,10 @@ class TrainBookerForm extends StatefulWidget {
 
 }
 
+/// Class: TrainBookerFormState
+///
+/// Description: State containing all currently active widgets on the form and
+/// prepares time data for its own display.
 class TrainBookerFormState extends State<TrainBookerForm> {
   final M_FORMKEY = GlobalKey<FormState>();
   Data m_data = new Data();
@@ -47,6 +53,11 @@ class TrainBookerFormState extends State<TrainBookerForm> {
     getLocation();
   }
 
+  /// Function: getJsonResponse
+  /// Exception: HTTP error code throws exception.
+  /// Description: Convert data into API's paramter format and query the API,
+  /// before returning the JSON response. If there is a HTTP error, throw an
+  /// exception.
   Future<Results> getJsonResponse() async {
     print("starting location: ${m_data.m_startingLocation}");
     Map<String, String> stationMap = TrainMapManager.instance.stationInfo;
@@ -66,10 +77,11 @@ class TrainBookerFormState extends State<TrainBookerForm> {
     else{
       throw Exception("Something went wrong, ${response.statusCode}");
     }
-
-
   }
 
+  /// Function: getLocation
+  ///
+  /// Description: Receive Co-ordinates from Geolocator and update global state.
   void getLocation() async {
     double lat;
     double long;
@@ -88,12 +100,19 @@ class TrainBookerFormState extends State<TrainBookerForm> {
     });
 
   }
+
+  /// Function: showReturn
+  ///
+  /// Description: Displays return journey options.
   void showReturn() {
     setState(() {
       _hidden = !_hidden;
     });
   }
 
+  /// Function: hiddenReturn
+  ///
+  /// Description: Hides return journey options.
   void hiddenReturn() {
     setState(() {
       _hidden = false;
@@ -290,6 +309,9 @@ class TrainBookerFormState extends State<TrainBookerForm> {
   }
 }
 
+/// Class: TrainResults
+///
+/// Description: Response from API portion of Train Booker Page.
 class TrainResults extends StatelessWidget {
   // final Future<List<Train>> journeys;
   final Future<Results> result;

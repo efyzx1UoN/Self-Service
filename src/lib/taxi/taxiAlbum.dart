@@ -7,6 +7,9 @@ import 'package:geocoder/geocoder.dart';
 import '../main.dart';
 import 'TaxiPlannerPageState.dart';
 
+/// Class: Album
+///
+/// Description: Stores JSON response data for taxi booker API response.
 class Album {
   final int m_userId;
   final int m_id;
@@ -14,7 +17,11 @@ class Album {
 
   Album({this.m_userId, this.m_id, this.m_title});
 
+  /// Function: Album (Constructor)
+  ///
+  /// Description: Create datatype containing JSON response data
   factory Album.fromJson(Map<String, dynamic> json) {
+
     return Album(
       m_userId: json['userId'],
       m_id: json['id'],
@@ -22,7 +29,9 @@ class Album {
     );
   }
 }
-
+  /// Function fetchAlbum()
+  ///
+  /// Description: Perform HTTP request and receive JSON response
 Future<Album> fetchAlbum() async {
   final response = await http.get("https://m.uber.com/?client_id=");
 
