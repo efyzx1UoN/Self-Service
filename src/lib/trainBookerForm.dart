@@ -317,6 +317,7 @@ class TrainResults extends StatelessWidget {
   final Future<Results> result;
   TrainResults({this.result});
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -344,6 +345,9 @@ class TrainResults extends StatelessWidget {
                           contentPadding: const EdgeInsets.all(10),
                           title:Text( '${origin} --- ${journey.destination_name}'),
                           subtitle: Text('${departureTime} -------------- ${arrivalTime}'),
+                          onTap: () {
+                            nextScreen(context);
+                          },
                         );
                       }
                     ))
@@ -374,5 +378,29 @@ class TrainResults extends StatelessWidget {
           })
       )
     );
+  }
+  /// Function: _nextScreen
+  ///
+  /// Description: Navigates to the next Summary Page
+  void nextScreen(BuildContext context){
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => TrainSummary()));
+  }
+}
+
+///Class: Train Summary
+///
+/// Description: Shows summary of specified Train journey
+class TrainSummary extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Train Journey Summary"),
+      ),
+      body: Center(
+
+      ),
+    );
+    throw UnimplementedError();
   }
 }
