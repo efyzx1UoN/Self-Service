@@ -289,7 +289,6 @@ class TrainBookerFormState extends State<TrainBookerForm> {
                   onPressed: () {
                     // Validate returns true if the form is valid, or false
                     // otherwise.
-
                     if (M_FORMKEY.currentState.validate()) {
                       // If the form is valid, display a Snackbar.
                       Scaffold.of(context)
@@ -331,6 +330,7 @@ class TrainResults extends StatelessWidget {
           builder: (BuildContext context,
               AsyncSnapshot<Results> snapshot){
               if(snapshot.hasData){
+                print("Im building!!\n\n\n\n\n\n\n\n\n\n\n");
                 return Row(
                   children: <Widget>[
                     Expanded(child: ListView.separated(
@@ -341,13 +341,101 @@ class TrainResults extends StatelessWidget {
                         String origin = snapshot.data.station_name;
                         String departureTime = journey.aimed_departure_time;
                         String arrivalTime = journey.station_detail.calling_at[0].aimed_arrival_time;
-                        return ListTile(
-                          contentPadding: const EdgeInsets.all(10),
-                          title:Text( '${origin} --- ${journey.destination_name}'),
-                          subtitle: Text('${departureTime} -------------- ${arrivalTime}'),
-                          onTap: () {
-                            nextScreen(context);
-                          },
+                        // return ListTile(
+                        //   contentPadding: const EdgeInsets.all(10),
+                        //   title:Text( '${origin} --- ${journey.destination_name}'),
+                        //   subtitle: Text('${departureTime} -------------- ${arrivalTime}'),
+                        //   onTap: () {
+                        //     nextScreen(context);
+                        //   },
+                        // );
+                        return Container(
+                          padding: EdgeInsets.only(left: 10, right: 10, top: 15),
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              children: <Widget>[
+                                ElevatedButton(
+                                  onPressed: () {
+                                    //TODO: to be implemented to show receipt
+                                  },
+                                  child: Container(
+                                    padding: const EdgeInsets.only(top: 20.0, bottom: 20 ),
+                                    child: Row(
+                                      children: [
+                                        Align(
+                                            alignment: Alignment.topLeft,
+                                            child: Icon(Icons.directions_train_sharp, size: 20)
+                                        ),
+                                        Column(
+                                            children: [
+                                              Container(
+                                                  alignment: Alignment.topLeft,
+                                                  margin: const EdgeInsets.only( left: 5.0),
+                                                  child: Text(
+                                                    '$departureTime',
+                                                    style: TextStyle( fontSize: 10.0),
+                                                  )
+                                              ),
+                                              Container(
+                                                  alignment: Alignment.topLeft,
+                                                  margin: const EdgeInsets.only( left: 5.0),
+                                                  child: Text(
+                                                    '$origin',
+                                                    style: TextStyle( fontSize: 15.0),
+                                                  )
+                                              ),
+                                            ]
+                                        ),
+                                        Column(
+                                          children: [
+                                            Container(
+                                                alignment: Alignment.center,
+                                                margin: const EdgeInsets.only( left: 5.0),
+                                                child: Text(
+                                                  'how many hours?',
+                                                  overflow: TextOverflow.ellipsis,
+                                                  style: TextStyle( fontSize: 10.0, fontStyle: FontStyle.italic),
+                                                )
+                                            ),
+                                            Container(
+                                                alignment: Alignment.center,
+                                                margin: const EdgeInsets.only( left: 5.0),
+                                                child: Text(
+                                                  ' ----> ',
+                                                  style: TextStyle( fontSize: 15.0),
+                                                )
+                                            ),
+                                          ],
+                                        ),
+                                        Column(
+                                          children: [
+                                            Container(
+                                                alignment: Alignment.topRight,
+                                                margin: const EdgeInsets.only( left: 5.0, right: 5.0),
+                                                child: Text(
+                                                  '$arrivalTime',
+                                                  style: TextStyle( fontSize: 10.0),
+                                                )
+                                            ),
+
+                                            Container(
+                                                alignment: Alignment.topRight,
+                                                margin: const EdgeInsets.only( left: 5.0, right: 5.0),
+                                                child: Text(
+                                                  '${journey.destination_name}',
+                                                  style: TextStyle( fontSize: 15.0),
+                                                )
+                                            ),
+                                          ],
+                                        )
+                                      ],
+                                    ),
+                                  )
+                                )
+                              ],
+                            ),
+                          ),
                         );
                       }
                     ))
@@ -404,3 +492,4 @@ class TrainSummary extends StatelessWidget{
     throw UnimplementedError();
   }
 }
+
