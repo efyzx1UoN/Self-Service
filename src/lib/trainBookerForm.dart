@@ -331,116 +331,127 @@ class TrainResults extends StatelessWidget {
               AsyncSnapshot<Results> snapshot){
               if(snapshot.hasData){
                 print("Im building!!\n\n\n\n\n\n\n\n\n\n\n");
-                return Row(
-                  children: <Widget>[
-                    Expanded(child: ListView.separated(
-                      itemCount: snapshot.data.departures.all.length,
-                      separatorBuilder: (BuildContext context, int index) => Divider(),
-                      itemBuilder: (BuildContext context, int index){
-                        var journey = snapshot.data.departures.all[index];
-                        String origin = snapshot.data.station_name;
-                        String departureTime = journey.aimed_departure_time;
-                        String arrivalTime = journey.station_detail.calling_at[0].aimed_arrival_time;
-                        // return ListTile(
-                        //   contentPadding: const EdgeInsets.all(10),
-                        //   title:Text( '${origin} --- ${journey.destination_name}'),
-                        //   subtitle: Text('${departureTime} -------------- ${arrivalTime}'),
-                        //   onTap: () {
-                        //     nextScreen(context);
-                        //   },
-                        // );
-                        return Container(
-                          padding: EdgeInsets.only(left: 10, right: 10, top: 15),
-                          child: SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child: Row(
-                              children: <Widget>[
-                                ElevatedButton(
-                                  onPressed: () {
-                                    //TODO: to be implemented to show receipt
-                                  },
-                                  child: Container(
-                                    padding: const EdgeInsets.only(top: 20.0, bottom: 20 ),
-                                    child: Row(
-                                      children: [
-                                        Align(
-                                            alignment: Alignment.topLeft,
-                                            child: Icon(Icons.directions_train_sharp, size: 20)
-                                        ),
-                                        Column(
+                if(snapshot.data.departures.all.length == 0){
+                  return Container(
+                    padding: EdgeInsets.only(left: 10, right: 10, top: 15),
+                    child: Text(
+                      "No Available Trains",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  );
+                }
+                else{
+                  return Row(
+                    children: <Widget>[
+                      Expanded(child: ListView.separated(
+                        itemCount: snapshot.data.departures.all.length,
+                        separatorBuilder: (BuildContext context, int index) => Divider(),
+                        itemBuilder: (BuildContext context, int index){
+                          var journey = snapshot.data.departures.all[index];
+                          String origin = snapshot.data.station_name;
+                          String departureTime = journey.aimed_departure_time;
+                          String arrivalTime = journey.station_detail.calling_at[0].aimed_arrival_time;
+                          // return ListTile(
+                          //   contentPadding: const EdgeInsets.all(10),
+                          //   title:Text( '${origin} --- ${journey.destination_name}'),
+                          //   subtitle: Text('${departureTime} -------------- ${arrivalTime}'),
+                          //   onTap: () {
+                          //     nextScreen(context);
+                          //   },
+                          // );
+                          return Container(
+                            padding: EdgeInsets.only(left: 10, right: 10, top: 15),
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: Row(
+                                children: <Widget>[
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      //TODO: to be implemented to show receipt
+                                    },
+                                    child: Container(
+                                      padding: const EdgeInsets.only(top: 20.0, bottom: 20 ),
+                                      child: Row(
+                                        children: [
+                                          Align(
+                                              alignment: Alignment.topLeft,
+                                              child: Icon(Icons.directions_train_sharp, size: 20)
+                                          ),
+                                          Column(
+                                              children: [
+                                                Container(
+                                                    alignment: Alignment.topLeft,
+                                                    margin: const EdgeInsets.only( left: 5.0),
+                                                    child: Text(
+                                                      '$departureTime',
+                                                      style: TextStyle( fontSize: 10.0),
+                                                    )
+                                                ),
+                                                Container(
+                                                    alignment: Alignment.topLeft,
+                                                    margin: const EdgeInsets.only( left: 5.0),
+                                                    child: Text(
+                                                      '$origin',
+                                                      style: TextStyle( fontSize: 15.0),
+                                                    )
+                                                ),
+                                              ]
+                                          ),
+                                          Column(
                                             children: [
                                               Container(
-                                                  alignment: Alignment.topLeft,
+                                                  alignment: Alignment.center,
                                                   margin: const EdgeInsets.only( left: 5.0),
                                                   child: Text(
-                                                    '$departureTime',
-                                                    style: TextStyle( fontSize: 10.0),
+                                                    'how many hours?',
+                                                    overflow: TextOverflow.ellipsis,
+                                                    style: TextStyle( fontSize: 10.0, fontStyle: FontStyle.italic),
                                                   )
                                               ),
                                               Container(
-                                                  alignment: Alignment.topLeft,
+                                                  alignment: Alignment.center,
                                                   margin: const EdgeInsets.only( left: 5.0),
                                                   child: Text(
-                                                    '$origin',
+                                                    ' ----> ',
                                                     style: TextStyle( fontSize: 15.0),
                                                   )
                                               ),
-                                            ]
-                                        ),
-                                        Column(
-                                          children: [
-                                            Container(
-                                                alignment: Alignment.center,
-                                                margin: const EdgeInsets.only( left: 5.0),
-                                                child: Text(
-                                                  'how many hours?',
-                                                  overflow: TextOverflow.ellipsis,
-                                                  style: TextStyle( fontSize: 10.0, fontStyle: FontStyle.italic),
-                                                )
-                                            ),
-                                            Container(
-                                                alignment: Alignment.center,
-                                                margin: const EdgeInsets.only( left: 5.0),
-                                                child: Text(
-                                                  ' ----> ',
-                                                  style: TextStyle( fontSize: 15.0),
-                                                )
-                                            ),
-                                          ],
-                                        ),
-                                        Column(
-                                          children: [
-                                            Container(
-                                                alignment: Alignment.topRight,
-                                                margin: const EdgeInsets.only( left: 5.0, right: 5.0),
-                                                child: Text(
-                                                  '$arrivalTime',
-                                                  style: TextStyle( fontSize: 10.0),
-                                                )
-                                            ),
+                                            ],
+                                          ),
+                                          Column(
+                                            children: [
+                                              Container(
+                                                  alignment: Alignment.topRight,
+                                                  margin: const EdgeInsets.only( left: 5.0, right: 5.0),
+                                                  child: Text(
+                                                    '$arrivalTime',
+                                                    style: TextStyle( fontSize: 10.0),
+                                                  )
+                                              ),
 
-                                            Container(
-                                                alignment: Alignment.topRight,
-                                                margin: const EdgeInsets.only( left: 5.0, right: 5.0),
-                                                child: Text(
-                                                  '${journey.destination_name}',
-                                                  style: TextStyle( fontSize: 15.0),
-                                                )
-                                            ),
-                                          ],
-                                        )
-                                      ],
-                                    ),
+                                              Container(
+                                                  alignment: Alignment.topRight,
+                                                  margin: const EdgeInsets.only( left: 5.0, right: 5.0),
+                                                  child: Text(
+                                                    '${journey.destination_name}',
+                                                    style: TextStyle( fontSize: 15.0),
+                                                  )
+                                              ),
+                                            ],
+                                          )
+                                        ],
+                                      ),
+                                    )
                                   )
-                                )
-                              ],
+                                ],
+                              ),
                             ),
-                          ),
-                        );
-                      }
-                    ))
-                  ],
-                );
+                          );
+                        }
+                      ))
+                    ],
+                  );
+                }
               }
               if(snapshot.hasError){
                 return Center(
