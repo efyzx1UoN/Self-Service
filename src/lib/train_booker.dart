@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/observerState.dart';
 import 'package:flutter_app/taxi/taxiAlbum.dart';
 import 'package:flutter_app/taxi/taxiPlanner.dart';
 import 'package:flutter_app/trainMapManager.dart';
@@ -29,7 +30,7 @@ class Train_BookerPage extends StatefulWidget {
 ///
 /// Description: State containing all currently active widgets and how to
 /// operate on them.
-class _Train_BookerPageState extends State<Train_BookerPage> {
+class _Train_BookerPageState extends ObserverState {
   String m_startingLocation;
   String m_destination;
   Future<Album> m_futureAlbum;
@@ -40,6 +41,7 @@ class _Train_BookerPageState extends State<Train_BookerPage> {
     m_futureAlbum = fetchAlbum();
     
     TrainMapManager.instance; //Initialise train codes.
+    TrainMapManager.instance.listener = this;
   }
 
   /// Function: pageHome
