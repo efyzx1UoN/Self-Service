@@ -18,7 +18,7 @@ class TaxiPlannerPageState extends State<TaxiPlannerPage> {
   @override
   void initState() {
     super.initState();
-   m_futureAlbum = fetchAlbum();
+   //m_futureAlbum = fetchAlbum();
 
   }
 

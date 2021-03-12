@@ -37,8 +37,7 @@ class _Train_BookerPageState extends State<Train_BookerPage> {
   @override
   void initState() {
     super.initState();
-    m_futureAlbum = fetchAlbum();
-    
+    //m_futureAlbum = fetchAlbum();
     TrainMapManager.instance; //Initialise train codes.
   }
 
@@ -58,6 +57,7 @@ class _Train_BookerPageState extends State<Train_BookerPage> {
       body: new ListView(
           children: <Widget> [
             TrainBookerForm(),
+            /*
             Container(
               margin: const EdgeInsets.fromLTRB(20, 0, 20, 0),
               alignment: Alignment(-1.0,-1.0),
@@ -78,7 +78,7 @@ class _Train_BookerPageState extends State<Train_BookerPage> {
                   ),
                 ],
               ),
-            ),
+            ),*/
           ]
       ),
     );
