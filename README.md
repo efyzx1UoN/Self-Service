@@ -9,12 +9,14 @@ Friday: 09:00<br/>
 
 ## Task Board
 Our Task Board is being managed on Trello, ran by Callum.<br/>
-[Link](https://trello.com/b/NtE3xafn/sprint-4)<br/>
+[Link](https://trello.com/b/0UMawD4I/sprint-5)<br/>
 
 
 ## Current Task: Sprint #5
 ### Brief
-- To be discussed 08/03/2021
+- Continue creating TrainBooker response and receipt.
+- Explore TaxiBooker API options.
+- Additional Refinements to routeplanner (unselected polylines are hidden).
 
 
 ### Resources
@@ -96,6 +98,8 @@ Classes should have single responsibility. (A class should not do more than the 
 | 01/02/2020 [Major] | Update on progress. <br/> Issues with Train Booker inputs | On track. Allocated new user stories to Trello going forward. <br/> Peer programmed (Tom and Ashley) on fixing input boxes for date and time. Merged to master. | Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo <br/>Shuxiang Hu<br/>Zihui Zu|
 | 03/02/2020 [Major] | Merging branches <br/> Discussion on parsing data | Polylines merged onto master. TrainBooker sub-branches merged. <br/> Peer programmed (group) on polylines and train booker <br/> Added filler work for maintanence (goal: commenting) | Callum Davis<br>Thomas Murphy<br/>Ashley Nnawugo <br/>Shuxiang Hu<br/>Zihui Zu<br>(To be filled in: Zixiang Jin)|
 | 05/03/2020 [Major] | Meeting with Steve<br/> Demos <br/> Plans for Sprint #5 <br/> (Post-Whatsapp discusion: End of API subscription, ToS not allowing original plan of switching key owner) | Demo shown of working multiple polylines and beginning of train planner page. <br/> Good progress made. <br/>WWW: Good production on people taking tasks based on strengths.<br/>EBI: Take average of user story completion to help decide the count for next sprint. <br/>Plans to inquire about API billing going forward. | Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo <br/>Shuxiang Hu<br/>Zihui Zu <br/> Steve Brooks|
+| 08/03/2020 [Major] | Whatsapp Discussion: New user stories created to start off.  | Tasks clarified. <br/> Noted to keep live updates of task progress. (done so during meeting hours) <br/>Group up on Wednesday to catch up. | Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo <br/>Shuxiang Hu<br/>Zihui Zu|
+| 10/03/2020 [Major] | New user stories. <br/> API usage <br/>RETROSPECTIVE: <br/>-Short meetings: Very helpful and concise <br/>-Sprint Delivery: 19 reasonable, averages story per person per week. | Disabling API subscription because testing is not necessary right now. | Callum Davis<br>Zixiang Jin<br>Thomas Murphy<br/>Ashley Nnawugo <br/>Shuxiang Hu<br/>Zihui Zu|
 
 
 ### Assessment Deliverables
