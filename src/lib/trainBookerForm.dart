@@ -8,6 +8,7 @@ import 'dart:convert';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoder/geocoder.dart';
 import 'package:http/http.dart';
+import 'package:searchable_dropdown/searchable_dropdown.dart';
 import 'main.dart';
 import 'package:flutter_app/SharedStringData.dart';
 import 'package:flutter_app/trainMapManager.dart';
@@ -32,6 +33,8 @@ class TrainBookerFormState extends State<TrainBookerForm> {
   final M_FORMKEY = GlobalKey<FormState>();
   Data m_data = new Data();
   String m_currentLocation = "";
+  List<DropdownMenuItem> m_stationList = TrainMapManager.instance.stationNames;
+  String selectedValue;
   bool _hidden = false;
   List<bool> _selections = List.generate(2, (_) => false);
   TimeOfDay _m_selectedTime = TimeOfDay.now();
@@ -50,7 +53,6 @@ class TrainBookerFormState extends State<TrainBookerForm> {
   @override
   void initState(){
     super.initState();
-    getLocation();
   }
 
   /// Function: getJsonResponse
@@ -82,24 +84,24 @@ class TrainBookerFormState extends State<TrainBookerForm> {
   /// Function: getLocation
   ///
   /// Description: Receive Co-ordinates from Geolocator and update global state.
-  void getLocation() async {
-    double lat;
-    double long;
-
-    Position coords = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high);
-    setState(() {
-      lat = coords.latitude;
-      long = coords.longitude;
-    });
-    final coordinates = new Coordinates(lat, long);
-    var addresses = await Geocoder.local.findAddressesFromCoordinates(coordinates);
-
-    setState(() {
-      m_currentLocation = addresses.first.addressLine;
-    });
-
-  }
+  // void getLocation() async {
+  //   double lat;
+  //   double long;
+  //
+  //   Position coords = await Geolocator.getCurrentPosition(
+  //       desiredAccuracy: LocationAccuracy.high);
+  //   setState(() {
+  //     lat = coords.latitude;
+  //     long = coords.longitude;
+  //   });
+  //   final coordinates = new Coordinates(lat, long);
+  //   var addresses = await Geocoder.local.findAddressesFromCoordinates(coordinates);
+  //
+  //   setState(() {
+  //     m_currentLocation = addresses.first.addressLine;
+  //   });
+  //
+  // }
 
   /// Function: showReturn
   ///
@@ -129,7 +131,36 @@ class TrainBookerFormState extends State<TrainBookerForm> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            TextFormField(
+            SearchableDropdown.single(
+              items: m_stationList,
+              value: selectedValue,
+              hint: "Where from?",
+              searchHint: "Where from?",
+              style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.black),
+              onChanged: (value) {
+                setState(() {
+                  m_data.setStartingLocation(value);
+                });
+              },
+              isExpanded: true,
+            ),
+            SearchableDropdown.single(
+              items: m_stationList,
+              hint: "Where to?",
+              searchHint: "Where to?",
+              style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.black),
+              onChanged: (value) {
+                setState(() {
+                  m_data.setDestination(value);
+                });
+              },
+              isExpanded: true,
+            ),
+            /*TextFormField(
               validator: (value) {
                 if (value.isEmpty) {
                   return 'Please enter a valid address';
@@ -145,8 +176,9 @@ class TrainBookerFormState extends State<TrainBookerForm> {
                 fillColor: Colors.white60,
                 filled: false,
               ),
-            ),
-            TextFormField(
+            ),*/
+            // SearchableDropdown(items: m_stationList, onChanged: null)
+            /*TextFormField(
               validator: (value) {
                 if (value.isEmpty) {
                   return 'Please enter a valid address';
@@ -162,7 +194,7 @@ class TrainBookerFormState extends State<TrainBookerForm> {
                 fillColor: Colors.white60,
                 filled: false,
               ),
-            ),
+            ),*/
             Row(
                 children: [
                            Expanded(
