@@ -12,6 +12,8 @@ import 'package:searchable_dropdown/searchable_dropdown.dart';
 import 'main.dart';
 import 'package:flutter_app/SharedStringData.dart';
 import 'package:flutter_app/trainMapManager.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 
 
 /// Class: TrainBookerPage
@@ -399,6 +401,7 @@ class TrainResults extends StatelessWidget {
                                 children: <Widget>[
                                   ElevatedButton(
                                     onPressed: () {
+                                      nextScreen(context);
                                       //TODO: to be implemented to show receipt
                                     },
                                     child: Container(
@@ -529,7 +532,19 @@ class TrainSummary extends StatelessWidget{
         title: Text("Train Journey Summary"),
       ),
       body: Center(
+        child: Expanded(
+          child: Align(
+            alignment: FractionalOffset.bottomCenter,
+          child: Column(
 
+          children: [
+            RaisedButton(
+                color: Colors.pink,
+                onPressed: () => launch('https://www.thetrainline.com'),
+                child: const Text('Book on Trainline', style: TextStyle(color: Colors.white)))],
+        )
+        ),
+        ),
       ),
     );
     throw UnimplementedError();
