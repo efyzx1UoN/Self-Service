@@ -369,7 +369,7 @@ class TrainResults extends StatelessWidget {
                   return Container(
                     padding: EdgeInsets.only(left: 10, right: 10, top: 15),
                     child: Text(
-                      "No Available Trains",
+                      "There are no direct train services for your trip. Please try a different route.",
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   );
