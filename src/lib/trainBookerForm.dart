@@ -364,7 +364,6 @@ class TrainResults extends StatelessWidget {
             title: Text("Available journeys"),
           ),
           body: Center(
-
               child: FutureBuilder(
                   future: result,
                   builder: (BuildContext context,
@@ -613,27 +612,87 @@ class TrainSummary extends StatelessWidget{
         title: Text("Train Journey Summary"),
       ),
       body: Center(
-        child: Expanded(
-          child: Align(
-            alignment: FractionalOffset.bottomCenter,
-          child: Column(
-
-          children: [
-            FutureBuilder(
+        child: Align(
+          alignment: FractionalOffset.bottomCenter,
+        child: Column(
+        children: [
+          Expanded(
+            child: FutureBuilder(
                 future: result,
                 builder: (BuildContext context,
                     AsyncSnapshot<t2.Results> snapshot){
-                  return Container(
-                    child: Text("Test"),
+                  if (snapshot.hasData) {
+                    print("Im building!!\n\n\n\n\n\n\n\n\n\n\n");
+                    if (snapshot.data.stops.length == 0) {
+                      return Container(
+                        padding: EdgeInsets.only(
+                            left: 10, right: 10, top: 15),
+                        child: Text(
+                          "No Stops Found",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      );
+                    }
+                    else {
+                      return Column(
+                        children: <Widget>[
+                          Expanded(
+                            child: ListView.separated(
+                            itemCount: snapshot.data.stops.length,
+                            separatorBuilder: (BuildContext context,
+                                int index) => Divider(),
+                            itemBuilder: (BuildContext context, int index) {
+                              var journey = snapshot.data.stops[index];
+                              String station_name = journey.station_name;
+                              String aimed_arrival_time = journey.aimed_arrival_time;
+                              // return ListTile(
+                              //   contentPadding: const EdgeInsets.all(10),
+                              //   title:Text( '${origin} --- ${journey.destination_name}'),
+                              //   subtitle: Text('${departureTime} -------------- ${arrivalTime}'),
+                              //   onTap: () {
+                              //     nextScreen(context);
+                              //   },
+                              // );
+                              return ListTile(
+                                title: Text("$station_name:  $aimed_arrival_time"),
+                                subtitle: Text(""),
+                                );
+                            }
+                          ),
+                          )
+                        ],
+                      );
+                    }
+                  }
+                  if (snapshot.hasError) {
+                    return Center(
+                        child: Icon(
+                          Icons.error,
+                          color: Colors.red,
+                          size: 82.0,
+                        ));
+                  }
+                  return Center(
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            CircularProgressIndicator(),
+                            SizedBox(
+                              height: 20.0,
+                              width: 40.0,
+                            )
+                          ]
+                      )
                   );
-
                 }),
-            RaisedButton(
-                color: Colors.pink,
-                onPressed: () => launch('https://www.thetrainline.com'),
-                child: const Text('Book on Trainline', style: TextStyle(color: Colors.white)))],
+          ),
+
+          RaisedButton(
+              color: Colors.pink,
+              onPressed: () => launch('https://www.thetrainline.com'),
+              child: const Text('Book on Trainline', style: TextStyle(color: Colors.white)))
+        ],
         )
-        ),
         ),
       ),
     );

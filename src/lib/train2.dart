@@ -15,8 +15,10 @@ class Results {
 @JsonSerializable()
 class Stop {
   String station_name;
+  String aimed_arrival_time;
 
-  Stop({this.station_name});
+
+  Stop({this.station_name, this.aimed_arrival_time});
 
   factory Stop.fromJson(Map<String, dynamic> json) => _$StopFromJson(json);
 }
