@@ -27,9 +27,12 @@ class Departures {
 class Train {
   String aimed_departure_time;
   String destination_name;
+  String service;
+  String train_uid;
   StationDetail station_detail;
 
-  Train({this.aimed_departure_time, this.destination_name, this.station_detail});
+
+  Train({this.aimed_departure_time, this.destination_name, this.service, this.train_uid, this.station_detail});
 
   factory Train.fromJson(Map<String, dynamic> json) => _$TrainFromJson(json);
 
