@@ -592,8 +592,6 @@ class TrainResults extends StatelessWidget {
           .showSnackBar(SnackBar(content: Text('Train Selected.')));
       Navigator.push(context, MaterialPageRoute(builder: (context) =>
           TrainSummary(result: secondQuery(journey), parent: this.parent)));
-      Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) => TrainSummary()));
     }
   }
 
