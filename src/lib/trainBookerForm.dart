@@ -653,10 +653,18 @@ class TrainSummary extends StatelessWidget{
                               // );
                               return ListTile(
 
-                                leading: const Icon(Icons.circle),
-                                title: Text( " $station_name:  $aimed_arrival_time"),
-                                subtitle: Text("↓", textAlign: TextAlign.center, style: new TextStyle(
+                                leading: index == 0 || index == snapshot.data.stops.length -1
+                                  ? const Icon(CupertinoIcons.circle):
+                                    const Icon(Icons.circle, size: 10.0),
+                                title: index ==  0 ||index == snapshot.data.stops.length -1
+                                ?  Text( " $station_name:  $aimed_arrival_time", style: new TextStyle(fontWeight: FontWeight.bold,
+                                fontSize: 20.0)):
+                                Text( " $station_name:  $aimed_arrival_time", style: new TextStyle( fontSize: 18.0)),
+                                subtitle: index == snapshot.data.stops.length -1
+                                    ? Text(""):
+                                Text("↓", textAlign: TextAlign.center, style: new TextStyle(
                               fontSize: 20.0, fontWeight: FontWeight.bold )),
+
                                 trailing: const Icon (Icons.train),
 
                                 );
