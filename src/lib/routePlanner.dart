@@ -259,9 +259,13 @@ class RoutePlannerFormState extends ObserverState {
                                 firstDate: DateTime.now(),
                                 lastDate: DateTime(2100),
                               ).then((date) {setState(() {
-                                _m_selectedDateString = date.day.toString().padLeft(2,'0')
-                                    +"/"+date.month.toString().padLeft(2,'0')+"/"+date.year.toString();
-                                _m_selectedDate = date;
+                                if (date!=null) {
+                                  _m_selectedDateString =
+                                      date.day.toString().padLeft(2, '0')
+                                          + "/" + date.month.toString().padLeft(
+                                          2, '0') + "/" + date.year.toString();
+                                  _m_selectedDate = date;
+                                }
                               });
                               });
                             },
@@ -276,9 +280,14 @@ class RoutePlannerFormState extends ObserverState {
                                   context: context,
                                   initialTime: TimeOfDay.now(),
                                 ).then((time) {setState(() {
-                                  _m_selectedTimeString = time.hour.toString().padLeft(2,'0')
-                                      +":"+time.minute.toString().padLeft(2,'0');
-                                  _m_selectedTime = time;
+                                  if (time!=null) {
+                                    _m_selectedTimeString =
+                                        time.hour.toString().padLeft(2, '0')
+                                            + ":" +
+                                            time.minute.toString().padLeft(
+                                                2, '0');
+                                    _m_selectedTime = time;
+                                  }
                                 });
                                 });
                               },
