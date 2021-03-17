@@ -652,8 +652,13 @@ class TrainSummary extends StatelessWidget{
                               //   },
                               // );
                               return ListTile(
-                                title: Text("$station_name:  $aimed_arrival_time"),
-                                subtitle: Text(""),
+
+                                leading: const Icon(Icons.circle),
+                                title: Text( " $station_name:  $aimed_arrival_time"),
+                                subtitle: Text("↓", textAlign: TextAlign.center, style: new TextStyle(
+                              fontSize: 20.0, fontWeight: FontWeight.bold )),
+                                trailing: const Icon (Icons.train),
+
                                 );
                             }
                           ),
