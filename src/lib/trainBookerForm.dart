@@ -38,6 +38,8 @@ class TrainBookerFormState extends State<TrainBookerForm> {
   List<DropdownMenuItem> m_stationList = TrainMapManager.instance.stationNames;
   String selectedValue;
   bool _hidden = false;
+  String _m_origin;
+  String _m_destination;
   List<bool> _selections = List.generate(2, (_) => false);
   TimeOfDay _m_selectedTime = TimeOfDay.now();
   String _m_selectedTimeString = TimeOfDay.now().hour.toString()
@@ -68,6 +70,8 @@ class TrainBookerFormState extends State<TrainBookerForm> {
     print(stationMap.length);
     String origin  = stationMap[m_data.m_startingLocation.toLowerCase()];
     String destination = stationMap[m_data.m_destination.toLowerCase()];
+    _m_origin = origin;
+    ///TODO same for destination
     String time = _m_selectedTime.hour.toString().padLeft(2,'0')+":"+
         _m_selectedTime.minute.toString().padLeft(2,'0');
     String date = _m_selectedDate.year.toString()+"-"+
@@ -213,9 +217,17 @@ class TrainBookerFormState extends State<TrainBookerForm> {
                                                 firstDate: DateTime.now(),
                                                 lastDate: DateTime(2100),
                                               ).then((date) {setState(() {
-                                                _m_selectedDateString = date.day.toString().padLeft(2,'0')
-                                                    +"/"+date.month.toString().padLeft(2,'0')+"/"+date.year.toString();
-                                                _m_selectedDate = date;
+                                                if (date!=null) {
+                                                  _m_selectedDateString =
+                                                      date.day.toString()
+                                                          .padLeft(2, '0')
+                                                          + "/" +
+                                                          date.month.toString()
+                                                              .padLeft(2, '0') +
+                                                          "/" +
+                                                          date.year.toString();
+                                                  _m_selectedDate = date;
+                                                }
                                               });
                                               });
                                             },
@@ -230,9 +242,14 @@ class TrainBookerFormState extends State<TrainBookerForm> {
                                 context: context,
                                 initialTime: TimeOfDay.now(),
                               ).then((time) {setState(() {
-                                _m_selectedTimeString = time.hour.toString().padLeft(2,'0')
-                                    +":"+time.minute.toString().padLeft(2,'0');
-                                _m_selectedTime = time;
+                                if (time != null) {
+                                  _m_selectedTimeString =
+                                      time.hour.toString().padLeft(2, '0')
+                                          + ":" +
+                                          time.minute.toString().padLeft(
+                                              2, '0');
+                                  _m_selectedTime = time;
+                                }
                               });
                               });
                             },
@@ -258,9 +275,14 @@ class TrainBookerFormState extends State<TrainBookerForm> {
                           firstDate: DateTime.now(),
                           lastDate: DateTime(2100),
                         ).then((date) {setState(() {
-                          _m_selectedDateStringReturn = date.day.toString().padLeft(2,'0')
-                              +"/"+date.month.toString().padLeft(2,'0')+"/"+date.year.toString();
-                          _m_selectedDateReturn = date;
+                          if (date!=null) {
+                            _m_selectedDateStringReturn =
+                                date.day.toString().padLeft(2, '0')
+                                    + "/" +
+                                    date.month.toString().padLeft(2, '0') +
+                                    "/" + date.year.toString();
+                            _m_selectedDateReturn = date;
+                          }
                         });
                         });
                       },
@@ -275,9 +297,13 @@ class TrainBookerFormState extends State<TrainBookerForm> {
                           context: context,
                           initialTime: TimeOfDay.now(),
                         ).then((time) {setState(() {
-                          _m_selectedTimeStringReturn = time.hour.toString().padLeft(2,'0')
-                              +":"+time.minute.toString().padLeft(2,'0');
-                          _m_selectedTimeStringReturn = time as String;
+                          if (time!=null) {
+                            _m_selectedTimeStringReturn =
+                                time.hour.toString().padLeft(2, '0')
+                                    + ":" +
+                                    time.minute.toString().padLeft(2, '0');
+                            _m_selectedTimeStringReturn = time as String;
+                          }
                         });
                         });
                       },
@@ -333,7 +359,8 @@ class TrainBookerFormState extends State<TrainBookerForm> {
                       Scaffold.of(context)
                           .showSnackBar(SnackBar(content: Text('Starting Location and Destination Saved.')));
                       Navigator.push(context, MaterialPageRoute(builder: (context) =>
-                          TrainResults(result: getJsonResponse(), parent: this)));
+                          TrainResults(result: getJsonResponse(), parent: this, origin: _m_origin)));
+                      ///TODO same for destination add destination: _m_destination
                     }
                   },
                   child: Text('Update Route'),
@@ -354,8 +381,10 @@ class TrainResults extends StatelessWidget {
   // final Future<List<Train>> journeys;
   final Future<t1.Results> result;
   final TrainBookerFormState parent;
+  final String origin;
 
-  TrainResults({this.result, this.parent});
+  TrainResults({this.result, this.parent, this.origin});
+  ///TODO same for destination add this.destination
 
     @override
     Widget build(BuildContext context) {
@@ -601,8 +630,10 @@ class TrainResults extends StatelessWidget {
 class TrainSummary extends StatelessWidget{
   final Future<t2.Results> result;
   final TrainBookerFormState parent;
+  final String origin;
 
-  TrainSummary({this.result, this.parent});
+  TrainSummary({this.result, this.parent, this.origin});
+  ///TODO same for destination add destination: this.destination
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -643,6 +674,9 @@ class TrainSummary extends StatelessWidget{
                               var journey = snapshot.data.stops[index];
                               String station_name = journey.station_name;
                               String aimed_arrival_time = journey.aimed_arrival_time;
+                              if (station_name == origin){
+                                ///display it in bold
+                              }
                               // return ListTile(
                               //   contentPadding: const EdgeInsets.all(10),
                               //   title:Text( '${origin} --- ${journey.destination_name}'),
@@ -653,7 +687,8 @@ class TrainSummary extends StatelessWidget{
                               // );
                               return ListTile(
 
-                                leading: index == 0 || index == snapshot.data.stops.length -1
+                                leading: station_name.toLowerCase() == origin || station_name == destination
+                                ///TODO pass destination
                                   ? const Icon(CupertinoIcons.circle):
                                     const Icon(Icons.circle, size: 10.0),
                                 title: index ==  0 ||index == snapshot.data.stops.length -1
