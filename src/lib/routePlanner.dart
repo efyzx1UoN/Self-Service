@@ -327,7 +327,7 @@ class RoutePlannerFormState extends ObserverState {
               maintainState: true,
               maintainAnimation: true,
               visible: !_m_mapVisible,
-              child: routeDirections(this),
+              child: routeDirections(this,m_geoTracker),
             ),
           ],
         ),

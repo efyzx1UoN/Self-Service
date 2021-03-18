@@ -1,3 +1,5 @@
+//import 'dart:html';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/geoTracker.dart';
@@ -14,8 +16,9 @@ class routeDirections extends Container {
   final double CONTAINER_TWO_HEIGHT = 500;
   RoutePlannerFormState _m_parent;
   geoTracker _m_geoTracker;
-  routeDirections(RoutePlannerFormState parent) {
+  routeDirections(RoutePlannerFormState parent,geoTracker tracker) {
     this._m_parent = parent;
+    this._m_geoTracker = tracker;
   }
 
   /// Function: removeAllHtmlTags
@@ -211,7 +214,7 @@ class routeDirections extends Container {
                                                     children: [
                                                       Align(
                                                           alignment: Alignment.topLeft,
-                                                          child: Icon(Icons.directions_train_sharp, size: 20)
+                                                          child: Icon(Icons.directions_train_sharp, size: 20,color: _m_geoTracker.getRouteColor(index),)
                                                       ),
                                                       Column(
                                                         children: [
@@ -370,7 +373,8 @@ class routeDirections extends Container {
                                               _m_parent.update();
                                             },
                                             child: Text('GO',
-                                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20,color: _m_geoTracker.getRouteColor(index)),
+
                                             )
                                         )
                                       ],
