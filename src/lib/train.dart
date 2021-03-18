@@ -14,6 +14,8 @@ class Results {
   factory Results.fromJson(Map<String, dynamic> json) => _$ResultsFromJson(json);
 }
 
+
+
 @JsonSerializable()
 class Departures {
   List<Train> all;
