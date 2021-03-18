@@ -26,6 +26,7 @@ import 'package:flutter_app/route.dart';
 /// needed for displaying the results to user
 class geoTracker {
   List<MapRoute> m_routes;
+  var m_routeColors  = [Colors.amberAccent,Colors.lightBlueAccent,Colors.green,Colors.deepOrange];
   PolylinePoints _m_polylinePoints;
   // List<LatLng> m_routeCoords2 = [];
   Map<PolylineId, Polyline> _m_polylines = {};
@@ -142,6 +143,9 @@ class geoTracker {
     _m_lat = value;
   }
 
+  Color getRouteColor(int index){
+    return m_routeColors[index%4];
+  }
   double get m_long => _m_long;
 
   set m_long(double value) {
@@ -402,7 +406,7 @@ class geoTracker {
               visible: true,
               width: (i==0) ? POLYLINE_WIDTH*2 : POLYLINE_WIDTH,
               points: coords,
-              color: (i==0) ? Colors.pink : Colors.blue[COLOR_GRADIANT+i*COLOR_GRADIANT],
+              color:  m_routeColors[i%4],
               startCap: Cap.roundCap,
               endCap: Cap.buttCap,
             ));
