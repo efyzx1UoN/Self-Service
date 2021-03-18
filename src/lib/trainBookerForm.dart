@@ -39,6 +39,7 @@ class TrainBookerFormState extends State<TrainBookerForm> {
   String selectedValue;
   bool _hidden = false;
   String _m_origin;
+  String _m_firststation;
   String _m_destination;
   List<bool> _selections = List.generate(2, (_) => false);
   TimeOfDay _m_selectedTime = TimeOfDay.now();
@@ -70,7 +71,10 @@ class TrainBookerFormState extends State<TrainBookerForm> {
     print(stationMap.length);
     String origin  = stationMap[m_data.m_startingLocation.toLowerCase()];
     String destination = stationMap[m_data.m_destination.toLowerCase()];
+    String firststation = stationMap[m_data.m_originLocation.toLowerCase()];
     _m_origin = origin;
+    _m_firststation=firststation;
+    _m_destination=destination;
     ///TODO same for destination
     String time = _m_selectedTime.hour.toString().padLeft(2,'0')+":"+
         _m_selectedTime.minute.toString().padLeft(2,'0');
@@ -208,140 +212,140 @@ class TrainBookerFormState extends State<TrainBookerForm> {
             ),*/
             Row(
                 children: [
-                           Expanded(
-                                        child: ElevatedButton(
-                                            onPressed: () {
-                                              showDatePicker(
-                                                context: context,
-                                                initialDate: DateTime.now(),
-                                                firstDate: DateTime.now(),
-                                                lastDate: DateTime(2100),
-                                              ).then((date) {setState(() {
-                                                if (date!=null) {
-                                                  _m_selectedDateString =
-                                                      date.day.toString()
-                                                          .padLeft(2, '0')
-                                                          + "/" +
-                                                          date.month.toString()
-                                                              .padLeft(2, '0') +
-                                                          "/" +
-                                                          date.year.toString();
-                                                  _m_selectedDate = date;
-                                                }
-                                              });
-                                              });
-                                            },
+                  Expanded(
+                    child: ElevatedButton(
+                        onPressed: () {
+                          showDatePicker(
+                            context: context,
+                            initialDate: DateTime.now(),
+                            firstDate: DateTime.now(),
+                            lastDate: DateTime(2100),
+                          ).then((date) {setState(() {
+                            if (date!=null) {
+                              _m_selectedDateString =
+                                  date.day.toString()
+                                      .padLeft(2, '0')
+                                      + "/" +
+                                      date.month.toString()
+                                          .padLeft(2, '0') +
+                                      "/" +
+                                      date.year.toString();
+                              _m_selectedDate = date;
+                            }
+                          });
+                          });
+                        },
 
-                                                 child: Text("Depart at: " + _m_selectedDateString)
-                                                        ),
-                                                  ),
-                      Expanded(
-                        child: ElevatedButton(
-                            onPressed: () {
-                              showTimePicker(
-                                context: context,
-                                initialTime: TimeOfDay.now(),
-                              ).then((time) {setState(() {
-                                if (time != null) {
-                                  _m_selectedTimeString =
-                                      time.hour.toString().padLeft(2, '0')
-                                          + ":" +
-                                          time.minute.toString().padLeft(
-                                              2, '0');
-                                  _m_selectedTime = time;
-                                }
-                              });
-                              });
-                            },
-                            child: Text("Depart at: "+_m_selectedTimeString)
-                        ),
-                      ),
-                       ]
-                      ),
+                        child: Text("Depart at: " + _m_selectedDateString)
+                    ),
+                  ),
+                  Expanded(
+                    child: ElevatedButton(
+                        onPressed: () {
+                          showTimePicker(
+                            context: context,
+                            initialTime: TimeOfDay.now(),
+                          ).then((time) {setState(() {
+                            if (time != null) {
+                              _m_selectedTimeString =
+                                  time.hour.toString().padLeft(2, '0')
+                                      + ":" +
+                                      time.minute.toString().padLeft(
+                                          2, '0');
+                              _m_selectedTime = time;
+                            }
+                          });
+                          });
+                        },
+                        child: Text("Depart at: "+_m_selectedTimeString)
+                    ),
+                  ),
+                ]
+            ),
             Visibility(
               maintainInteractivity: false,
               maintainSize: false,
               maintainState: true,
               maintainAnimation: true,
               visible: _hidden == true,
-                child: Row(
-              children: [
-                Expanded(
-                  child: ElevatedButton(
-                      onPressed: () {
-                        showDatePicker(
-                          context: context,
-                          initialDate: DateTime.now(),
-                          firstDate: DateTime.now(),
-                          lastDate: DateTime(2100),
-                        ).then((date) {setState(() {
-                          if (date!=null) {
-                            _m_selectedDateStringReturn =
-                                date.day.toString().padLeft(2, '0')
-                                    + "/" +
-                                    date.month.toString().padLeft(2, '0') +
-                                    "/" + date.year.toString();
-                            _m_selectedDateReturn = date;
-                          }
-                        });
-                        });
-                      },
+              child: Row(
+                  children: [
+                    Expanded(
+                      child: ElevatedButton(
+                          onPressed: () {
+                            showDatePicker(
+                              context: context,
+                              initialDate: DateTime.now(),
+                              firstDate: DateTime.now(),
+                              lastDate: DateTime(2100),
+                            ).then((date) {setState(() {
+                              if (date!=null) {
+                                _m_selectedDateStringReturn =
+                                    date.day.toString().padLeft(2, '0')
+                                        + "/" +
+                                        date.month.toString().padLeft(2, '0') +
+                                        "/" + date.year.toString();
+                                _m_selectedDateReturn = date;
+                              }
+                            });
+                            });
+                          },
 
-                      child: Text("Return by: " + _m_selectedDateStringReturn)
-                  ),
-                ),
-                Expanded(
-                  child: ElevatedButton(
-                      onPressed: () {
-                        showTimePicker(
-                          context: context,
-                          initialTime: TimeOfDay.now(),
-                        ).then((time) {setState(() {
-                          if (time!=null) {
-                            _m_selectedTimeStringReturn =
-                                time.hour.toString().padLeft(2, '0')
-                                    + ":" +
-                                    time.minute.toString().padLeft(2, '0');
-                            _m_selectedTimeStringReturn = time as String;
-                          }
-                        });
-                        });
-                      },
-                      child: Text("Depart at: "+_m_selectedTimeStringReturn)
-                  ),
-                ),
-              ]
+                          child: Text("Return by: " + _m_selectedDateStringReturn)
+                      ),
+                    ),
+                    Expanded(
+                      child: ElevatedButton(
+                          onPressed: () {
+                            showTimePicker(
+                              context: context,
+                              initialTime: TimeOfDay.now(),
+                            ).then((time) {setState(() {
+                              if (time!=null) {
+                                _m_selectedTimeStringReturn =
+                                    time.hour.toString().padLeft(2, '0')
+                                        + ":" +
+                                        time.minute.toString().padLeft(2, '0');
+                                _m_selectedTimeStringReturn = time as String;
+                              }
+                            });
+                            });
+                          },
+                          child: Text("Depart at: "+_m_selectedTimeStringReturn)
+                      ),
+                    ),
+                  ]
+              ),
             ),
-    ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Expanded(
-                child: FlatButton(
+                  child: FlatButton(
                     onPressed: hiddenReturn,
-                    color: Colors.black12,
-                    padding: EdgeInsets.all(10.0),
-                  child: Column(
-                    children: <Widget> [
-                      Text("Single"),
-                      Icon(Icons.arrow_forward_outlined),
-
-                    ],
-                  ),
-                ),
-                ),
-                Expanded(
-                child: FlatButton(
-                    onPressed: showReturn,
                     color: Colors.black12,
                     padding: EdgeInsets.all(10.0),
                     child: Column(
                       children: <Widget> [
-                        Text("Return"),
-                        Icon(Icons.compare_arrows_outlined),
+                        Text("Single"),
+                        Icon(Icons.arrow_forward_outlined),
+
                       ],
-                    )
+                    ),
+                  ),
                 ),
+                Expanded(
+                  child: FlatButton(
+                      onPressed: showReturn,
+                      color: Colors.black12,
+                      padding: EdgeInsets.all(10.0),
+                      child: Column(
+                        children: <Widget> [
+                          Text("Return"),
+                          Icon(Icons.compare_arrows_outlined),
+                        ],
+                      )
+                  ),
                 ),
               ],
             ),
@@ -359,7 +363,7 @@ class TrainBookerFormState extends State<TrainBookerForm> {
                       Scaffold.of(context)
                           .showSnackBar(SnackBar(content: Text('Starting Location and Destination Saved.')));
                       Navigator.push(context, MaterialPageRoute(builder: (context) =>
-                          TrainResults(result: getJsonResponse(), parent: this, origin: _m_origin)));
+                          TrainResults(result: getJsonResponse(), parent: this, origin: _m_origin,destination: _m_destination,)));
                       ///TODO same for destination add destination: _m_destination
                     }
                   },
@@ -382,209 +386,210 @@ class TrainResults extends StatelessWidget {
   final Future<t1.Results> result;
   final TrainBookerFormState parent;
   final String origin;
+  final String destination;
 
-  TrainResults({this.result, this.parent, this.origin});
+  TrainResults({this.result, this.parent, this.origin,this.destination});
   ///TODO same for destination add this.destination
 
-    @override
-    Widget build(BuildContext context) {
-      return Scaffold(
-          appBar: AppBar(
-            title: Text("Available journeys"),
-          ),
-          body: Center(
-              child: FutureBuilder(
-                  future: result,
-                  builder: (BuildContext context,
-                      AsyncSnapshot<t1.Results> snapshot) {
-                    if (snapshot.hasData) {
-                      print("Im building!!\n\n\n\n\n\n\n\n\n\n\n");
-                      if (snapshot.data.departures.all.length == 0) {
-                        return Container(
-                          padding: EdgeInsets.only(
-                              left: 10, right: 10, top: 15),
-                          child: Text(
-                            "No Available Trains",
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                        );
-                      }
-                      else {
-                        return Row(
-                          children: <Widget>[
-                            Expanded(child: ListView.separated(
-                                itemCount: snapshot.data.departures.all.length,
-                                separatorBuilder: (BuildContext context,
-                                    int index) => Divider(),
-                                itemBuilder: (BuildContext context, int index) {
-                                  var journey = snapshot.data.departures
-                                      .all[index];
-                                  String origin = snapshot.data.station_name;
-                                  String departureTime = journey
-                                      .aimed_departure_time;
-                                  String arrivalTime = journey.station_detail
-                                      .calling_at[0].aimed_arrival_time;
-                                  // return ListTile(
-                                  //   contentPadding: const EdgeInsets.all(10),
-                                  //   title:Text( '${origin} --- ${journey.destination_name}'),
-                                  //   subtitle: Text('${departureTime} -------------- ${arrivalTime}'),
-                                  //   onTap: () {
-                                  //     nextScreen(context);
-                                  //   },
-                                  // );
-                                  return Container(
-                                    padding: EdgeInsets.only(
-                                        left: 10, right: 10, top: 15),
-                                    child: SingleChildScrollView(
-                                      scrollDirection: Axis.horizontal,
-                                      child: Row(
-                                        children: <Widget>[
-                                          ElevatedButton(
-                                              onPressed: () {
-                                                nextScreen(context, journey);
-                                                //TODO: to be implemented to show receipt
-                                              },
-                                              child: Container(
-                                                padding: const EdgeInsets.only(
-                                                    top: 20.0, bottom: 20),
-                                                child: Row(
-                                                  children: [
-                                                    Align(
-                                                        alignment: Alignment
-                                                            .topLeft,
-                                                        child: Icon(Icons
-                                                            .directions_train_sharp,
-                                                            size: 20)
-                                                    ),
-                                                    Column(
-                                                        children: [
-                                                          Container(
-                                                              alignment: Alignment
-                                                                  .topLeft,
-                                                              margin: const EdgeInsets
-                                                                  .only(
-                                                                  left: 5.0),
-                                                              child: Text(
-                                                                '$departureTime',
-                                                                style: TextStyle(
-                                                                    fontSize: 10.0),
-                                                              )
-                                                          ),
-                                                          Container(
-                                                              alignment: Alignment
-                                                                  .topLeft,
-                                                              margin: const EdgeInsets
-                                                                  .only(
-                                                                  left: 5.0),
-                                                              child: Text(
-                                                                '$origin',
-                                                                style: TextStyle(
-                                                                    fontSize: 15.0),
-                                                              )
-                                                          ),
-                                                        ]
-                                                    ),
-                                                    Column(
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text("Available journeys"),
+        ),
+        body: Center(
+            child: FutureBuilder(
+                future: result,
+                builder: (BuildContext context,
+                    AsyncSnapshot<t1.Results> snapshot) {
+                  if (snapshot.hasData) {
+                    print("Im building!!\n\n\n\n\n\n\n\n\n\n\n");
+                    if (snapshot.data.departures.all.length == 0) {
+                      return Container(
+                        padding: EdgeInsets.only(
+                            left: 10, right: 10, top: 15),
+                        child: Text(
+                          "No Available Trains",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      );
+                    }
+                    else {
+                      return Row(
+                        children: <Widget>[
+                          Expanded(child: ListView.separated(
+                              itemCount: snapshot.data.departures.all.length,
+                              separatorBuilder: (BuildContext context,
+                                  int index) => Divider(),
+                              itemBuilder: (BuildContext context, int index) {
+                                var journey = snapshot.data.departures
+                                    .all[index];
+                                String origin = snapshot.data.station_name;
+                                String departureTime = journey
+                                    .aimed_departure_time;
+                                String arrivalTime = journey.station_detail
+                                    .calling_at[0].aimed_arrival_time;
+                                // return ListTile(
+                                //   contentPadding: const EdgeInsets.all(10),
+                                //   title:Text( '${origin} --- ${journey.destination_name}'),
+                                //   subtitle: Text('${departureTime} -------------- ${arrivalTime}'),
+                                //   onTap: () {
+                                //     nextScreen(context);
+                                //   },
+                                // );
+                                return Container(
+                                  padding: EdgeInsets.only(
+                                      left: 10, right: 10, top: 15),
+                                  child: SingleChildScrollView(
+                                    scrollDirection: Axis.horizontal,
+                                    child: Row(
+                                      children: <Widget>[
+                                        ElevatedButton(
+                                            onPressed: () {
+                                              nextScreen(context, journey);
+                                              //TODO: to be implemented to show receipt
+                                            },
+                                            child: Container(
+                                              padding: const EdgeInsets.only(
+                                                  top: 20.0, bottom: 20),
+                                              child: Row(
+                                                children: [
+                                                  Align(
+                                                      alignment: Alignment
+                                                          .topLeft,
+                                                      child: Icon(Icons
+                                                          .directions_train_sharp,
+                                                          size: 20)
+                                                  ),
+                                                  Column(
                                                       children: [
                                                         Container(
                                                             alignment: Alignment
-                                                                .center,
+                                                                .topLeft,
                                                             margin: const EdgeInsets
                                                                 .only(
                                                                 left: 5.0),
                                                             child: Text(
-                                                              'how many hours?',
-                                                              overflow: TextOverflow
-                                                                  .ellipsis,
-                                                              style: TextStyle(
-                                                                  fontSize: 10.0,
-                                                                  fontStyle: FontStyle
-                                                                      .italic),
-                                                            )
-                                                        ),
-                                                        Container(
-                                                            alignment: Alignment
-                                                                .center,
-                                                            margin: const EdgeInsets
-                                                                .only(
-                                                                left: 5.0),
-                                                            child: Text(
-                                                              ' ----> ',
-                                                              style: TextStyle(
-                                                                  fontSize: 15.0),
-                                                            )
-                                                        ),
-                                                      ],
-                                                    ),
-                                                    Column(
-                                                      children: [
-                                                        Container(
-                                                            alignment: Alignment
-                                                                .topRight,
-                                                            margin: const EdgeInsets
-                                                                .only(left: 5.0,
-                                                                right: 5.0),
-                                                            child: Text(
-                                                              '$arrivalTime',
+                                                              '$departureTime',
                                                               style: TextStyle(
                                                                   fontSize: 10.0),
                                                             )
                                                         ),
-
                                                         Container(
                                                             alignment: Alignment
-                                                                .topRight,
+                                                                .topLeft,
                                                             margin: const EdgeInsets
-                                                                .only(left: 5.0,
-                                                                right: 5.0),
+                                                                .only(
+                                                                left: 5.0),
                                                             child: Text(
-                                                              '${journey
-                                                                  .destination_name}',
+                                                              '$origin',
                                                               style: TextStyle(
                                                                   fontSize: 15.0),
                                                             )
                                                         ),
-                                                      ],
-                                                    )
-                                                  ],
-                                                ),
-                                              )
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  );
-                                }
-                            ))
-                          ],
-                        );
-                      }
-                    }
-                    if (snapshot.hasError) {
-                      return Center(
-                          child: Icon(
-                            Icons.error,
-                            color: Colors.red,
-                            size: 82.0,
-                          ));
-                    }
+                                                      ]
+                                                  ),
+                                                  Column(
+                                                    children: [
+                                                      Container(
+                                                          alignment: Alignment
+                                                              .center,
+                                                          margin: const EdgeInsets
+                                                              .only(
+                                                              left: 5.0),
+                                                          child: Text(
+                                                            'how many hours?',
+                                                            overflow: TextOverflow
+                                                                .ellipsis,
+                                                            style: TextStyle(
+                                                                fontSize: 10.0,
+                                                                fontStyle: FontStyle
+                                                                    .italic),
+                                                          )
+                                                      ),
+                                                      Container(
+                                                          alignment: Alignment
+                                                              .center,
+                                                          margin: const EdgeInsets
+                                                              .only(
+                                                              left: 5.0),
+                                                          child: Text(
+                                                            ' ----> ',
+                                                            style: TextStyle(
+                                                                fontSize: 15.0),
+                                                          )
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  Column(
+                                                    children: [
+                                                      Container(
+                                                          alignment: Alignment
+                                                              .topRight,
+                                                          margin: const EdgeInsets
+                                                              .only(left: 5.0,
+                                                              right: 5.0),
+                                                          child: Text(
+                                                            '$arrivalTime',
+                                                            style: TextStyle(
+                                                                fontSize: 10.0),
+                                                          )
+                                                      ),
 
+                                                      Container(
+                                                          alignment: Alignment
+                                                              .topRight,
+                                                          margin: const EdgeInsets
+                                                              .only(left: 5.0,
+                                                              right: 5.0),
+                                                          child: Text(
+                                                            '${journey
+                                                                .destination_name}',
+                                                            style: TextStyle(
+                                                                fontSize: 15.0),
+                                                          )
+                                                      ),
+                                                    ],
+                                                  )
+                                                ],
+                                              ),
+                                            )
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              }
+                          ))
+                        ],
+                      );
+                    }
+                  }
+                  if (snapshot.hasError) {
                     return Center(
-                        child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              CircularProgressIndicator(),
-                              SizedBox(
-                                height: 20.0,
-                                width: 40.0,
-                              )
-                            ]
-                        )
-                    );
-                  })
-          )
-      );
-    }
+                        child: Icon(
+                          Icons.error,
+                          color: Colors.red,
+                          size: 82.0,
+                        ));
+                  }
+
+                  return Center(
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            CircularProgressIndicator(),
+                            SizedBox(
+                              height: 20.0,
+                              width: 40.0,
+                            )
+                          ]
+                      )
+                  );
+                })
+        )
+    );
+  }
 
   /// Function: secondQuery
   /// Exception: HTTP error code throws exception.
@@ -611,18 +616,18 @@ class TrainResults extends StatelessWidget {
     else{
       throw Exception("Something went wrong, ${response.statusCode}");
     }
-    }
-
-    /// Function: _nextScreen
-    ///
-    /// Description: Navigates to the next Summary Page
-    void nextScreen(BuildContext context, t1.Train journey) {
-      Scaffold.of(context)
-          .showSnackBar(SnackBar(content: Text('Train Selected.')));
-      Navigator.push(context, MaterialPageRoute(builder: (context) =>
-          TrainSummary(result: secondQuery(journey), parent: this.parent)));
-    }
   }
+
+  /// Function: _nextScreen
+  ///
+  /// Description: Navigates to the next Summary Page
+  void nextScreen(BuildContext context, t1.Train journey) {
+    Scaffold.of(context)
+        .showSnackBar(SnackBar(content: Text('Train Selected.')));
+    Navigator.push(context, MaterialPageRoute(builder: (context) =>
+        TrainSummary(result: secondQuery(journey), parent: this.parent)));
+  }
+}
 
 ///Class: Train Summary
 ///
@@ -631,8 +636,9 @@ class TrainSummary extends StatelessWidget{
   final Future<t2.Results> result;
   final TrainBookerFormState parent;
   final String origin;
+  final String destination;
 
-  TrainSummary({this.result, this.parent, this.origin});
+  TrainSummary({this.result, this.parent, this.origin,this.destination});
   ///TODO same for destination add destination: this.destination
   @override
   Widget build(BuildContext context) {
@@ -642,103 +648,106 @@ class TrainSummary extends StatelessWidget{
       ),
       body: Center(
         child: Align(
-          alignment: FractionalOffset.bottomCenter,
-        child: Column(
-        children: [
-          Expanded(
-            child: FutureBuilder(
-                future: result,
-                builder: (BuildContext context,
-                    AsyncSnapshot<t2.Results> snapshot){
-                  if (snapshot.hasData) {
-                    print("Im building!!\n\n\n\n\n\n\n\n\n\n\n");
-                    if (snapshot.data.stops.length == 0) {
-                      return Container(
-                        padding: EdgeInsets.only(
-                            left: 10, right: 10, top: 15),
-                        child: Text(
-                          "No Stops Found",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                      );
-                    }
-                    else {
-                      return Column(
-                        children: <Widget>[
-                          Expanded(
-                            child: ListView.separated(
-                            itemCount: snapshot.data.stops.length,
-                            separatorBuilder: (BuildContext context,
-                                int index) => Divider(),
-                            itemBuilder: (BuildContext context, int index) {
-                              var journey = snapshot.data.stops[index];
-                              String station_name = journey.station_name;
-                              String aimed_arrival_time = journey.aimed_arrival_time;
-                              if (station_name == origin){
-                                ///display it in bold
-                              }
-                              // return ListTile(
-                              //   contentPadding: const EdgeInsets.all(10),
-                              //   title:Text( '${origin} --- ${journey.destination_name}'),
-                              //   subtitle: Text('${departureTime} -------------- ${arrivalTime}'),
-                              //   onTap: () {
-                              //     nextScreen(context);
-                              //   },
-                              // );
-                              return ListTile(
+            alignment: FractionalOffset.bottomCenter,
+            child: Column(
+              children: [
+                Expanded(
+                  child: FutureBuilder(
+                      future: result,
+                      builder: (BuildContext context,
+                          AsyncSnapshot<t2.Results> snapshot){
+                        if (snapshot.hasData) {
+                          print("Im building!!\n\n\n\n\n\n\n\n\n\n\n");
+                          if (snapshot.data.stops.length == 0) {
+                            return Container(
+                              padding: EdgeInsets.only(
+                                  left: 10, right: 10, top: 15),
+                              child: Text(
+                                "No Stops Found",
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                            );
+                          }
+                          else {
+                            return Column(
+                              children: <Widget>[
+                                Expanded(
+                                  child: ListView.separated(
+                                      itemCount: snapshot.data.stops.length,
+                                      separatorBuilder: (BuildContext context,
+                                          int index) => Divider(),
+                                      itemBuilder: (BuildContext context, int index) {
+                                        var journey = snapshot.data.stops[index];
+                                        String station_name = journey.station_name;
+                                        String aimed_arrival_time = journey.aimed_arrival_time;
+                                        if (station_name == origin){
+                                          ///display it in bold
+                                          station_name=origin;
+                                        }else{
 
-                                leading: station_name.toLowerCase() == origin || station_name == destination
-                                ///TODO pass destination
-                                  ? const Icon(CupertinoIcons.circle):
-                                    const Icon(Icons.circle, size: 10.0),
-                                title: index ==  0 ||index == snapshot.data.stops.length -1
-                                ?  Text( " $station_name:  $aimed_arrival_time", style: new TextStyle(fontWeight: FontWeight.bold,
-                                fontSize: 20.0)):
-                                Text( " $station_name:  $aimed_arrival_time", style: new TextStyle( fontSize: 18.0)),
-                                subtitle: index == snapshot.data.stops.length -1
-                                    ? Text(""):
-                                Text("↓", textAlign: TextAlign.center, style: new TextStyle(
-                              fontSize: 20.0, fontWeight: FontWeight.bold )),
+                                        }
+                                        // return ListTile(
+                                        //   contentPadding: const EdgeInsets.all(10),
+                                        //   title:Text( '${origin} --- ${journey.destination_name}'),
+                                        //   subtitle: Text('${departureTime} -------------- ${arrivalTime}'),
+                                        //   onTap: () {
+                                        //     nextScreen(context);
+                                        //   },
+                                        // );
+                                        return ListTile(
 
-                                trailing: const Icon (Icons.train),
+                                          leading: station_name.toLowerCase() == origin || station_name.toLowerCase()==destination
+                                          ///TODO pass destination
+                                              ? const Icon(CupertinoIcons.circle):
+                                          const Icon(Icons.circle, size: 10.0),
+                                          title: index ==  0 ||index == snapshot.data.stops.length -1
+                                              ?  Text( " $station_name:  $aimed_arrival_time", style: new TextStyle(fontWeight: FontWeight.bold,
+                                              fontSize: 20.0)):
+                                          Text( " $station_name:  $aimed_arrival_time", style: new TextStyle( fontSize: 18.0)),
+                                          subtitle: index == snapshot.data.stops.length -1
+                                              ? Text(""):
+                                          Text("↓", textAlign: TextAlign.center, style: new TextStyle(
+                                              fontSize: 20.0, fontWeight: FontWeight.bold )),
 
-                                );
-                            }
-                          ),
-                          )
-                        ],
-                      );
-                    }
-                  }
-                  if (snapshot.hasError) {
-                    return Center(
-                        child: Icon(
-                          Icons.error,
-                          color: Colors.red,
-                          size: 82.0,
-                        ));
-                  }
-                  return Center(
-                      child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            CircularProgressIndicator(),
-                            SizedBox(
-                              height: 20.0,
-                              width: 40.0,
+                                          trailing: const Icon (Icons.train),
+
+                                        );
+                                      }
+                                  ),
+                                )
+                              ],
+                            );
+                          }
+                        }
+                        if (snapshot.hasError) {
+                          return Center(
+                              child: Icon(
+                                Icons.error,
+                                color: Colors.red,
+                                size: 82.0,
+                              ));
+                        }
+                        return Center(
+                            child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  CircularProgressIndicator(),
+                                  SizedBox(
+                                    height: 20.0,
+                                    width: 40.0,
+                                  )
+                                ]
                             )
-                          ]
-                      )
-                  );
-                }),
-          ),
+                        );
+                      }),
+                ),
 
-          RaisedButton(
-              color: Colors.pink,
-              onPressed: () => launch('https://www.thetrainline.com'),
-              child: const Text('Book on Trainline', style: TextStyle(color: Colors.white)))
-        ],
-        )
+                RaisedButton(
+                    color: Colors.pink,
+                    onPressed: () => launch('https://www.thetrainline.com'),
+                    child: const Text('Book on Trainline', style: TextStyle(color: Colors.white)))
+              ],
+            )
         ),
       ),
     );
