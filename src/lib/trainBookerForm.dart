@@ -92,6 +92,7 @@ class TrainBookerFormState extends State<TrainBookerForm> {
       return result;
     }
     else{
+      print("Code: "+response.statusCode.toString());
       throw Exception("Something went wrong, ${response.statusCode}");
     }
   }
@@ -363,7 +364,7 @@ class TrainBookerFormState extends State<TrainBookerForm> {
                       Scaffold.of(context)
                           .showSnackBar(SnackBar(content: Text('Starting Location and Destination Saved.')));
                       Navigator.push(context, MaterialPageRoute(builder: (context) =>
-                          TrainResults(result: getJsonResponse(), parent: this, origin: _m_origin,destination: _m_destination,)));
+                          TrainResults(result: getJsonResponse(), parent: this, origin: _m_origin,destination: _m_destination)));
                       ///TODO same for destination add destination: _m_destination
                     }
                   },
@@ -388,7 +389,7 @@ class TrainResults extends StatelessWidget {
   final String origin;
   final String destination;
 
-  TrainResults({this.result, this.parent, this.origin,this.destination});
+  TrainResults({this.result, this.parent, this.origin, this.destination});
   ///TODO same for destination add this.destination
 
   @override
@@ -625,7 +626,7 @@ class TrainResults extends StatelessWidget {
     Scaffold.of(context)
         .showSnackBar(SnackBar(content: Text('Train Selected.')));
     Navigator.push(context, MaterialPageRoute(builder: (context) =>
-        TrainSummary(result: secondQuery(journey), parent: this.parent)));
+        TrainSummary(result: secondQuery(journey), parent: this.parent, origin: this.origin, destination: this.destination,)));
   }
 }
 

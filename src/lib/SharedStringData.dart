@@ -19,7 +19,7 @@ class Data {
   String _m_startingLocation = "nowhere";
   String _m_originLocation="nowhere";
   String get m_destination => _m_destination;
-  String get m_originLocation=>_m_originLocation;
+  String get m_originLocation=> m_originLocation;
 
   setDestination(String value) {
     _m_destination = value;
