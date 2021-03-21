@@ -38,8 +38,7 @@ class _Train_BookerPageState extends ObserverState {
   @override
   void initState() {
     super.initState();
-    m_futureAlbum = fetchAlbum();
-    
+    //m_futureAlbum = fetchAlbum();
     TrainMapManager.instance; //Initialise train codes.
     TrainMapManager.instance.listener = this;
   }
@@ -60,6 +59,7 @@ class _Train_BookerPageState extends ObserverState {
       body: new ListView(
           children: <Widget> [
             TrainBookerForm(),
+            /*
             Container(
               margin: const EdgeInsets.fromLTRB(20, 0, 20, 0),
               alignment: Alignment(-1.0,-1.0),
@@ -80,7 +80,7 @@ class _Train_BookerPageState extends ObserverState {
                   ),
                 ],
               ),
-            ),
+            ),*/
           ]
       ),
     );

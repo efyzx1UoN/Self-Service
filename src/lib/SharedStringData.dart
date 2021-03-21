@@ -17,27 +17,36 @@ import 'package:flutter_app/routePlanner.dart';
 class Data {
   String _m_destination = "nowhere";
   String _m_startingLocation = "nowhere";
+  String _m_originLocation="nowhere";
 
   String get m_destination => _m_destination;
+  String get m_originLocation=> _m_originLocation;
+
+  setDestination(String value) {
+    _m_destination = value;
+  }
 
   set m_destination(String value) {
     _m_destination = value;
+  }
+  String getDestination(){
+    return _m_destination;
+  }
+
+  String getOriginLocation(){
+    return _m_originLocation;
+  }
+  set m_originLocation(String value){
+    _m_originLocation=value;
   }
 
   String getStartingLocation(){
     return _m_startingLocation;
   }
 
+
   setStartingLocation(String value) {
     _m_startingLocation = value;
-  }
-
-  String getDestination(){
-    return _m_destination;
-  }
-
-  setDestination(String value) {
-    _m_destination = value;
   }
 
   String get m_startingLocation => _m_startingLocation;

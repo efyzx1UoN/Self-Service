@@ -1,6 +1,3 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/taxi/routeDirections_taxi.dart';
 import 'package:flutter_app/taxi/taxiAlbum.dart';
@@ -21,7 +18,7 @@ class TaxiPlannerPageState extends State<TaxiPlannerPage> {
   @override
   void initState() {
     super.initState();
-   m_futureAlbum = fetchAlbum();
+   //m_futureAlbum = fetchAlbum();
 
   }
 
@@ -213,9 +210,8 @@ class RoutePlannerFormState_taxi extends ObserverState {
               child: _m_geoTracker.m_locationCoordinates == null
                   ? Container()
                   : _m_geoTracker.m_map,
-              height: MediaQuery.of(context).size.height,
-              width:MediaQuery.of(context).size.width
-              //geoTracker.CONTAINER_ONE_DIMENSION,
+              height: geoTracker.CONTAINER_ONE_DIMENSION,
+              width: geoTracker.CONTAINER_ONE_DIMENSION,
             ),
             Visibility(
               maintainInteractivity: false,

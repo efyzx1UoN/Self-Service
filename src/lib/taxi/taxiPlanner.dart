@@ -30,7 +30,8 @@ class TaxiPlannerPage extends StatefulWidget {
 /// Function fetchDetails()
 ///
 /// Description: performs HTTP request and returns JSON response data
+/*
 Future<http.Response> fetchDetails() {
   return http.get("https://m.uber.com/?client_id=0");
 }
-
+*/

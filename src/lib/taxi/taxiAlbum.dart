@@ -29,9 +29,11 @@ class Album {
     );
   }
 }
+
   /// Function fetchAlbum()
   ///
   /// Description: Perform HTTP request and receive JSON response
+/*
 Future<Album> fetchAlbum() async {
   final response = await http.get("https://m.uber.com/?client_id=");
 
@@ -46,3 +48,4 @@ Future<Album> fetchAlbum() async {
     return null;
   }
 }
+*/
