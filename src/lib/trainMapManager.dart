@@ -74,7 +74,7 @@ class TrainMapManager {
     for (var table in excel.tables.keys) {
       for (var row in excel.tables[table].rows) {
         // stationNames.addAll({row[0].toString().toLowerCase()});
-        stationNames.add(DropdownMenuItem(child: Text(row[0].toString().toLowerCase()), value: row[0].toString().toLowerCase(),));
+        stationNames.add(DropdownMenuItem(child: Text(row[0].toString()), value: row[0].toString()));
         // print("list: " + table + " : " + row[0].toString().toLowerCase());
       }
     }

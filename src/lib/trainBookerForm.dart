@@ -75,9 +75,9 @@ class TrainBookerFormState extends State<TrainBookerForm> {
     print(origin.toString());
     print(destination.toString());
     String firststation = stationMap[m_data.m_originLocation.toLowerCase()];
-    _m_origin = m_data.m_originLocation.toLowerCase();
-    _m_firststation=m_data.m_originLocation.toLowerCase();
-    _m_destination=m_data.m_destination.toLowerCase();
+    _m_origin = m_data.m_originLocation;
+    _m_firststation=m_data.m_originLocation;
+    _m_destination=m_data.m_destination;
     ///TODO same for destination
     String time = _m_selectedTime.hour.toString().padLeft(2,'0')+":"+
         _m_selectedTime.minute.toString().padLeft(2,'0');
@@ -548,8 +548,7 @@ class TrainResults extends StatelessWidget {
                                                               .only(left: 5.0,
                                                               right: 5.0),
                                                           child: Text(
-                                                            '${journey
-                                                                .destination_name}',
+                                                            '${destination}',
                                                             style: TextStyle(
                                                                 fontSize: 15.0),
                                                           )
@@ -647,7 +646,7 @@ class TrainSummary extends StatelessWidget{
   final String destination;
 
   TrainSummary({this.result, this.parent, this.origin,this.destination});
-  ///TODO same for destination add destination: this.destination
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -707,11 +706,10 @@ class TrainSummary extends StatelessWidget{
                                         // );
                                         return ListTile(
 
-                                          leading: station_name.toLowerCase() == origin || station_name.toLowerCase()==destination
-                                          ///TODO pass destination
+                                          leading: station_name == origin || station_name==destination
                                               ? const Icon(CupertinoIcons.circle, size: 15.0):
                                           const Icon(Icons.circle, size: 10.0),
-                                          title: station_name.toLowerCase() == origin || station_name.toLowerCase()==destination
+                                          title: station_name == origin || station_name==destination
                                               ?  Text( " $station_name: $time", style: new TextStyle(fontWeight: FontWeight.bold,
                                               fontSize: 20.0)):
                                           Text( " $station_name: $time", style: new TextStyle( fontSize: 18.0)),
