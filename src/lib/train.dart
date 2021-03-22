@@ -32,9 +32,11 @@ class Train {
   String service;
   String train_uid;
   StationDetail station_detail;
+  ServiceTimetable service_timetable;
 
 
-  Train({this.aimed_departure_time, this.destination_name, this.service, this.train_uid, this.station_detail});
+
+  Train({this.aimed_departure_time, this.destination_name, this.service, this.train_uid, this.station_detail, this.service_timetable});
 
   factory Train.fromJson(Map<String, dynamic> json) => _$TrainFromJson(json);
 
@@ -62,4 +64,13 @@ class Station {
   this.aimed_departure_time, this.aimed_pass_time});
 
   factory Station.fromJson(Map<String, dynamic> json) => _$StationFromJson(json);
+}
+
+@JsonSerializable()
+class ServiceTimetable {
+  String id;
+
+  ServiceTimetable({this.id});
+
+  factory ServiceTimetable.fromJson(Map<String, dynamic> json) => _$ServiceTimetableFromJson(json);
 }

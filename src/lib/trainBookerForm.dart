@@ -603,14 +603,17 @@ class TrainResults extends StatelessWidget {
   /// exception.
   Future<t2.Results> secondQuery(t1.Train journey) async {
     String service = journey.service;
+    print(service);
     String time = journey.aimed_departure_time;
     String date = this.parent._m_selectedDate.year.toString()+"-"+
         this.parent._m_selectedDate.month.toString().padLeft(2,'0')+"-"+
         this.parent._m_selectedDate.day.toString().padLeft(2,'0');
     print("TEST: $service, $date, $time");
     Map<String, String> stationMap = TrainMapManager.instance.stationInfo;
-    http.Response response = await get(
-        "https://transportapi.com/v3/uk/train/service/$service/$date/$time/timetable.json?app_id=b1b5d114&app_key=85fa7b99e23aa90b5071c8a6f4a72026");
+
+    http.Response response = await get(journey.service_timetable.id);
+/*    http.Response response = await get(
+        "https://transportapi.com/v3/uk/train/service/$service/$date/$time/timetable.json?app_id=b1b5d114&app_key=85fa7b99e23aa90b5071c8a6f4a72026");*/
     if (response.statusCode == 200) {
       print(response.body.length);
       Map jsonResponse = jsonDecode(response.body);
@@ -683,8 +686,11 @@ class TrainSummary extends StatelessWidget{
                                           int index) => Divider(),
                                       itemBuilder: (BuildContext context, int index) {
                                         var journey = snapshot.data.stops[index];
+
                                         String station_name = journey.station_name;
                                         String aimed_arrival_time = journey.aimed_arrival_time;
+                                        String aimed_departure_time = journey.aimed_departure_time;
+                                        var time = aimed_arrival_time == null ? aimed_departure_time : aimed_arrival_time;
                                         if (station_name == origin){
                                           ///display it in bold
                                           station_name=origin;
@@ -703,16 +709,16 @@ class TrainSummary extends StatelessWidget{
 
                                           leading: station_name.toLowerCase() == origin || station_name.toLowerCase()==destination
                                           ///TODO pass destination
-                                              ? const Icon(CupertinoIcons.circle):
+                                              ? const Icon(CupertinoIcons.circle, size: 15.0):
                                           const Icon(Icons.circle, size: 10.0),
                                           title: station_name.toLowerCase() == origin || station_name.toLowerCase()==destination
-                                              ?  Text( " $station_name:  $aimed_arrival_time", style: new TextStyle(fontWeight: FontWeight.bold,
+                                              ?  Text( " $station_name: $time", style: new TextStyle(fontWeight: FontWeight.bold,
                                               fontSize: 20.0)):
-                                          Text( " $station_name:  $aimed_arrival_time", style: new TextStyle( fontSize: 18.0)),
-                                          subtitle: index == snapshot.data.stops.length -1
+                                          Text( " $station_name: $time", style: new TextStyle( fontSize: 18.0)),
+                                          /*subtitle: index == snapshot.data.stops.length -1
                                               ? Text(""):
                                           Text("↓", textAlign: TextAlign.center, style: new TextStyle(
-                                              fontSize: 20.0, fontWeight: FontWeight.bold )),
+                                              fontSize: 20.0, fontWeight: FontWeight.bold )),*/
 
                                           trailing: const Icon (Icons.train),
 

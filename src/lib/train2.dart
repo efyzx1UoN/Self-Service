@@ -16,9 +16,10 @@ class Results {
 class Stop {
   String station_name;
   String aimed_arrival_time;
+  String aimed_departure_time;
 
 
-  Stop({this.station_name, this.aimed_arrival_time});
+  Stop({this.station_name, this.aimed_arrival_time, this.aimed_departure_time});
 
   factory Stop.fromJson(Map<String, dynamic> json) => _$StopFromJson(json);
 }
